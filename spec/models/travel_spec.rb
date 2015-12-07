@@ -13,7 +13,7 @@ RSpec.describe Travel, type: :model do
     expect(FactoryGirl.build(:travel, initial_date: nil)).not_to be_valid
   end
 
-  it 'is invalid without a initial date' do
+  it 'is invalid without a final date' do
     expect(FactoryGirl.build(:travel, final_date: nil)).not_to be_valid
   end
 

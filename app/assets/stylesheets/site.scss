@@ -1,3 +1,24 @@
 // Place all the styles related to the site controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+header {
+  background-color: $color-header;
+  height: 100px;
+}
+
+aside {
+  height: 640px;
+  background-color: $color-aside;
+}
+
+footer {
+  background-color: $color-header;
+  height: 60px;
+}
+
+.main {
+  background-color: $color-main;
+  height: 640px;
+}
