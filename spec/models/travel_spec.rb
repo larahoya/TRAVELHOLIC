@@ -32,4 +32,84 @@ RSpec.describe Travel, type: :model do
     end
   end
 
+  describe '#add_tags' do
+
+    it 'add one tag from a hash with one value' do
+      @travel = FactoryGirl.create(:travel)
+      hash = {'value1' => 'Cruise'}
+      @travel.add_tags(hash)
+
+      expect(@travel.tag_list.length).to eq(2)
+    end
+
+    it 'add two tags from a hash with two values' do
+      @travel = FactoryGirl.create(:travel)
+      hash = {'value1' => 'Cruise', 'value2' => 'Romantic'}
+      @travel.add_tags(hash)
+
+      expect(@travel.tag_list.length).to eq(3)
+    end
+
+  end
+
+  describe '#add_requirements' do
+
+    it 'add one requirement from a hash with one value' do
+      @travel = FactoryGirl.create(:travel)
+      hash = {'value1' => 'Age'}
+      @travel.add_tags(hash)
+
+      expect(@travel.tag_list.length).to eq(2)
+    end
+
+    it 'add two requirements from a hash with two values' do
+      @travel = FactoryGirl.create(:travel)
+      hash = {'value1' => 'Age', 'value2' => 'Children'}
+      @travel.add_requirements(hash)
+
+      expect(@travel.requirement_list.length).to eq(3)
+    end
+
+  end
+
+  describe '#add_places' do
+
+    it 'add one requirement from a string with one value' do
+      @travel = FactoryGirl.create(:travel)
+      string = 'Toledo'
+      @travel.add_places(string)
+
+      expect(@travel.place_list.length).to eq(2)
+    end
+
+    it 'add two requirements from a string with two values' do
+      @travel = FactoryGirl.create(:travel)
+      string = 'Toledo,Sevilla'
+      @travel.add_places(string)
+
+      expect(@travel.place_list.length).to eq(3)
+    end
+
+  end
+
+  describe '#add_countries' do
+
+    it 'add one requirement from a string with one value' do
+      @travel = FactoryGirl.create(:travel)
+      string = 'France'
+      @travel.add_countries(string)
+
+      expect(@travel.country_list.length).to eq(2)
+    end
+
+    it 'add two requirements from a string with two values' do
+      @travel = FactoryGirl.create(:travel)
+      string = 'France,Italy'
+      @travel.add_countries(string)
+
+      expect(@travel.country_list.length).to eq(3)
+    end
+
+  end
+
 end
