@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207091762) do
+ActiveRecord::Schema.define(version: 20151207192814) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -38,10 +38,7 @@ ActiveRecord::Schema.define(version: 20151207091762) do
     t.text     "description"
     t.datetime "initial_date"
     t.datetime "final_date"
-    t.string   "countries"
-    t.string   "places"
     t.string   "budget"
-    t.string   "requirements"
     t.integer  "maximum_people"
     t.integer  "people"
     t.datetime "created_at",     null: false

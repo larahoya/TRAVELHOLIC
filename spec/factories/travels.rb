@@ -6,8 +6,8 @@ FactoryGirl.define do
     f.description {Faker::Lorem.paragraph}
     f.initial_date Date.today
     f.final_date {Faker::Date.forward(20)}
-    f.countries {Faker::Lorem.sentence}
-    f.places {Faker::Lorem.sentence}
+    f.countries 'Spain,Italy'
+    f.places 'Madrid,Milano'
     f.budget 'low'
     f.requirements {Faker::Lorem.sentence}
     f.maximum_people 10
