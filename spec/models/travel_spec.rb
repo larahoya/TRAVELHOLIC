@@ -1,5 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Travel, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'has a valid factory' do
+    expect(FactoryGirl.create(:travel)).to be_valid
+  end
+
+  it 'is invalid without a title' do
+    expect(FactoryGirl.build(:travel, title: nil)).not_to be_valid
+  end
+
+  it 'is invalid without a initial date' do
+    expect(FactoryGirl.build(:travel, initial_date: nil)).not_to be_valid
+  end
+
+  it 'is invalid without a initial date' do
+    expect(FactoryGirl.build(:travel, final_date: nil)).not_to be_valid
+  end
+
+  it 'has an integer as maximum_people' do
+    expect(FactoryGirl.build(:travel, maximum_people: 'cuatro')).not_to be_valid
+  end
+
+  it 'has an integer as people' do
+    expect(FactoryGirl.build(:travel, people: 'cuatro')).not_to be_valid
+  end
 end
