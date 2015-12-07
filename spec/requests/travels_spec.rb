@@ -38,4 +38,15 @@ RSpec.describe 'Travels', type: :request do
 
   end
 
+  describe 'POST #create' do
+
+    context 'some attribute is missing or incorrect' do
+    end
+
+    context 'all the attributes are correct' do
+    end
+
+  end
+
+
 end
