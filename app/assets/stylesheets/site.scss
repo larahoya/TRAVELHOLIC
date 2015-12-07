@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
+* {
+  font-family: Verdana;
+}
+
 header {
   background-color: $color-header;
   height: 100px;

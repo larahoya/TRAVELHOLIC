@@ -1,0 +1,52 @@
+<div class='form-travel-new'>
+  <form action='/travels' method='POST'>
+    
+    <label class='name'>Title  </label>
+    <input type='title' placeholder='Title' name='title' class='input name'><br>
+
+    <label class='initial-date'>Initial date</label>
+    <input type='date' placeholder='Initial date' name='initial_date' class='input initial-date'><br>
+    
+    <label class='final-date'>Final date </label>
+    <input type='date' placeholder='Final date' name='final_date' class='input final-date'><br>
+    
+    <label class='description'>Description</label>
+    <input type='text' placeholder='Description' name='description' class='input description'><br>
+
+    <label class='countries'>Countries</label>
+    <input type='text' placeholder='Countries' name='countries' class='input countries'><br>
+    
+    <label class='places'>Places</label>
+    <input type='text' placeholder='Places' name='places' class='input places'><br>
+
+    <label class='budget'>Budget</label>
+    <select name='budget' class='select budget'>
+    <option value='low'>LOW</option>
+    <option value='medium' selected>MEDIUM</option>
+    <option value='high'>HIGH</option>
+    </select><br>
+    
+    <label>Maximum number of people</label>
+    <input type='number' placeholder='Max' name='maximum_people' class='input maximum'><br>
+    
+    <label class='tags'>Tags</label><br>
+    <input type='checkbox' id='cbox1' name ='tags[1]' value='adventure'><label>Adventure</label>
+    <input type='checkbox' id='cbox2' name ='tags[2]' value='cultural'><label>Cultural</label>
+    <input type='checkbox' id='cbox3' name ='tags[3]' value='safari'><label>Safari</label>
+    <input type='checkbox' id='cbox4' name ='tags[4]' value='business'><label>Business</label><br>
+    <input type='checkbox' id='cbox5' name ='tags[5]' value='road trip'><label>Road trip</label>
+    <input type='checkbox' id='cbox6' name ='tags[6]' value='weekend break'><label>Weekend break</label>
+    <input type='checkbox' id='cbox7' name ='tags[7]' value='event travel'><label>Event travel</label>
+    <input type='checkbox' id='cbox8' name ='tags[8]' value='cruise'><label>Cruise</label><br>
+    <input type='checkbox' id='cbox9' name ='tags[9]' value='backpacker'><label>Backpacker</label>
+    <input type='checkbox' id='cbox10' name ='tags[10]' value='traveling with children'><label>Traveling with children</label>
+    <input type='checkbox' id='cbox11' name ='tags[11]' value='relax'><label>Relax</label>
+    <input type='checkbox' id='cbox12' name ='tags[12]' value='camping'><label>Camping</label><br>
+
+    <label class='requirements'>Requirements</label><br>
+    <input type='checkbox' id='cbox1' name ='requirements[1]' value='without children'><label>Only travelers without children</label>
+    <input type='checkbox' id='cbox2' name ='requirements[2]' value='only young people'><label>Only young people</label><br>
+   
+    <button class='btn-create' type='submit'>Create!</button>
+  </form>
+</div>

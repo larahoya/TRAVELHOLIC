@@ -8,4 +8,8 @@ class TravelsController < ApplicationController
       render status: 404, json: 'The travel does not exist!'
     end
   end
+
+  def create
+  end
+
 end

@@ -1,0 +1,84 @@
+form {
+  font-size: 13px;
+  font-style: normal;
+}
+
+.form-travel-new {
+  padding: 30px;
+}
+
+label.name {
+  margin-right: 50px;
+}
+
+label.initial-date {
+  margin-right: 2px;
+}
+
+label.final-date {
+  margin-right: 10px;
+}
+
+label.description {
+  
+}
+
+label.countries {
+  margin-right: 12px;
+}
+
+label.places {
+  margin-right: 34px;
+}
+
+label.budget {
+  margin-right: 30px;
+}
+
+label.tags {
+  margin-top: 20px;
+}
+
+label.requirements {
+  margin-top: 20px;
+}
+
+.input.name {
+  height: 30px;
+  width: 900px;
+  margin-bottom: 5px;
+}
+
+.input.initial-date {
+  margin-top: 10px;
+
+}
+
+.input.final-date {
+  margin-bottom: 10px;
+}
+
+.input.description {
+  height: 100px;
+  width: 900px;
+  text-align: left;
+}
+
+.input.countries {
+  margin-top: 15px;
+}
+
+.select.budget {
+  margin-top: 10px;
+  border-radius: 1px;
+}
+
+.input.maximum {
+  width: 42px;
+}
+
+button.btn-create {
+  margin-top: 30px;
+  width: 100px;
+  font-size: 16px;
+}

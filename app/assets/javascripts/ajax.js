@@ -1,5 +1,6 @@
 (function(){
-
+  window.TravelApp = window.TravelApp || {};
+  
   TravelApp.Ajax = function(){
 
   };

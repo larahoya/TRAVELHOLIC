@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'handlebars_assets'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

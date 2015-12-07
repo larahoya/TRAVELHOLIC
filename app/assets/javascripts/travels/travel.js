@@ -29,4 +29,10 @@ $(document).on('ready', function() {
     var travel = new TravelApp.Travel(id);
     travel.show();
   })
+
+  $('.link-travel-new').on('click', function(event) {
+    event.preventDefault();
+    $('#content').empty();
+    $('#content').html(HandlebarsTemplates['travels/new']);
+  })
 })
