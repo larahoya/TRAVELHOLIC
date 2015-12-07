@@ -8,6 +8,7 @@
     $.ajax({
       url: uri,
       success: function(response){
+        console.log(response);
         callback_function(response);
       },
       fail: function(error){
