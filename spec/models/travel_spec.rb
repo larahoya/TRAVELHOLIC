@@ -18,10 +18,14 @@ RSpec.describe Travel, type: :model do
   end
 
   it 'has an integer as maximum_people' do
-    expect(FactoryGirl.build(:travel, maximum_people: 'cuatro')).not_to be_valid
+    expect(FactoryGirl.build(:travel, maximum_people: 'four')).not_to be_valid
   end
 
   it 'has an integer as people' do
-    expect(FactoryGirl.build(:travel, people: 'cuatro')).not_to be_valid
+    expect(FactoryGirl.build(:travel, people: 'four')).not_to be_valid
+  end
+
+  it 'has high, medium or low as budget value' do
+    expect(FactoryGirl.build(:travel, budget: 'very high')).not_to be_valid
   end
 end

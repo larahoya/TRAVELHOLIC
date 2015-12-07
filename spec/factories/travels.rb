@@ -8,7 +8,7 @@ FactoryGirl.define do
     f.final_date {Faker::Date.forward(20)}
     f.countries {Faker::Lorem.sentence}
     f.places {Faker::Lorem.sentence}
-    f.budget 'Low'
+    f.budget 'low'
     f.requirements {Faker::Lorem.sentence}
     f.maximum_people 10
     f.people 2
