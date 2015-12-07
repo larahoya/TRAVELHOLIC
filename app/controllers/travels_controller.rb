@@ -10,15 +10,23 @@ class TravelsController < ApplicationController
   end
 
   def create
-    # travel = Travel.new
-    # travel.title = params['title']
-    # travel.initial_date = params['initial_date']
-    # travel.final_date = params['final_date']
-    # travel.description = params['description']
-    # travel.budget = params['budget']
-    # travel.maximum_people = params['maximum_people']
-    # travel.people = 1
-    # binding.pry
+    travel = Travel.new
+    travel.title = params['title']
+    travel.initial_date = params['initial_date']
+    travel.final_date = params['final_date']
+    travel.description = params['description']
+    travel.budget = params['budget']
+    travel.maximum_people = params['maximum_people']
+    travel.people = 1
+    travel.add_tags(params['tags'])
+    travel.add_requirements(params['requirements'])
+    travel.add_countries(params['countries'])
+    travel.add_places(params['places'])
+    if travel.save
+      render status: 201, json: travel
+    else
+      render status: 404, json: 'The travel couldn´t be created'
+    end
   end
 
 end
