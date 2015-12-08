@@ -120,6 +120,62 @@ RSpec.describe 'Travels', type: :request do
   end
 
   describe 'PATCH #update' do
+
+    context 'the travel doesn´t exist' do
+      before (:each) do
+        patch travel_path(10)
+      end
+
+      it 'respond with a 404 status code' do
+        expect(response).to have_http_status(404)
+      end
+
+      it 'respond with a JSON with an error message' do
+        expect(response.body).to eq('The travel does not exist!')
+      end
+    end
+
+    context 'the travel exists' do
+
+      context 'some attribute is incorrect' do
+        before (:each) do
+          @travel = FactoryGirl.create(:travel, title: 'European Tour')
+          patch travel_path(@travel), {title: ''}
+        end
+
+        it 'respond with a 404 status code' do
+          expect(response).to have_http_status(404)
+        end
+
+        it 'respond with the errors' do
+          data = JSON.parse(response.body)
+          expect(data[0]).to eq("Title can't be blank")
+        end
+
+        it 'does not update the travel' do
+          expect(@travel.title).to eq('European Tour')
+        end
+      end
+
+      context 'all the attributes are correct' do
+        before (:each) do
+          @travel = FactoryGirl.create(:travel, title: 'European Tour')
+          patch travel_path(@travel), {title: 'Spain Tour'}
+        end
+
+        it 'respond with a 200 status code' do
+          expect(response).to have_http_status(200)
+        end
+
+        it 'respond with a JSON with a update message' do
+          expect(response.body).to eq('The travel does not exist!')
+        end
+
+        it 'update the attributes of the travel' do
+          expect(@travel.title).to eq('Spain Tour')
+        end
+      end
+    end 
   end
 
 
