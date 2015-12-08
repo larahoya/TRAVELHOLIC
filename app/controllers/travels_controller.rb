@@ -32,4 +32,13 @@ class TravelsController < ApplicationController
     end
   end
 
+  def destroy
+    travel = Travel.find_by(id: params[:id])
+    if travel && travel.destroy
+      render status: 200, json: 'The travel was deleted succesfully!'
+    else
+      render status: 404, json: 'The travel does not exist!'
+    end
+  end
+
 end
