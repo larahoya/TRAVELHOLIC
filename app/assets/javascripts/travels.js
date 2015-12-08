@@ -22,7 +22,7 @@ TravelApp.Travel.getNewFormData = function() {
   var initial_date = $('.input.initial-date').val();
   var final_date = $('.input.final-date').val();
   var description = $('.input.description').val();
-  var budget = $('.input.budget').val();
+  var budget = $('.select.budget').val();
   var maximum_people = $('.input.maximum').val();
   var countries = $('.input.countries').val();
   var places = $('.input.places').val();
@@ -51,6 +51,18 @@ TravelApp.Travel.showIndex = function(response) {
   $('#content').append('<h4 class="errors">Travel deleted</h4>');
 }
 
+TravelApp.Travel.prototype.getUpdateForm = function() {
+  ajax.get('/travels/' + this.id, TravelApp.Travel.showUpdateForm);
+}
+
+TravelApp.Travel.showUpdateForm = function(travel) {
+  travel.initial_date = travel.initial_date.slice(0,10);
+  travel.final_date = travel.final_date.slice(0,10);
+  console.log(travel);
+  $('#content').empty();
+  $('#content').html(HandlebarsTemplates['travels/update'](travel));
+}
+
 })()
 
 $(document).on('ready', function() {
@@ -64,7 +76,7 @@ $(document).on('ready', function() {
     travel.show();
   })
 
-  $(document).on('click','#link-travel-new', function(event) {
+  $(document).on('click','#link-form-new', function(event) {
     event.preventDefault();
     $('#content').empty();
     $('#content').html(HandlebarsTemplates['travels/new']);
@@ -79,12 +91,31 @@ $(document).on('ready', function() {
 
   $(document).on('click', '#btn-delete', function(event) {
     event.preventDefault();
+    var $button = $(event.currentTarget);
+    var id = $button.data('id');
+
+    ajax = new TravelApp.Ajax();
+    ajax.delet('/travels/'+ id, TravelApp.Travel.showIndex);
+  })
+
+  $(document).on('click', '#link-form-update', function(event) {
+    event.preventDefault();
     var $link = $(event.currentTarget);
     var id = $link.data('id');
 
+    var travel = new TravelApp.Travel(id);
+    travel.getUpdateForm();
+  })
+
+  $(document).on('click', '#btn-update', function(event) {
+    event.preventDefault();
+    console.log('ok');
+    var $button = $(event.currentTarget);
+    var id = $button.data('id');
+
     ajax = new TravelApp.Ajax();
     var data = TravelApp.Travel.getNewFormData();
-    ajax.delet('/travels/'+ id, TravelApp.Travel.showIndex);
+    ajax.patch('/travels/'+ id, data, TravelApp.Travel.printInfo);
   })
 
 })

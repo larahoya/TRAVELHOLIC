@@ -64,7 +64,7 @@ RSpec.describe Travel, type: :model do
       array = nil
       @travel.add_tags(array)
 
-      expect(@travel.tag_list.length).to eq(1)
+      expect(@travel.tag_list.length).to eq(0)
     end
 
     it 'add one tag from an array with one value' do
@@ -72,7 +72,7 @@ RSpec.describe Travel, type: :model do
       array = ['Cruise']
       @travel.add_tags(array)
 
-      expect(@travel.tag_list.length).to eq(2)
+      expect(@travel.tag_list.length).to eq(1)
     end
 
     it 'add two tags from a hash with two values' do
@@ -80,7 +80,7 @@ RSpec.describe Travel, type: :model do
       array = ['Cruise', 'Romantic']
       @travel.add_tags(array)
 
-      expect(@travel.tag_list.length).to eq(3)
+      expect(@travel.tag_list.length).to eq(2)
     end
   end
 
@@ -90,7 +90,7 @@ RSpec.describe Travel, type: :model do
       array = nil
       @travel.add_requirements(array)
 
-      expect(@travel.requirement_list.length).to eq(1)
+      expect(@travel.requirement_list.length).to eq(0)
     end
 
     it 'add one requirement from a hash with one value' do
@@ -98,7 +98,7 @@ RSpec.describe Travel, type: :model do
       array = ['Age']
       @travel.add_requirements(array)
 
-      expect(@travel.requirement_list.length).to eq(2)
+      expect(@travel.requirement_list.length).to eq(1)
     end
 
     it 'add two requirements from a hash with two values' do
@@ -106,7 +106,7 @@ RSpec.describe Travel, type: :model do
       array = ['Age', 'Children']
       @travel.add_requirements(array)
 
-      expect(@travel.requirement_list.length).to eq(3)
+      expect(@travel.requirement_list.length).to eq(2)
     end
   end
 
@@ -116,7 +116,7 @@ RSpec.describe Travel, type: :model do
       string = ''
       @travel.add_places(string)
 
-      expect(@travel.place_list.length).to eq(1)
+      expect(@travel.place_list.length).to eq(0)
     end
 
     it 'add one requirement from a string with one value' do
@@ -124,7 +124,7 @@ RSpec.describe Travel, type: :model do
       string = 'Toledo'
       @travel.add_places(string)
 
-      expect(@travel.place_list.length).to eq(2)
+      expect(@travel.place_list.length).to eq(1)
     end
 
     it 'add two requirements from a string with two values' do
@@ -132,7 +132,7 @@ RSpec.describe Travel, type: :model do
       string = 'Toledo,Sevilla'
       @travel.add_places(string)
 
-      expect(@travel.place_list.length).to eq(3)
+      expect(@travel.place_list.length).to eq(2)
     end
   end
 
@@ -142,7 +142,7 @@ RSpec.describe Travel, type: :model do
       string = ''
       @travel.add_countries(string)
 
-      expect(@travel.country_list.length).to eq(1)
+      expect(@travel.country_list.length).to eq(0)
     end
 
     it 'add one requirement from a string with one value' do
@@ -150,7 +150,7 @@ RSpec.describe Travel, type: :model do
       string = 'France'
       @travel.add_countries(string)
 
-      expect(@travel.country_list.length).to eq(2)
+      expect(@travel.country_list.length).to eq(1)
     end
 
     it 'add two requirements from a string with two values' do
@@ -158,7 +158,7 @@ RSpec.describe Travel, type: :model do
       string = 'France,Italy'
       @travel.add_countries(string)
 
-      expect(@travel.country_list.length).to eq(3)
+      expect(@travel.country_list.length).to eq(2)
     end
   end
 

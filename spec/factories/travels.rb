@@ -17,8 +17,3 @@ FactoryGirl.define do
   end
 
 end
-
-    # f.tag_list ['Adventure']
-    # f.place_list ['Madrid']
-    # f.country_list ['Spain']
-    # f.requirement_list ['Only people without children']

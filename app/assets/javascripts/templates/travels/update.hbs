@@ -2,22 +2,22 @@
   <form>
     
     <label class='name'>Title  </label>
-    <input type='title' placeholder='Title' name='title' class='input name'><br>
+    <input type='title' placeholder='Title' name='title' class='input name' value='{{title}}'><br>
 
     <label class='initial-date'>Initial date</label>
-    <input type='date' placeholder='Initial date' name='initial_date' class='input initial-date'><br>
+    <input type='date' placeholder='Initial date' name='initial_date' class='input initial-date' value='{{initial_date}}'><br>
     
     <label class='final-date'>Final date </label>
-    <input type='date' placeholder='Final date' name='final_date' class='input final-date'><br>
+    <input type='date' placeholder='Final date' name='final_date' class='input final-date' value='{{final_date}}'><br>
     
     <label class='description'>Description</label>
-    <input type='text' placeholder='Description' name='description' class='input description'><br>
+    <input type='text' placeholder='Description' name='description' class='input description' value='{{description}}'><br>
 
     <label class='countries'>Countries</label>
-    <input type='text' placeholder='Countries' name='countries' class='input countries'><br>
+    <input type='text' placeholder='Countries' name='countries' class='input countries' value='{{countries}}'><br>
     
     <label class='places'>Places</label>
-    <input type='text' placeholder='Places' name='places' class='input places'><br>
+    <input type='text' placeholder='Places' name='places' class='input places' value='{{places}}'><br>
 
     <label class='budget'>Budget</label>
     <select name='budget' class='select budget'>
@@ -27,7 +27,7 @@
     </select><br>
     
     <label>Maximum number of people</label>
-    <input type='number' placeholder='Max' name='maximum_people' class='input maximum'><br>
+    <input type='number' placeholder='Max' name='maximum_people' class='input maximum' value='{{maximum_people}}'><br>
     
     <label class='tags'>Tags</label><br>
     <input type='checkbox' class='tags' name ='tags[1]' value='adventure'><label>Adventure</label>
@@ -47,6 +47,6 @@
     <input type='checkbox' class='requirements' name ='requirements[1]' value='without children'><label>Only travelers without children</label>
     <input type='checkbox' class='requirements' name ='requirements[2]' value='only young people'><label>Only young people</label><br>
    
-    <button id='btn-create' type='submit'>Save!</button> 
+    <button id='btn-update' data-id='{{id}}' type='submit'>Update!</button> 
   </form>
 </div>

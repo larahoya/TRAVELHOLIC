@@ -39,4 +39,15 @@
     });
   };
 
+  TravelApp.Ajax.prototype.patch= function(uri, data_hash, callback_function){
+    $.ajax({
+      type: 'PATCH',
+      url: uri,
+      data: data_hash,
+      success: function(response){
+        callback_function(response);
+      }
+    });
+  };
+
 })();
