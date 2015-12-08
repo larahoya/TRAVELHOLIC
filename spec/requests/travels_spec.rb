@@ -86,12 +86,8 @@ RSpec.describe 'Travels', type: :request do
         delete travel_path(@travel)
       end
 
-      it 'respond with a 200 status code' do
-        expect(response).to have_http_status(200)
-      end
-
-      it 'respond with a JSON with a delete message' do
-        expect(response.body).to eq('The travel was deleted succesfully!')
+      it 'respond with a 204 status code' do
+        expect(response).to have_http_status(204)
       end
 
       it 'delete the travel' do

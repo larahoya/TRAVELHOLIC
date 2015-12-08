@@ -1,15 +1,16 @@
 (function(){
-  window.TravelApp = window.TravelApp || {};
+
+  if (window.TravelApp === undefined){
+    window.TravelApp = {};
+  }
   
   TravelApp.Ajax = function(){
-
   };
 
   TravelApp.Ajax.prototype.get = function(uri, callback_function){
     $.ajax({
       url: uri,
       success: function(response){
-        console.log(response);
         callback_function(response);
       },
       fail: function(error){
@@ -25,6 +26,16 @@
     });
     request.fail(function(response) {
       error_function(response);
+    });
+  };
+
+  TravelApp.Ajax.prototype.delet= function(uri, callback_function){
+    $.ajax({
+      type: 'DELETE',
+      url: uri,
+      success: function(response){
+        callback_function(response);
+      }
     });
   };
 

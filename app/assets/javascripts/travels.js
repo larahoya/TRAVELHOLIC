@@ -13,6 +13,7 @@ TravelApp.Travel.prototype.show = function() {
 }
 
 TravelApp.Travel.printInfo = function(travel) {
+  $('#content').empty();
   $('#content').html(HandlebarsTemplates['travels/show'](travel));
 }
 
@@ -25,24 +26,29 @@ TravelApp.Travel.getNewFormData = function() {
   var maximum_people = $('.input.maximum').val();
   var countries = $('.input.countries').val();
   var places = $('.input.places').val();
-  var tags;
+  var tags = [];
   $('input:checked.tags').each(function(tag) {
-    tags.push(tag.val());
+    tags.push($(this).val());
   })
-  var requirements;
+  var requirements = [];
   $('input:checked.requirements').each(function(tag) {
     requirements.push(tag.val());
   })
   return {title: title, initial_date: initial_date, final_date:final_date, description: description, budget: budget, maximum_people: maximum_people, countries: countries, places: places, tags: tags, requirements: requirements}
 }
 
-TravelApp.Travel.printError = function(response) {
-  var errorHtml = '<div class="form-errors">'
+TravelApp.Travel.printNewError = function(response) {
+  var errorHtml = '<div class="errors">'
   response.responseJSON.forEach(function(error) {
     errorHtml += '<dd>' + error + '</dd>'
   })
   errorHtml += '</div>'
   $('.form-travel-new').before(errorHtml);
+}
+
+TravelApp.Travel.showIndex = function(response) {
+  $('#content').empty();
+  $('#content').append('<h4 class="errors">Travel deleted</h4>');
 }
 
 })()
@@ -53,13 +59,12 @@ $(document).on('ready', function() {
     event.preventDefault();
     var $link = $(event.currentTarget);
     var id = $link.data('id');
-    $('#content').empty();
 
     var travel = new TravelApp.Travel(id);
     travel.show();
   })
 
-  $(document).on('click','.link-travel-new', function(event) {
+  $(document).on('click','#link-travel-new', function(event) {
     event.preventDefault();
     $('#content').empty();
     $('#content').html(HandlebarsTemplates['travels/new']);
@@ -69,7 +74,17 @@ $(document).on('ready', function() {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
     var data = TravelApp.Travel.getNewFormData();
-    ajax.post('/travels', data, TravelApp.Travel.printInfo, TravelApp.Travel.printError);
+    ajax.post('/travels', data, TravelApp.Travel.printInfo, TravelApp.Travel.printNewError);
+  })
+
+  $(document).on('click', '#btn-delete', function(event) {
+    event.preventDefault();
+    var $link = $(event.currentTarget);
+    var id = $link.data('id');
+
+    ajax = new TravelApp.Ajax();
+    var data = TravelApp.Travel.getNewFormData();
+    ajax.delet('/travels/'+ id, TravelApp.Travel.showIndex);
   })
 
 })
