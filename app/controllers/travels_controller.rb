@@ -11,12 +11,11 @@ class TravelsController < ApplicationController
 
   def create
     travel = Travel.new
-    binding.pry
     travel.title = params['title']
     travel.initial_date = params['initial_date']
     travel.final_date = params['final_date']
     travel.description = params['description']
-    travel.budget = params['budget']
+    travel.budget = (params['budget'] || 'medium')
     travel.set_maximum_people(params['maximum_people'])
     travel.people = 1
 

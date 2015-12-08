@@ -61,24 +61,24 @@ RSpec.describe Travel, type: :model do
   describe '#add_tags' do
     it 'does nothing if there are no selected values' do
       @travel = FactoryGirl.create(:travel)
-      hash = nil
-      @travel.add_tags(hash)
+      array = nil
+      @travel.add_tags(array)
 
       expect(@travel.tag_list.length).to eq(1)
     end
 
-    it 'add one tag from a hash with one value' do
+    it 'add one tag from an array with one value' do
       @travel = FactoryGirl.create(:travel)
-      hash = {'value1' => 'Cruise'}
-      @travel.add_tags(hash)
+      array = ['Cruise']
+      @travel.add_tags(array)
 
       expect(@travel.tag_list.length).to eq(2)
     end
 
     it 'add two tags from a hash with two values' do
       @travel = FactoryGirl.create(:travel)
-      hash = {'value1' => 'Cruise', 'value2' => 'Romantic'}
-      @travel.add_tags(hash)
+      array = ['Cruise', 'Romantic']
+      @travel.add_tags(array)
 
       expect(@travel.tag_list.length).to eq(3)
     end
@@ -87,24 +87,24 @@ RSpec.describe Travel, type: :model do
   describe '#add_requirements' do
     it 'does nothing if there are no selected values' do
       @travel = FactoryGirl.create(:travel)
-      hash = nil
-      @travel.add_requirements(hash)
+      array = nil
+      @travel.add_requirements(array)
 
       expect(@travel.requirement_list.length).to eq(1)
     end
 
     it 'add one requirement from a hash with one value' do
       @travel = FactoryGirl.create(:travel)
-      hash = {'value1' => 'Age'}
-      @travel.add_requirements(hash)
+      array = ['Age']
+      @travel.add_requirements(array)
 
       expect(@travel.requirement_list.length).to eq(2)
     end
 
     it 'add two requirements from a hash with two values' do
       @travel = FactoryGirl.create(:travel)
-      hash = {'value1' => 'Age', 'value2' => 'Children'}
-      @travel.add_requirements(hash)
+      array = ['Age', 'Children']
+      @travel.add_requirements(array)
 
       expect(@travel.requirement_list.length).to eq(3)
     end

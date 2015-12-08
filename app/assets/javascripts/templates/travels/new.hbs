@@ -1,3 +1,5 @@
+<div class='form-errors'></div>
+
 <div class='form-travel-new'>
   <form action='/travels' method='POST'>
     
@@ -30,23 +32,23 @@
     <input type='number' placeholder='Max' name='maximum_people' class='input maximum'><br>
     
     <label class='tags'>Tags</label><br>
-    <input type='checkbox' id='cbox1' name ='tags[1]' value='adventure'><label>Adventure</label>
-    <input type='checkbox' id='cbox2' name ='tags[2]' value='cultural'><label>Cultural</label>
-    <input type='checkbox' id='cbox3' name ='tags[3]' value='safari'><label>Safari</label>
-    <input type='checkbox' id='cbox4' name ='tags[4]' value='business'><label>Business</label><br>
-    <input type='checkbox' id='cbox5' name ='tags[5]' value='road trip'><label>Road trip</label>
-    <input type='checkbox' id='cbox6' name ='tags[6]' value='weekend break'><label>Weekend break</label>
-    <input type='checkbox' id='cbox7' name ='tags[7]' value='event travel'><label>Event travel</label>
-    <input type='checkbox' id='cbox8' name ='tags[8]' value='cruise'><label>Cruise</label><br>
-    <input type='checkbox' id='cbox9' name ='tags[9]' value='backpacker'><label>Backpacker</label>
-    <input type='checkbox' id='cbox10' name ='tags[10]' value='traveling with children'><label>Traveling with children</label>
-    <input type='checkbox' id='cbox11' name ='tags[11]' value='relax'><label>Relax</label>
-    <input type='checkbox' id='cbox12' name ='tags[12]' value='camping'><label>Camping</label><br>
+    <input type='checkbox' class='tags' name ='tags[1]' value='adventure'><label>Adventure</label>
+    <input type='checkbox' class='tags' name ='tags[2]' value='cultural'><label>Cultural</label>
+    <input type='checkbox' class='tags' name ='tags[3]' value='safari'><label>Safari</label>
+    <input type='checkbox' class='tags' name ='tags[4]' value='business'><label>Business</label><br>
+    <input type='checkbox' class='tags' name ='tags[5]' value='road trip'><label>Road trip</label>
+    <input type='checkbox' class='tags' name ='tags[6]' value='weekend break'><label>Weekend break</label>
+    <input type='checkbox' class='tags' name ='tags[7]' value='event travel'><label>Event travel</label>
+    <input type='checkbox' class='tags' name ='tags[8]' value='cruise'><label>Cruise</label><br>
+    <input type='checkbox' class='tags' name ='tags[9]' value='backpacker'><label>Backpacker</label>
+    <input type='checkbox' class='tags' name ='tags[10]' value='traveling with children'><label>Traveling with children</label>
+    <input type='checkbox' class='tags' name ='tags[11]' value='relax'><label>Relax</label>
+    <input type='checkbox' class='tags' name ='tags[12]' value='camping'><label>Camping</label><br>
 
     <label class='requirements'>Requirements</label><br>
-    <input type='checkbox' id='cbox1' name ='requirements[1]' value='without children'><label>Only travelers without children</label>
-    <input type='checkbox' id='cbox2' name ='requirements[2]' value='only young people'><label>Only young people</label><br>
+    <input type='checkbox' class='requirements' name ='requirements[1]' value='without children'><label>Only travelers without children</label>
+    <input type='checkbox' class='requirements' name ='requirements[2]' value='only young people'><label>Only young people</label><br>
    
-    <button class='btn-create' type='submit'>Create!</button>
+    <button id='btn-create' type='submit'>Create!</button>
   </form>
 </div>

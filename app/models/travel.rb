@@ -5,12 +5,12 @@ class Travel < ActiveRecord::Base
   validates :maximum_people, :people, numericality: true
   validates :budget, inclusion: {in: ['high', 'medium', 'low']}
 
-  def add_tags(hash)
-    hash.each {|key, value| self.tag_list.add(value)} if hash
+  def add_tags(array)
+    array.each {|value| self.tag_list.add(value)} if array
   end
 
-  def add_requirements(hash)
-    hash.each {|key, value| self.requirement_list.add(value)} if hash
+  def add_requirements(array)
+    array.each {|value| self.requirement_list.add(value)} if array
   end
 
   def add_places(string)
