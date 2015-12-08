@@ -14,6 +14,8 @@ TravelApp.Travel.prototype.show = function() {
 
 TravelApp.Travel.printInfo = function(travel) {
   console.log(travel);
+  travel.initial_date = travel.initial_date.slice(0,10);
+  travel.final_date = travel.final_date.slice(0,10);
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['travels/show'](travel));
 }
@@ -33,7 +35,7 @@ TravelApp.Travel.getNewFormData = function() {
   })
   var requirements = [];
   $('input:checked.requirements').each(function(tag) {
-    requirements.push(tag.val());
+    requirements.push($(this).val());
   })
   return {title: title, initial_date: initial_date, final_date:final_date, description: description, budget: budget, maximum_people: maximum_people, countries: countries, places: places, tags: tags, requirements: requirements}
 }
@@ -59,7 +61,6 @@ TravelApp.Travel.prototype.getUpdateForm = function() {
 TravelApp.Travel.showUpdateForm = function(travel) {
   travel.initial_date = travel.initial_date.slice(0,10);
   travel.final_date = travel.final_date.slice(0,10);
-  console.log(travel);
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['travels/update'](travel));
 }
@@ -110,7 +111,6 @@ $(document).on('ready', function() {
 
   $(document).on('click', '#btn-update', function(event) {
     event.preventDefault();
-    console.log('ok');
     var $button = $(event.currentTarget);
     var id = $button.data('id');
 

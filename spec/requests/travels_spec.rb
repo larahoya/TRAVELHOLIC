@@ -7,16 +7,12 @@ RSpec.describe 'Travels', type: :request do
     context 'the travel exists' do
       before (:each) do
         @travel = FactoryGirl.create(:travel, title: 'European Tour')
-        get travel_path(@travel)
+        get travel_path(@travel), format: :jbuilder
       end
     
-      it 'respond with a 200 status code' do
-        expect(response).to have_http_status(200)
-      end
-
       it 'gets the correct travel' do
         data = JSON.parse(response.body)
-        expect(data['title']).to eq(@travel.title)
+        expect(data['title']).to eq('European Tour')
       end
 
     end

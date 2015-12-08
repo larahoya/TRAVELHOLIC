@@ -41,7 +41,6 @@ class TravelsController < ApplicationController
 
   def update
     travel = Travel.find_by(id: params[:id])
-    
     travel.title = params['title']
     travel.initial_date = params['initial_date']
     travel.final_date = params['final_date']

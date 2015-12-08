@@ -5,6 +5,14 @@ class Travel < ActiveRecord::Base
   validates :maximum_people, :people, numericality: true
   validates :budget, inclusion: {in: ['high', 'medium', 'low']}
 
+  def set_maximum_people(string)
+    if string != ''
+      self.maximum_people = string.to_i
+    else
+      self.maximum_people = 0
+    end
+  end
+
   def add_tags(array)
     array.each {|value| self.tag_list.add(value)} if array
   end
@@ -19,14 +27,6 @@ class Travel < ActiveRecord::Base
 
   def add_countries(string)
     string.split(',').each {|value| self.country_list.add(value)}
-  end
-
-  def set_maximum_people(string)
-    if string != ''
-      self.maximum_people = string.to_i
-    else
-      self.maximum_people = 0
-    end
   end
 
   def get_tags

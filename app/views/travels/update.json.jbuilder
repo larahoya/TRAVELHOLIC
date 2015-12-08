@@ -19,4 +19,3 @@ json.requirements @travel.get_requirements
 json.places @travel.get_places
 
 json.countries @travel.get_countries
-
