@@ -37,18 +37,19 @@ TravelApp.Travel.getNewFormData = function() {
 }
 
 TravelApp.Travel.printError = function(response) {
-  var errorHtml = [];
+  var errorHtml = '<div class="form-errors">'
   response.responseJSON.forEach(function(error) {
-    errorHtml.push('<dd>' + error + '</dd>')
+    errorHtml += '<dd>' + error + '</dd>'
   })
-  $('.form-errors').html(errorHtml);
+  errorHtml += '</div>'
+  $('.form-travel-new').before(errorHtml);
 }
 
 })()
 
 $(document).on('ready', function() {
 
-  $('.link-travel').on('click', function(event) {
+  $(document).on('click','.link-travel', function(event) {
     event.preventDefault();
     var $link = $(event.currentTarget);
     var id = $link.data('id');
@@ -58,7 +59,7 @@ $(document).on('ready', function() {
     travel.show();
   })
 
-  $('.link-travel-new').on('click', function(event) {
+  $(document).on('click','.link-travel-new', function(event) {
     event.preventDefault();
     $('#content').empty();
     $('#content').html(HandlebarsTemplates['travels/new']);

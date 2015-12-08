@@ -13,6 +13,7 @@ header {
 }
 
 aside {
+  min-height: 640px;
   background-color: $color-aside;
 }
 
@@ -22,5 +23,6 @@ footer {
 }
 
 .main {
+  min-height: 640px;
   background-color: $color-main;
 }
