@@ -162,4 +162,80 @@ RSpec.describe Travel, type: :model do
     end
   end
 
+  describe '#get_tags' do
+    it 'returns an empty string is there is no tags' do
+      @travel = FactoryGirl.create(:travel)
+      expect(@travel.get_tags).to eq('')
+    end
+
+    it 'returns an string with the one tag' do
+      @travel = FactoryGirl.create(:travel)
+      @travel.add_tags(['adventure'])
+      expect(@travel.get_tags).to eq('adventure')
+    end
+
+    it 'returns an string with the tags' do
+      @travel = FactoryGirl.create(:travel)
+      @travel.add_tags(['adventure', 'cruise'])
+      expect(@travel.get_tags).to eq('adventure,cruise')
+    end
+  end
+
+  describe '#get_requirements' do
+    it 'returns an empty string is there is no tags' do
+      @travel = FactoryGirl.create(:travel)
+      expect(@travel.get_requirements).to eq('')
+    end
+
+    it 'returns an string with the one tag' do
+      @travel = FactoryGirl.create(:travel)
+      @travel.add_requirements(['age'])
+      expect(@travel.get_requirements).to eq('age')
+    end
+
+    it 'returns an string with the tags' do
+      @travel = FactoryGirl.create(:travel)
+      @travel.add_requirements(['age', 'gender'])
+      expect(@travel.get_requirements).to eq('age,gender')
+    end
+  end
+
+  describe '#get_places' do
+    it 'returns an empty string is there is no tags' do
+      @travel = FactoryGirl.create(:travel)
+      expect(@travel.get_places).to eq('')
+    end
+
+    it 'returns an string with the one tag' do
+      @travel = FactoryGirl.create(:travel)
+      @travel.add_places(['Madrid'])
+      expect(@travel.get_places).to eq('Madrid')
+    end
+
+    it 'returns an string with the tags' do
+      @travel = FactoryGirl.create(:travel)
+      @travel.add_places(['Madrid', 'Barcelona'])
+      expect(@travel.get_places).to eq('Madrid,Barcelona')
+    end
+  end
+
+  describe '#get_countries' do
+    it 'returns an empty string is there is no tags' do
+      @travel = FactoryGirl.create(:travel)
+      expect(@travel.get_countries).to eq('')
+    end
+
+    it 'returns an string with the one tag' do
+      @travel = FactoryGirl.create(:travel)
+      @travel.add_countries(['Spain'])
+      expect(@travel.get_countries).to eq('Spain')
+    end
+
+    it 'returns an string with the tags' do
+      @travel = FactoryGirl.create(:travel)
+      @travel.add_countries(['Spain', 'France'])
+      expect(@travel.get_countries).to eq('Spain,France')
+    end
+  end
+
 end

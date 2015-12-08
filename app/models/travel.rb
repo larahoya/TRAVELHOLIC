@@ -29,5 +29,32 @@ class Travel < ActiveRecord::Base
     end
   end
 
+  def get_tags
+    result = self.tag_list.reduce('') do |result, tag|
+      result += tag + ','
+    end
+    result[0..-2]
+  end
+
+  def get_requirements
+    result = self.requirement_list.reduce('') do |result, tag|
+      result += tag + ','
+    end
+    result[0..-2]
+  end
+
+  def get_places
+    result = self.place_list.reduce('') do |result, tag|
+      result += tag + ','
+    end
+    result[0..-2]
+  end
+
+  def get_countries
+    result = self.country_list.reduce('') do |result, tag|
+      result += tag + ','
+    end
+    result[0..-2]
+  end
 
 end

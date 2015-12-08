@@ -1,10 +1,8 @@
 class TravelsController < ApplicationController
 
   def show
-    travel = Travel.find_by(id: params[:id])
-    if travel != nil
-      render status: 200, json: travel
-    else
+    @travel = Travel.find_by(id: params[:id])
+    if @travel == nil
       render status: 404, json: 'The travel does not exist!'
     end
   end
@@ -62,12 +60,6 @@ class TravelsController < ApplicationController
     else
       render status: 404, json: 'The travel couldn´t be updated!'
     end
-  end
-
-  private
-
-  def travel_params
-    params.require(:travel).permit(:title, :initial_date, :final_date, :description, :budget, :maximum_people)
   end
 
 end

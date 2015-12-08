@@ -13,6 +13,7 @@ TravelApp.Travel.prototype.show = function() {
 }
 
 TravelApp.Travel.printInfo = function(travel) {
+  console.log(travel);
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['travels/show'](travel));
 }
