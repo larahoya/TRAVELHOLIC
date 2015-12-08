@@ -6,26 +6,26 @@ class Travel < ActiveRecord::Base
   validates :budget, inclusion: {in: ['high', 'medium', 'low']}
 
   def add_tags(hash)
-    hash.each do |key, value|
-      self.tag_list.add(value)
-    end
+    hash.each {|key, value| self.tag_list.add(value)} if hash
   end
 
   def add_requirements(hash)
-    hash.each do |key, value|
-      self.requirement_list.add(value)
-    end
+    hash.each {|key, value| self.requirement_list.add(value)} if hash
   end
 
   def add_places(string)
-    string.split(',').each do |value|
-      self.place_list.add(value)
-    end
+    string.split(',').each {|value| self.place_list.add(value)}
   end
 
   def add_countries(string)
-    string.split(',').each do |value|
-      self.country_list.add(value)
+    string.split(',').each {|value| self.country_list.add(value)}
+  end
+
+  def set_maximum_people(string)
+    if string != ''
+      self.maximum_people = string.to_i
+    else
+      self.maximum_people = 0
     end
   end
 

@@ -32,7 +32,40 @@ RSpec.describe Travel, type: :model do
     end
   end
 
+  describe '#set_maximum_people' do
+    it 'sets it to 0 if there is no input' do
+      @travel = FactoryGirl.build(:travel, maximum_people: nil)
+      n = nil
+      @travel.set_maximum_people(n)
+
+      expect(@travel.maximum_people).to eq(0)
+    end
+
+    it 'sets it to 0 if the input is not a number' do
+      @travel = FactoryGirl.build(:travel, maximum_people: nil)
+      n = 'string'
+      @travel.set_maximum_people(n)
+
+      expect(@travel.maximum_people).to eq(0)
+    end
+
+    it 'sets it to a number if there is an input' do
+      @travel = FactoryGirl.build(:travel, maximum_people: nil)
+      n = '10'
+      @travel.set_maximum_people(n)
+
+      expect(@travel.maximum_people).to eq(10)
+    end
+  end
+
   describe '#add_tags' do
+    it 'does nothing if there are no selected values' do
+      @travel = FactoryGirl.create(:travel)
+      hash = nil
+      @travel.add_tags(hash)
+
+      expect(@travel.tag_list.length).to eq(1)
+    end
 
     it 'add one tag from a hash with one value' do
       @travel = FactoryGirl.create(:travel)
@@ -49,17 +82,23 @@ RSpec.describe Travel, type: :model do
 
       expect(@travel.tag_list.length).to eq(3)
     end
-
   end
 
   describe '#add_requirements' do
+    it 'does nothing if there are no selected values' do
+      @travel = FactoryGirl.create(:travel)
+      hash = nil
+      @travel.add_requirements(hash)
+
+      expect(@travel.requirement_list.length).to eq(1)
+    end
 
     it 'add one requirement from a hash with one value' do
       @travel = FactoryGirl.create(:travel)
       hash = {'value1' => 'Age'}
-      @travel.add_tags(hash)
+      @travel.add_requirements(hash)
 
-      expect(@travel.tag_list.length).to eq(2)
+      expect(@travel.requirement_list.length).to eq(2)
     end
 
     it 'add two requirements from a hash with two values' do
@@ -69,10 +108,16 @@ RSpec.describe Travel, type: :model do
 
       expect(@travel.requirement_list.length).to eq(3)
     end
-
   end
 
   describe '#add_places' do
+    it 'add nothing from an empty string' do
+      @travel = FactoryGirl.create(:travel)
+      string = ''
+      @travel.add_places(string)
+
+      expect(@travel.place_list.length).to eq(1)
+    end
 
     it 'add one requirement from a string with one value' do
       @travel = FactoryGirl.create(:travel)
@@ -89,10 +134,16 @@ RSpec.describe Travel, type: :model do
 
       expect(@travel.place_list.length).to eq(3)
     end
-
   end
 
   describe '#add_countries' do
+    it 'add nothing from an empty string' do
+      @travel = FactoryGirl.create(:travel)
+      string = ''
+      @travel.add_countries(string)
+
+      expect(@travel.country_list.length).to eq(1)
+    end
 
     it 'add one requirement from a string with one value' do
       @travel = FactoryGirl.create(:travel)
@@ -109,7 +160,6 @@ RSpec.describe Travel, type: :model do
 
       expect(@travel.country_list.length).to eq(3)
     end
-
   end
 
 end
