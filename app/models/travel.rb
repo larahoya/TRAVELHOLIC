@@ -22,11 +22,11 @@ class Travel < ActiveRecord::Base
   end
 
   def add_places(string)
-    string.split(',').each {|value| self.place_list.add(value)}
+    string.split(',').each {|value| self.place_list.add(value)} if string != '' && string != nil
   end
 
   def add_countries(string)
-    string.split(',').each {|value| self.country_list.add(value)}
+    string.split(',').each {|value| self.country_list.add(value)} if string != '' && string != nil
   end
 
   def get_tags

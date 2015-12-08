@@ -40,25 +40,24 @@ class TravelsController < ApplicationController
   end
 
   def update
-    travel = Travel.find_by(id: params[:id])
-    travel.title = params['title']
-    travel.initial_date = params['initial_date']
-    travel.final_date = params['final_date']
-    travel.description = params['description']
-    travel.budget = (params['budget'] || 'medium')
-    travel.set_maximum_people(params['maximum_people'])
-    travel.people = 1
+    @travel = Travel.find_by(id: params[:id])
+    @travel.title = params['title']
+    @travel.initial_date = params['initial_date']
+    @travel.final_date = params['final_date']
+    @travel.description = params['description']
+    @travel.budget = (params['budget'] || 'medium')
+    @travel.set_maximum_people(params['maximum_people'])
+    @travel.people = 1
 
-    travel.add_tags(params['tags'])
-    travel.add_requirements(params['requirements'])
-    travel.add_countries(params['countries'])
-    travel.add_places(params['places'])
+    @travel.add_tags(params['tags'])
+    @travel.add_requirements(params['requirements'])
+    @travel.add_countries(params['countries'])
+    @travel.add_places(params['places'])
 
-    if travel && travel.save
-      render status: 200, json: travel
-    else
+    if !@travel && !@travel.save
       render status: 404, json: 'The travel couldn´t be updated!'
     end
+    
   end
 
 end

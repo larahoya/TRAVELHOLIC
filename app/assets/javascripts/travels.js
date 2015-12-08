@@ -13,7 +13,6 @@ TravelApp.Travel.prototype.show = function() {
 }
 
 TravelApp.Travel.printInfo = function(travel) {
-  console.log(travel);
   travel.initial_date = travel.initial_date.slice(0,10);
   travel.final_date = travel.final_date.slice(0,10);
   $('#content').empty();
