@@ -131,7 +131,7 @@ RSpec.describe 'Travels', type: :request do
       end
 
       it 'respond with a JSON with an error message' do
-        expect(response.body).to eq('The travel does not exist!')
+        expect(response.body).to eq('The travel couldn´t be updated!')
       end
     end
 
@@ -140,27 +140,26 @@ RSpec.describe 'Travels', type: :request do
       context 'some attribute is incorrect' do
         before (:each) do
           @travel = FactoryGirl.create(:travel, title: 'European Tour')
-          patch travel_path(@travel), {title: ''}
+          patch travel_path(@travel), {:travel => {title: ''}}
         end
 
         it 'respond with a 404 status code' do
           expect(response).to have_http_status(404)
         end
 
-        it 'respond with the errors' do
-          data = JSON.parse(response.body)
-          expect(data[0]).to eq("Title can't be blank")
+        it 'respond with a JSON with an error message' do
+          expect(response.body).to eq('The travel couldn´t be updated!')
         end
 
         it 'does not update the travel' do
-          expect(@travel.title).to eq('European Tour')
+          expect(Travel.find_by(id: @travel.id).title).to eq('European Tour')
         end
       end
 
       context 'all the attributes are correct' do
         before (:each) do
           @travel = FactoryGirl.create(:travel, title: 'European Tour')
-          patch travel_path(@travel), {title: 'Spain Tour'}
+          patch travel_path(@travel), {:travel => {title: 'Spain Tour'}}
         end
 
         it 'respond with a 200 status code' do
@@ -168,11 +167,11 @@ RSpec.describe 'Travels', type: :request do
         end
 
         it 'respond with a JSON with a update message' do
-          expect(response.body).to eq('The travel does not exist!')
+          expect(response.body).to eq('The travel was updated succesfully!')
         end
 
         it 'update the attributes of the travel' do
-          expect(@travel.title).to eq('Spain Tour')
+          expect(Travel.find_by(id: @travel.id).title).to eq('Spain Tour')
         end
       end
     end 
