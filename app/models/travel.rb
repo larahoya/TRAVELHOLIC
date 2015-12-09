@@ -13,6 +13,13 @@ class Travel < ActiveRecord::Base
     end
   end
 
+  def clean_all_tags
+    self.tags.destroy_all
+    self.countries.destroy_all
+    self.requirements.destroy_all
+    self.places.destroy_all
+  end
+
   def add_tags(array)
     array.each {|value| self.tag_list.add(value)} if array
   end

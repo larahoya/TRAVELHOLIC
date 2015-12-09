@@ -33,8 +33,9 @@ RSpec.describe Travel, type: :model do
   end
 
   describe '#set_maximum_people' do
+    before (:each) { @travel = FactoryGirl.build(:travel, maximum_people: nil)}
+
     it 'sets it to 0 if there is no input' do
-      @travel = FactoryGirl.build(:travel, maximum_people: nil)
       n = nil
       @travel.set_maximum_people(n)
 
@@ -42,7 +43,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'sets it to 0 if the input is not a number' do
-      @travel = FactoryGirl.build(:travel, maximum_people: nil)
       n = 'string'
       @travel.set_maximum_people(n)
 
@@ -50,7 +50,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'sets it to a number if there is an input' do
-      @travel = FactoryGirl.build(:travel, maximum_people: nil)
       n = '10'
       @travel.set_maximum_people(n)
 
@@ -59,8 +58,9 @@ RSpec.describe Travel, type: :model do
   end
 
   describe '#add_tags' do
+    before (:each) { @travel = FactoryGirl.create(:travel) }
+
     it 'does nothing if there are no selected values' do
-      @travel = FactoryGirl.create(:travel)
       array = nil
       @travel.add_tags(array)
 
@@ -68,7 +68,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'add one tag from an array with one value' do
-      @travel = FactoryGirl.create(:travel)
       array = ['Cruise']
       @travel.add_tags(array)
 
@@ -76,7 +75,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'add two tags from a hash with two values' do
-      @travel = FactoryGirl.create(:travel)
       array = ['Cruise', 'Romantic']
       @travel.add_tags(array)
 
@@ -85,8 +83,9 @@ RSpec.describe Travel, type: :model do
   end
 
   describe '#add_requirements' do
+    before (:each) { @travel = FactoryGirl.create(:travel) }
+
     it 'does nothing if there are no selected values' do
-      @travel = FactoryGirl.create(:travel)
       array = nil
       @travel.add_requirements(array)
 
@@ -94,7 +93,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'add one requirement from a hash with one value' do
-      @travel = FactoryGirl.create(:travel)
       array = ['Age']
       @travel.add_requirements(array)
 
@@ -102,7 +100,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'add two requirements from a hash with two values' do
-      @travel = FactoryGirl.create(:travel)
       array = ['Age', 'Children']
       @travel.add_requirements(array)
 
@@ -111,8 +108,9 @@ RSpec.describe Travel, type: :model do
   end
 
   describe '#add_places' do
+    before (:each) { @travel = FactoryGirl.create(:travel) }
+
     it 'add nothing from an empty string' do
-      @travel = FactoryGirl.create(:travel)
       string = ''
       @travel.add_places(string)
 
@@ -120,7 +118,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'add one requirement from a string with one value' do
-      @travel = FactoryGirl.create(:travel)
       string = 'Toledo'
       @travel.add_places(string)
 
@@ -128,7 +125,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'add two requirements from a string with two values' do
-      @travel = FactoryGirl.create(:travel)
       string = 'Toledo,Sevilla'
       @travel.add_places(string)
 
@@ -137,8 +133,9 @@ RSpec.describe Travel, type: :model do
   end
 
   describe '#add_countries' do
+    before (:each) { @travel = FactoryGirl.create(:travel) }
+
     it 'add nothing from an empty string' do
-      @travel = FactoryGirl.create(:travel)
       string = ''
       @travel.add_countries(string)
 
@@ -146,7 +143,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'add one requirement from a string with one value' do
-      @travel = FactoryGirl.create(:travel)
       string = 'France'
       @travel.add_countries(string)
 
@@ -154,7 +150,6 @@ RSpec.describe Travel, type: :model do
     end
 
     it 'add two requirements from a string with two values' do
-      @travel = FactoryGirl.create(:travel)
       string = 'France,Italy'
       @travel.add_countries(string)
 
@@ -163,78 +158,102 @@ RSpec.describe Travel, type: :model do
   end
 
   describe '#get_tags' do
+    before (:each) { @travel = FactoryGirl.create(:travel) }
     it 'returns an empty string is there is no tags' do
-      @travel = FactoryGirl.create(:travel)
       expect(@travel.get_tags).to eq('')
     end
 
     it 'returns an string with the one tag' do
-      @travel = FactoryGirl.create(:travel)
       @travel.add_tags(['adventure'])
       expect(@travel.get_tags).to eq('adventure')
     end
 
     it 'returns an string with the tags' do
-      @travel = FactoryGirl.create(:travel)
       @travel.add_tags(['adventure', 'cruise'])
       expect(@travel.get_tags).to eq('adventure,cruise')
     end
   end
 
   describe '#get_requirements' do
+    before (:each) { @travel = FactoryGirl.create(:travel) }
+
     it 'returns an empty string is there is no tags' do
-      @travel = FactoryGirl.create(:travel)
       expect(@travel.get_requirements).to eq('')
     end
 
     it 'returns an string with the one tag' do
-      @travel = FactoryGirl.create(:travel)
       @travel.add_requirements(['age'])
       expect(@travel.get_requirements).to eq('age')
     end
 
     it 'returns an string with the tags' do
-      @travel = FactoryGirl.create(:travel)
       @travel.add_requirements(['age', 'gender'])
       expect(@travel.get_requirements).to eq('age,gender')
     end
   end
 
   describe '#get_places' do
+    before (:each) { @travel = FactoryGirl.create(:travel) }
+
     it 'returns an empty string is there is no tags' do
-      @travel = FactoryGirl.create(:travel)
       expect(@travel.get_places).to eq('')
     end
 
     it 'returns an string with the one tag' do
-      @travel = FactoryGirl.create(:travel)
       @travel.add_places(['Madrid'])
       expect(@travel.get_places).to eq('Madrid')
     end
 
     it 'returns an string with the tags' do
-      @travel = FactoryGirl.create(:travel)
       @travel.add_places(['Madrid', 'Barcelona'])
       expect(@travel.get_places).to eq('Madrid,Barcelona')
     end
   end
 
   describe '#get_countries' do
+    before (:each) { @travel = FactoryGirl.create(:travel) }
+
     it 'returns an empty string is there is no tags' do
-      @travel = FactoryGirl.create(:travel)
       expect(@travel.get_countries).to eq('')
     end
 
     it 'returns an string with the one tag' do
-      @travel = FactoryGirl.create(:travel)
       @travel.add_countries(['Spain'])
       expect(@travel.get_countries).to eq('Spain')
     end
 
     it 'returns an string with the tags' do
-      @travel = FactoryGirl.create(:travel)
       @travel.add_countries(['Spain', 'France'])
       expect(@travel.get_countries).to eq('Spain,France')
+    end
+  end
+
+  describe '#clean_all_tags' do
+    before (:each) do 
+      @travel = FactoryGirl.create(:travel)
+    end
+
+    it 'stays the same if there is no tags' do
+      @travel.clean_all_tags
+      expect(@travel.tags.count).to eq(0)
+    end
+
+    it 'clean all the tags of one class' do
+      @travel.tag_list.add('adventure', 'cruise')
+      @travel.clean_all_tags
+      expect(@travel.tags.count).to eq(0)
+    end
+
+    it 'clean all the tags of all classes' do
+      @travel.tag_list.add('adventure', 'cruise')
+      @travel.requirement_list.add('adventure', 'cruise')
+      @travel.country_list.add('adventure', 'cruise')
+      @travel.place_list.add('adventure', 'cruise')
+      
+      expect(@travel.tags.count).to eq(0)
+      expect(@travel.requirements.count).to eq(0)
+      expect(@travel.countries.count).to eq(0)
+      expect(@travel.places.count).to eq(0)
     end
   end
 

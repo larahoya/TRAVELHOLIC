@@ -45,7 +45,7 @@ TravelApp.Travel.printNewError = function(response) {
     errorHtml += '<dd>' + error + '</dd>'
   })
   errorHtml += '</div>'
-  $('.form-travel-new').before(errorHtml);
+  $('.form-travel').before(errorHtml);
 }
 
 TravelApp.Travel.showIndex = function(response) {
@@ -62,6 +62,14 @@ TravelApp.Travel.showUpdateForm = function(travel) {
   travel.final_date = travel.final_date.slice(0,10);
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['travels/update'](travel));
+  travel.taglist.forEach(function(tag) {
+    var string = '.tags[value="'+ tag + '"]'
+    $(string).attr('checked', 'checked')
+  })
+  travel.requirementlist.forEach(function(requirement) {
+    var string = '.requirements[value="'+ requirement + '"]'
+    $(string).attr('checked', 'checked')
+  })
 }
 
 })()

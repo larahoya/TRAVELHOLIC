@@ -20,3 +20,6 @@ json.places @travel.get_places
 
 json.countries @travel.get_countries
 
+json.taglist @travel.tag_list
+
+json.requirementlist @travel.requirement_list

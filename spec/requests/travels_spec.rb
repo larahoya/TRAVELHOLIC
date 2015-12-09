@@ -136,16 +136,7 @@ RSpec.describe 'Travels', type: :request do
     context 'all the attributes are correct' do
       before (:each) do
         @travel = FactoryGirl.create(:travel, title: 'European Tour')
-        patch travel_path(@travel), {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}
-      end
-
-      it 'respond with a 200 status code' do
-        expect(response).to have_http_status(200)
-      end
-
-      it 'respond with a JSON with the travel' do
-        data = JSON.parse(response.body)
-        expect(data['title']).to eq("Spain Tour")
+        patch travel_path(@travel), {:travel => @travel, :title => 'Spain Tour'}
       end
 
       it 'update the attributes of the travel' do
