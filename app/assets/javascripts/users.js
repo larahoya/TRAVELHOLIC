@@ -30,6 +30,7 @@ TravelApp.User.getNewFormData = function() {
 }
 
 TravelApp.User.showProfile = function(user) {
+  $('#user-header').html(HandlebarsTemplates['users/header-logout'](user))
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['users/profile'](user));
 }
@@ -50,6 +51,12 @@ TravelApp.User.getLoginData = function() {
   return {"utf8": "✓", "authenticity_token": auth, "user": {"email": email, "password": password, "remember_me": "0"}, "commit": "Log in"}
 }
 
+TravelApp.User.printLoginError = function(response) {
+  var error = response.responseText;
+  console.log(error);
+  $('#user-reg').append('<span class="errors">' + error + '</span>');
+}
+
 
 })()
 
@@ -65,6 +72,8 @@ $(document).on('ready', function() {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
     ajax.delet('/sign_out', TravelApp.User.showHome);
+    $('#user-header').html(HandlebarsTemplates['users/header-login'])
+    $('.main').html(HandlebarsTemplates['site/home'])
   })
 
   $(document).on('click', '#btn-register', function(event) {
@@ -78,7 +87,7 @@ $(document).on('ready', function() {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
     var data = TravelApp.User.getLoginData();
-    ajax.post('/login', data, TravelApp.User.showProfile, TravelApp.User.printNewError);
+    ajax.post('/login', data, TravelApp.User.showProfile, TravelApp.User.printLoginError);
   })
 
 })

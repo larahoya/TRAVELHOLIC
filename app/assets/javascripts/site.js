@@ -1,2 +1,18 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+(function() {
+
+if (window.TravelApp === undefined){
+  window.TravelApp = {};
+}
+
+'use strict';
+var ajax;
+
+})()
+
+$(document).on('ready', function() {
+
+  $(document).on('click', '#load-home', function() {
+    $('.main').html(HandlebarsTemplates['site/home']);
+  })
+
+})

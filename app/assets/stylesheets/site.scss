@@ -9,20 +9,24 @@
 
 header {
   background-color: $color-header;
-  height: 100px;
+  height: 110px;
 }
 
-aside {
+.aside {
   min-height: 640px;
   background-color: $color-aside;
 }
 
 footer {
-  background-color: $color-header;
+  background-color: $color-aside;
   height: 60px;
 }
 
 .main {
   min-height: 640px;
   background-color: $color-main;
+}
+
+#back-img {
+  height: 640px;
 }

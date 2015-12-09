@@ -7,19 +7,30 @@
 </head>
 <body>
 
-<%= render 'partials/header' %>
+<header class='row'>
+
+  <div class='col-xs-9'>
+  </div>
+
+  <div class='login col-xs-3'>
+    <div id='user-header'></div>
+  </div>
+
+</header>
 
 <section class='row'>
 
-<%= render 'partials/aside' %>
+  <section class='col-xs-3 aside '>
+    
+  </section>
 
-<section class='col-xs-9 main'>
-  <%= yield %>
+  <section class='col-xs-9 main'>
+    <%= yield %>
+  </section>
+
 </section>
 
-</section>
-
-<%= render 'partials/footer' %>
+<footer class='row'></footer>
 
 <%= javascript_include_tag 'application' %>
 
