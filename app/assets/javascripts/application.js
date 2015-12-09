@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require init
+//= require helpers
 //= require handlebars
 //= require_tree ./templates
 //= require_tree .
