@@ -7,5 +7,6 @@ Rails.application.routes.draw do
                      controllers: {registrations: 'users/registrations', sessions: 'users/sessions'}
 
   resources :travels, only: [:show, :create, :destroy, :update]
+  resources :users, only: [:show]
 
 end

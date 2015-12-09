@@ -94,4 +94,13 @@ $(document).on('ready', function() {
     ajax.post('/login', data, TravelApp.User.showFirstProfile, TravelApp.User.printLoginError);
   })
 
+  $(document).on('click', '#btn-profile', function(event) {
+    event.preventDefault();
+    var current_user = JSON.parse(window.localStorage.getItem("current_user"))
+    var id = current_user.id
+
+    ajax = new TravelApp.Ajax();
+
+  })
+
 })
