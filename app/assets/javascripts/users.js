@@ -30,7 +30,6 @@ TravelApp.User.getNewFormData = function() {
 }
 
 TravelApp.User.showProfile = function(user) {
-  console.log(user);
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['users/profile'](user));
 }
@@ -43,6 +42,14 @@ TravelApp.User.printNewError = function(response) {
   })
   $('.form-signup').before(errorHtml + '</div>');
 }
+
+TravelApp.User.getLoginData = function() {
+  var email = $('#user_email').val();
+  var password = $('#user_password').val();
+  var auth = $('#authenticity_token').val();
+  return {"utf8": "✓", "authenticity_token": auth, "user": {"email": email, "password": password, "remember_me": "0"}, "commit": "Log in"}
+}
+
 
 })()
 
@@ -65,6 +72,13 @@ $(document).on('ready', function() {
     ajax = new TravelApp.Ajax();
     var data = TravelApp.User.getNewFormData();
     ajax.post('/', data, TravelApp.User.showProfile, TravelApp.User.printNewError);
+  })
+
+  $(document).on('click', '#btn-login', function(event) {
+    event.preventDefault();
+    ajax = new TravelApp.Ajax();
+    var data = TravelApp.User.getLoginData();
+    ajax.post('/login', data, TravelApp.User.showProfile, TravelApp.User.printNewError);
   })
 
 })
