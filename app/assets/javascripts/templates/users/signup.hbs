@@ -2,11 +2,45 @@
 <form class="new_user" id="new_user" action="/" accept-charset="UTF-8" method="post">
   <input name="utf8" type="hidden" value="&#x2713;" />
   <input type="hidden" id='authenticity_token' name="authenticity_token" />
-  
+ 
+  <div class="field">
+    <label for="user_first_name">First Name</label><br />
+    <input autofocus="autofocus" type="text" name="user[first_name]" id="user_first_name" />
+  </div>
+
+  <div class="field">
+    <label for="user_last_name">Last Name</label><br />
+    <input type="text" name="user[last_name]" id="user_last_name" />
+  </div> 
+
+  <div class="field">
+    <label for="user_address">Address</label><br />
+    <input type="text" name="user[address]" id="address_name" />
+  </div>
+
+  <div class="field">
+    <label for="user_city">City</label><br />
+    <input type="text" name="user[city]" id="user_city" />
+  </div> 
+
+  <div class="field">
+    <label for="user_country">Country</label><br />
+    <input type="text" name="user[country]" id="user_country" />
+  </div>
+
+  <div class="field">
+    <label for="user_date_of_birth">Date of birth</label><br />
+    <input type="date" name="user[date_of_birth]" id="user_date_of_birth" />
+  </div>
+
+  <div class="field">
+    <label for="user_telephone">Telephone</label><br />
+    <input type="number" name="user[telephone]" id="user_telephone" />
+  </div>
 
   <div class="field">
     <label for="user_email">Email</label><br />
-    <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" />
+    <input type="email" value="" name="user[email]" id="user_email" />
   </div>
 
   <div class="field">
