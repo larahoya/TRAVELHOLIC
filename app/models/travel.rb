@@ -13,6 +13,27 @@ class Travel < ActiveRecord::Base
     end
   end
 
+# Create and update
+
+  def set_params(params)
+    self.title = (params['title'])
+    self.initial_date = params['initial_date']
+    self.final_date = params['final_date']
+    self.description = params['description']
+    self.budget = (params['budget'] || 'medium')
+    self.set_maximum_people(params['maximum_people'])
+    self.people = 1
+
+    self.clean_all_tags
+
+    self.add_tags(params['tags'])
+    self.add_requirements(params['requirements'])
+    self.add_countries(params['countries'])
+    self.add_places(params['places'])
+  end
+
+# Clean, add and get tags
+
   def clean_all_tags
     self.tags.destroy_all
     self.countries.destroy_all
