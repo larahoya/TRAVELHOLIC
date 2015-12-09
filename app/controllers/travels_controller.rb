@@ -30,6 +30,7 @@ class TravelsController < ApplicationController
 
   def update
     @travel = Travel.find_by(id: params[:id])
+    #binding.pry if params[:title] != ""
     @travel.set_params(params)
 
     if !@travel || !@travel.save

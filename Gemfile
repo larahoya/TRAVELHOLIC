@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'devise'
 gem 'handlebars_assets'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'bootstrap-sass'

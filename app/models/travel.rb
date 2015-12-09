@@ -1,9 +1,13 @@
 class Travel < ActiveRecord::Base
+
   acts_as_taggable
-  acts_as_taggable_on :tags, :countries, :places, :requirements 
+  acts_as_taggable_on :tags, :countries, :places, :requirements
+
   validates :title, :initial_date, :final_date,  presence: true
   validates :maximum_people, :people, numericality: true
   validates :budget, inclusion: {in: ['high', 'medium', 'low']}
+
+  belongs_to :user
 
   def set_maximum_people(string)
     if string != ''
@@ -16,12 +20,12 @@ class Travel < ActiveRecord::Base
 # Create and update
 
   def set_params(params)
-    self.title = (params['title'])
-    self.initial_date = params['initial_date']
-    self.final_date = params['final_date']
-    self.description = params['description']
+    self.title = (params['title']) if params['title']
+    self.initial_date = params['initial_date'] if params['initial_date']
+    self.final_date = params['final_date'] if params['final_date']
+    self.description = params['description'] if params['description']
     self.budget = (params['budget'] || 'medium')
-    self.set_maximum_people(params['maximum_people'])
+    self.set_maximum_people(params['maximum_people']) if params['maximum_people']
     self.people = 1
 
     self.clean_all_tags
@@ -34,12 +38,7 @@ class Travel < ActiveRecord::Base
 
 # Clean, add and get tags
 
-  def clean_all_tags
-    self.tags.destroy_all
-    self.countries.destroy_all
-    self.requirements.destroy_all
-    self.places.destroy_all
-  end
+
 
   def add_tags(array)
     array.each {|value| self.tag_list.add(value)} if array
@@ -83,6 +82,13 @@ class Travel < ActiveRecord::Base
       result += tag + ','
     end
     result[0..-2]
+  end
+
+  def clean_all_tags
+    self.tags.destroy_all
+    self.countries.destroy_all
+    self.requirements.destroy_all
+    self.places.destroy_all
   end
 
 end

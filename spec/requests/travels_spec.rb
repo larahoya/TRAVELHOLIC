@@ -136,12 +136,12 @@ RSpec.describe 'Travels', type: :request do
     context 'all the attributes are correct' do
       before (:each) do
         @travel = FactoryGirl.create(:travel, title: 'European Tour')
-        patch travel_path(@travel), {:travel => @travel, :title => 'Spain Tour'}
+        patch travel_path(@travel), {:travel => @travel.id, :title => 'Spain Tour', format: :jbuilder}
       end
 
-      # it 'update the attributes of the travel' do
-      #   expect(Travel.find_by(id: @travel.id).title).to eq('Spain Tour')
-      # end
+      it 'update the attributes of the travel' do
+        expect(Travel.find_by(id: @travel.id).title).to eq('Spain Tour')
+      end
     end
 
   end

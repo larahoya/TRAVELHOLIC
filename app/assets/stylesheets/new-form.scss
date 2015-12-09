@@ -26,7 +26,7 @@ label.final-date {
 }
 
 label.description {
-  
+  vertical-align: top;
 }
 
 label.countries {
@@ -64,10 +64,9 @@ label.requirements {
   margin-bottom: 10px;
 }
 
-.input.description {
+textarea.description {
   height: 100px;
   width: 900px;
-  text-align: left;
 }
 
 .input.countries {
