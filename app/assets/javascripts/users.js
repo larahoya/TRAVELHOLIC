@@ -29,7 +29,11 @@ TravelApp.User.getNewFormData = function() {
   return {"utf8": "✓", "authenticity_token": auth, "user": {"first_name": first_name, "last_name":last_name, "address": address, "city": city, "country": country, "date_of_birth": date_of_birth, "telephone": telephone, "email": email, "password": password, "password_confirmation": password_confirmation},  "commit": "Sign up"};
 }
 
-TravelApp.User.showProfile = function(user) {
+TravelApp.User.showFirstProfile = function(user) {
+
+  var current_user = JSON.stringify(user);
+  window.localStorage.setItem("current_user", current_user);
+
   $('#user-header').html(HandlebarsTemplates['users/header-logout'](user))
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['users/profile'](user));
@@ -53,7 +57,6 @@ TravelApp.User.getLoginData = function() {
 
 TravelApp.User.printLoginError = function(response) {
   var error = response.responseText;
-  console.log(error);
   $('#user-reg').append('<span class="errors">' + error + '</span>');
 }
 
@@ -72,6 +75,7 @@ $(document).on('ready', function() {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
     ajax.delet('/sign_out', TravelApp.User.showHome);
+    window.localStorage.clear();
     $('#user-header').html(HandlebarsTemplates['users/header-login'])
     $('.main').html(HandlebarsTemplates['site/home'])
   })
@@ -80,14 +84,14 @@ $(document).on('ready', function() {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
     var data = TravelApp.User.getNewFormData();
-    ajax.post('/', data, TravelApp.User.showProfile, TravelApp.User.printNewError);
+    ajax.post('/', data, TravelApp.User.showFirstProfile, TravelApp.User.printNewError);
   })
 
   $(document).on('click', '#btn-login', function(event) {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
     var data = TravelApp.User.getLoginData();
-    ajax.post('/login', data, TravelApp.User.showProfile, TravelApp.User.printLoginError);
+    ajax.post('/login', data, TravelApp.User.showFirstProfile, TravelApp.User.printLoginError);
   })
 
 })
