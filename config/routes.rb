@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :travels, only: [:index, :show, :create, :destroy, :update]
+    resources :travelers, only: [:index, :show, :create, :update, :destroy]
   end
 
   resources :travels, only: [:index] do

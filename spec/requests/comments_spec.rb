@@ -45,7 +45,7 @@ RSpec.describe 'Comments', type: :request do
         @travel = FactoryGirl.create(:travel)
         @user = FactoryGirl.create(:user)
         @count = Comment.count
-        post travel_comments_path(@travel), {:description => 'This is a comment', :travel_id => @travel.id, :user_id => @user.id, :category => false} 
+        post travel_comments_path(@travel), {:name => 'Lara', :description => 'This is a comment', :user_id => @user.id, :category => false} 
       end
 
       it 'respond with a 201 status code' do
@@ -69,8 +69,8 @@ RSpec.describe 'Comments', type: :request do
     context 'some attribute is missing or incorrect' do
       before (:each) do
         @travel = FactoryGirl.create(:travel)
-        @comment = FactoryGirl.build(:comment, travel_id: @travel.id, description: '')
-        post travel_comments_path(@travel), {comment: @comment}
+        @user = FactoryGirl.create(:user)
+        post travel_comments_path(@travel), {:name => 'Lara', :description => '', :user_id => @user.id, :category => false} 
       end
 
       it 'respond with a 404 status code' do

@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
 
   has_many :travels
   has_many :comments
+  has_many :travelers
+
 end

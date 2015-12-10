@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210174727) do
+ActiveRecord::Schema.define(version: 20151210190657) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20151210174727) do
 
   add_index "comments", ["travel_id"], name: "index_comments_on_travel_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "participations", force: :cascade do |t|
+    t.integer  "travel_id"
+    t.integer  "traveler_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "participations", ["travel_id"], name: "index_participations_on_travel_id"
+  add_index "participations", ["traveler_id"], name: "index_participations_on_traveler_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -45,6 +55,19 @@ ActiveRecord::Schema.define(version: 20151210174727) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "travelers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "country"
+    t.datetime "date_of_birth"
+    t.string   "gender"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "travelers", ["user_id"], name: "index_travelers_on_user_id"
 
   create_table "travels", force: :cascade do |t|
     t.string   "title"

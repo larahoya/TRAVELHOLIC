@@ -9,6 +9,8 @@ class Travel < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments
+  has_many :travelers, through: :participations
+  has_many :participations
 
   def set_maximum_people(string)
     if string != ''
