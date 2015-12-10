@@ -160,7 +160,7 @@ RSpec.describe 'Travelers', type: :request do
         @user = FactoryGirl.create(:user)
         @traveler = FactoryGirl.create(:traveler, first_name: 'Maria', user_id: @user.id)
 
-        patch user_traveler_path(@user, @travel), {:first_name => 'Lara', :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => ''}
+        patch user_traveler_path(@user, @traveler), {:first_name => 'Lara', :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => ''}
       end
 
       it 'respond with a 404 status code' do
@@ -179,12 +179,12 @@ RSpec.describe 'Travelers', type: :request do
     context 'all the attributes are correct' do
       before (:each) do
         @user = FactoryGirl.create(:user)
-        @traveler = FactoryGirl.create(:travel, first_name: 'Maria', user_id: @user.id)
+        @traveler = FactoryGirl.create(:traveler, first_name: 'Maria', user_id: @user.id)
         patch user_traveler_path(@user, @traveler), {:first_name => 'Lara', :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => @traveler.gender}
       end
 
       it 'update the attributes of the travel' do
-        expect(Travel.find_by(id: @traveler.id).first_name).to eq('Lara')
+        expect(Traveler.find_by(id: @traveler.id).first_name).to eq('Lara')
       end
 
     end

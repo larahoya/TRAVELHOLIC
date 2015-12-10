@@ -7,4 +7,12 @@ class Traveler < ActiveRecord::Base
   has_many :travels, through: :participations
   has_many :participations
 
+  def set_params(params)
+    self.first_name = params[:first_name]
+    self.last_name = params[:last_name]
+    self.country = params[:country]
+    self.date_of_birth = params[:date_of_birth]
+    self.gender = params[:gender]
+  end
+
 end
