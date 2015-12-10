@@ -1,63 +1,40 @@
 <div class='form-signup'>
-<form class="new_user" id="new_user" action="/" accept-charset="UTF-8" method="post">
-  <input name="utf8" type="hidden" value="&#x2713;" />
-  <input type="hidden" id='authenticity_token' name="authenticity_token" />
- 
-  <div class="field">
-    <label for="user_first_name">First Name</label><br />
-    <input type="text" name="user[first_name]" id="user_first_name" />
-  </div>
+  <form class="new_user" id="new_user" action="/" accept-charset="UTF-8" method="post">
+    <input name="utf8" type="hidden" value="&#x2713;" />
+    <input type="hidden" id='authenticity_token' name="authenticity_token" />
 
-  <div class="field">
-    <label for="user_last_name">Last Name</label><br />
-    <input type="text" name="user[last_name]" id="user_last_name" />
-  </div> 
+    <label for="user_first_name">First Name</label>
+    <input type="text" name="user[first_name]" id="user_first_name" /><br>
 
-  <div class="field">
-    <label for="user_address">Address</label><br />
-    <input type="text" name="user[address]" id="address_name" />
-  </div>
+    <label for="user_last_name">Last Name</label>
+    <input type="text" name="user[last_name]" id="user_last_name" /><br>
 
-  <div class="field">
-    <label for="user_city">City</label><br />
-    <input type="text" name="user[city]" id="user_city" />
-  </div> 
+    <label for="user_address">Address</label>
+    <input type="text" name="user[address]" id="address_name" /><br>
 
-  <div class="field">
-    <label for="user_country">Country</label><br />
-    <input type="text" name="user[country]" id="user_country" />
-  </div>
+    <label for="user_city">City</label>
+    <input type="text" name="user[city]" id="user_city" /><br>
 
-  <div class="field">
-    <label for="user_date_of_birth">Date of birth</label><br />
-    <input type="date" name="user[date_of_birth]" id="user_date_of_birth" />
-  </div>
+    <label for="user_country">Country</label>
+    <input type="text" name="user[country]" id="user_country" /><br>
 
-  <div class="field">
-    <label for="user_telephone">Telephone</label><br />
-    <input type="number" name="user[telephone]" id="user_telephone" />
-  </div>
+    <label for="user_date_of_birth">Date of birth</label>
+    <input type="date" name="user[date_of_birth]" id="user_date_of_birth" /><br>
 
-  <div class="field">
-    <label for="user_email">Email</label><br />
-    <input type="email" value="" name="user[email]" id="user_email" />
-  </div>
+    <label for="user_telephone">Telephone</label>
+    <input type="number" name="user[telephone]" id="user_telephone" /><br>
 
-  <div class="field">
+    <label for="user_email">Email</label>
+    <input type="email" value="" name="user[email]" id="user_email" /><br>
+
     <label for="user_password">Password</label>
     <em>(8 characters minimum)</em>
-    <br />
-    <input autocomplete="off" type="password" name="user[password]" id="user_password" />
-  </div>
+    <input autocomplete="off" type="password" name="user[password]" id="user_password" /><br>
 
-  <div class="field">
-    <label for="user_password_confirmation">Password confirmation</label><br />
-    <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
-  </div>
+    <label for="user_password_confirmation">Password confirmation</label>
+    <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation" /><br>
 
-  <div class="actions">
     <input id='btn-register' type="submit" name="commit" value="Sign up" />
-  </div>
 
-</form>
+  </form>
 </div>

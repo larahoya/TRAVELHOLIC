@@ -74,7 +74,7 @@ RSpec.describe Travel, type: :model do
       expect(@travel.tag_list.length).to eq(1)
     end
 
-    it 'add two tags from a hash with two values' do
+    it 'add two tags from an array with two values' do
       array = ['Cruise', 'Romantic']
       @travel.add_tags(array)
 
@@ -92,14 +92,14 @@ RSpec.describe Travel, type: :model do
       expect(@travel.requirement_list.length).to eq(0)
     end
 
-    it 'add one requirement from a hash with one value' do
+    it 'add one requirement from an array with one value' do
       array = ['Age']
       @travel.add_requirements(array)
 
       expect(@travel.requirement_list.length).to eq(1)
     end
 
-    it 'add two requirements from a hash with two values' do
+    it 'add two requirements from an array with two values' do
       array = ['Age', 'Children']
       @travel.add_requirements(array)
 

@@ -10,6 +10,18 @@
 header {
   background-color: $color-header;
   height: 110px;
+  .title {
+    color: white;
+    margin-top: 15px;
+    margin-left: 30px;
+    .one {
+      font-size: 35px;
+    }
+    .two {
+      font-style: italic;
+      font-size: 30px;
+    }
+  }
 }
 
 .aside {

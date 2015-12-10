@@ -6,7 +6,8 @@ Rails.application.routes.draw do
                      path_names: {sign_in: 'login', sign_up: 'signup'},
                      controllers: {registrations: 'users/registrations', sessions: 'users/sessions'}
 
-  resources :travels, only: [:show, :create, :destroy, :update]
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :travels, only: [:index, :show, :create, :destroy, :update]
+  end
 
 end

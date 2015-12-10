@@ -13,7 +13,8 @@ TravelApp.Travel = function (id) {
 }; 
 
 TravelApp.Travel.prototype.show = function() {
-  ajax.get('/travels/' + this.id, TravelApp.Travel.printInfo);
+  var current_user = TravelApp.Helpers.getCurrentUser();
+  ajax.get('/users/' + current_user.id + '/travels/' + this.id, TravelApp.Travel.printInfo);
 }
 
 TravelApp.Travel.printInfo = function(travel) {
@@ -44,6 +45,7 @@ TravelApp.Travel.getNewFormData = function() {
 }
 
 TravelApp.Travel.printNewError = function(response) {
+  $('.errors').remove();
   var errorHtml = '<div class="errors">'
   response.responseJSON.forEach(function(error) {
     errorHtml += '<dd>' + error + '</dd>'
@@ -98,8 +100,11 @@ $(document).on('ready', function() {
   $(document).on('click', '#btn-create',function(event) {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
+
     var data = TravelApp.Travel.getNewFormData();
-    ajax.post('/travels', data, TravelApp.Travel.printInfo, TravelApp.Travel.printNewError);
+    var current_user = TravelApp.Helpers.getCurrentUser();
+
+    ajax.post('/users/' + current_user.id + '/travels', data, TravelApp.Travel.printInfo, TravelApp.Travel.printNewError);
   })
 
   $(document).on('click', '#btn-delete', function(event) {
@@ -108,7 +113,9 @@ $(document).on('ready', function() {
     var id = $button.data('id');
 
     ajax = new TravelApp.Ajax();
-    ajax.delet('/travels/'+ id, TravelApp.Travel.showIndex);
+    var current_user = TravelApp.Helpers.getCurrentUser();
+
+    ajax.delet('/users/' + current_user.id + '/travels/' + id, TravelApp.Travel.showIndex);
   })
 
   $(document).on('click', '#link-form-update', function(event) {
@@ -127,7 +134,9 @@ $(document).on('ready', function() {
 
     ajax = new TravelApp.Ajax();
     var data = TravelApp.Travel.getNewFormData();
-    ajax.patch('/travels/'+ id, data, TravelApp.Travel.printInfo);
+    var current_user = TravelApp.Helpers.getCurrentUser();
+    
+    ajax.patch('/users/' + current_user.id + '/travels/' + id, data, TravelApp.Travel.printInfo);
   })
 
 })

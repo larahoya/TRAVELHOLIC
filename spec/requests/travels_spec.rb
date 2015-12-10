@@ -6,8 +6,9 @@ RSpec.describe 'Travels', type: :request do
 
     context 'the travel exists' do
       before (:each) do
-        @travel = FactoryGirl.create(:travel, title: 'European Tour')
-        get travel_path(@travel), format: :jbuilder
+        @user = FactoryGirl.create(:user)
+        @travel = FactoryGirl.create(:travel, title: 'European Tour', user_id: @user.id)
+        get user_travel_path(@user, @travel), format: :jbuilder
       end
     
       it 'gets the correct travel' do
@@ -19,7 +20,8 @@ RSpec.describe 'Travels', type: :request do
 
     context 'the travel does not exist' do
       before (:each) do
-        get travel_path(10)
+        @user = FactoryGirl.create(:user)
+        get user_travel_path(@user, 10)
       end
 
       it 'respond with a 404 status code' do
@@ -38,8 +40,9 @@ RSpec.describe 'Travels', type: :request do
 
     context 'some attribute is missing or incorrect' do
       before (:each) do
+        @user = FactoryGirl.create(:user)
         @invalid_travel = FactoryGirl.build(:invalid_travel)
-        post travels_path, {:travel => @invalid_travel, :countries => '', :places => ''}
+        post user_travels_path(@user), {:travel => @invalid_travel, :countries => '', :places => ''}
       end
 
       it 'respond with a 404 status code' do
@@ -54,8 +57,9 @@ RSpec.describe 'Travels', type: :request do
 
     context 'all the attributes are correct' do
       before (:each) do
+        @user = FactoryGirl.create(:user)
         @travel = FactoryGirl.build(:travel)
-        post travels_path, {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}
+        post user_travels_path(@user), {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}
       end
 
       it 'respond with a 201 status code' do
@@ -77,9 +81,10 @@ RSpec.describe 'Travels', type: :request do
 
     context 'the travel exists' do
       before (:each) do
-        @travel = FactoryGirl.create(:travel)
+        @user = FactoryGirl.create(:user)
+        @travel = FactoryGirl.create(:travel, user_id: @user.id)
         @count = Travel.count
-        delete travel_path(@travel)
+        delete user_travel_path(@user, @travel)
       end
 
       it 'respond with a 204 status code' do
@@ -93,8 +98,9 @@ RSpec.describe 'Travels', type: :request do
 
     context 'the travel doesn´t exist' do
       before (:each) do
+        @user = FactoryGirl.create(:user)
         @count = Travel.count
-        delete travel_path(10)
+        delete user_travel_path(@user, 10)
       end
 
       it 'respond with a 404 status code' do
@@ -115,9 +121,10 @@ RSpec.describe 'Travels', type: :request do
 
     context 'some attribute is incorrect' do
       before (:each) do
-        @travel = FactoryGirl.create(:travel, title: 'European Tour')
+        @user = FactoryGirl.create(:user)
+        @travel = FactoryGirl.create(:travel, title: 'European Tour', user_id: @user.id)
 
-        patch travel_path(@travel), {title: '', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}
+        patch user_travel_path(@user, @travel), {title: '', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}
       end
 
       it 'respond with a 404 status code' do
@@ -135,13 +142,37 @@ RSpec.describe 'Travels', type: :request do
 
     context 'all the attributes are correct' do
       before (:each) do
-        @travel = FactoryGirl.create(:travel, title: 'European Tour')
-        patch travel_path(@travel), {:travel => @travel.id, :title => 'Spain Tour', format: :jbuilder}
+        @user = FactoryGirl.create(:user)
+        @travel = FactoryGirl.create(:travel, title: 'European Tour', user_id: @user.id)
+        @travel.add_tags(['adventure'])
+        @travel.add_places('Madrid')
       end
 
       it 'update the attributes of the travel' do
+        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', format: :jbuilder}
         expect(Travel.find_by(id: @travel.id).title).to eq('Spain Tour')
       end
+
+      it 'delete the tag if the user deletes it' do
+        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', format: :jbuilder}
+        expect(Travel.find_by(id: @travel.id).tags.count).to eq(0)
+      end
+
+      it 'add the tag the user checks' do
+        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', :tags => ['adventure', 'cruise'], format: :jbuilder}
+        expect(Travel.find_by(id: @travel.id).tags.count).to eq(2)
+      end
+
+      it 'delete the place if the user deletes it' do
+        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', format: :jbuilder}
+        expect(Travel.find_by(id: @travel.id).places.count).to eq(0)
+      end
+
+      it 'add the place the user enters' do
+        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', :places => 'Madrid,Sevilla', format: :jbuilder}
+        expect(Travel.find_by(id: @travel.id).places.count).to eq(2)
+      end
+
     end
 
   end

@@ -60,6 +60,11 @@ TravelApp.User.printLoginError = function(response) {
   $('#user-reg').append('<span class="errors">' + error + '</span>');
 }
 
+TravelApp.User.showProfile = function(user) {
+  $('#content').empty();
+  $('#content').html(HandlebarsTemplates['users/profile'](user));
+}
+
 
 })()
 
@@ -96,10 +101,10 @@ $(document).on('ready', function() {
 
   $(document).on('click', '#btn-profile', function(event) {
     event.preventDefault();
-    var current_user = JSON.parse(window.localStorage.getItem("current_user"))
-    var id = current_user.id
+    var current_user = TravelApp.Helpers.getCurrentUser();
 
     ajax = new TravelApp.Ajax();
+    ajax.get('/users/' + current_user.id, TravelApp.User.showProfile)
 
   })
 
