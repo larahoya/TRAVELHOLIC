@@ -106,6 +106,10 @@ RSpec.describe 'Travels', type: :request do
       it 'creates a new Travel' do
         expect(Travel.last.title).to eq("Spain Tour")
       end
+
+      it 'the new travel belongs to the user' do
+        expect(Travel.last.user_id).to eq(@user.id)
+      end
     end
   end
 

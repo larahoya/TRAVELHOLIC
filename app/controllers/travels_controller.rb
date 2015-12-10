@@ -16,7 +16,9 @@ class TravelsController < ApplicationController
   end
 
   def create
+    user = User.find_by(id: params[:user_id])
     travel = Travel.new
+    travel.user_id = user.id
     travel.set_params(params)
 
     if travel.save
