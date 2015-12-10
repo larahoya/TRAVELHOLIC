@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     resources :travels, only: [:index, :show, :create, :destroy, :update]
   end
 
+  resources :travels, only: [:index] do
+    resources :comments, only: [:index, :create, :destroy]
+  end
+
 end

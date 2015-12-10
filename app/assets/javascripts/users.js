@@ -70,6 +70,29 @@ TravelApp.User.showProfile = function(user) {
   TravelApp.Travel.index(user);
 }
 
+TravelApp.User.getUpdateFormData = function() {
+  var first_name = $('#user_first_name').val();
+  var last_name = $('#user_last_name').val();
+  var address = $('#user_address').val();
+  var city = $('#user_city').val();
+  var country = $('#user_country').val();
+  var date_of_birth = $('#user_date_of_birth').val();
+  var telephone = $('#user_telephone').val();
+  var email = $('#user_email').val();
+  var password = $('#user_password').val();
+  var password_confirmation = $('#user_password_confirmation').val();
+  var auth = $('#authenticity_token').val();
+  var current_password = $('#user_current_password').val()
+  return {"utf8": "✓", "authenticity_token": auth, "user": {"first_name": first_name, "last_name":last_name, "address": address, "city": city, "country": country, "date_of_birth": date_of_birth, "telephone": telephone, "email": email, "password": password, "password_confirmation": password_confirmation, "current_password": current_password},  "commit": "Update"};
+}
+
+TravelApp.User.showUpdatedProfile = function(response) {
+
+  ajax = new TravelApp.Ajax();
+  var current_user = TravelApp.Helpers.getCurrentUser();
+  ajax.get('/users/' + current_user.id, TravelApp.User.showFirstProfile)
+}
+
 })()
 
 $(document).on('ready', function() {
@@ -111,6 +134,28 @@ $(document).on('ready', function() {
     ajax = new TravelApp.Ajax();
     ajax.get('/users/' + current_user.id, TravelApp.User.showProfile)
 
+  })
+
+  $(document).on('click', '#link-user-index', function(event) {
+    event.preventDefault();
+    $('#content').html(HandlebarsTemplates['users/user-profile']);
+
+    var current_user = TravelApp.Helpers.getCurrentUser();
+    TravelApp.Travel.index(current_user);
+  })
+
+  $(document).on('click', '#link-form-user-update', function(event) {
+    event.preventDefault();
+    var current_user = TravelApp.Helpers.getCurrentUser();
+    current_user.date_of_birth = current_user.date_of_birth.slice(0,10);
+    $('#content').html(HandlebarsTemplates['users/user-update'](current_user));
+  })
+
+  $(document).on('click', '#btn-user-update', function(event) {
+    event.preventDefault();
+    var data = TravelApp.User.getUpdateFormData();
+    
+    ajax.patch('/', data, TravelApp.User.showUpdatedProfile);
   })
 
 })

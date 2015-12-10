@@ -8,6 +8,7 @@ class Travel < ActiveRecord::Base
   validates :budget, inclusion: {in: ['high', 'medium', 'low']}
 
   belongs_to :user
+  has_many :comments
 
   def set_maximum_people(string)
     if string != ''
