@@ -18,10 +18,16 @@ TravelApp.Travel.prototype.show = function() {
 }
 
 TravelApp.Travel.printInfo = function(travel) {
+  var current_travel = JSON.stringify(travel);
+  window.localStorage.setItem("current_travel", current_travel);
+
   travel.initial_date = travel.initial_date.slice(0,10);
   travel.final_date = travel.final_date.slice(0,10);
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['travels/show'](travel));
+  TravelApp.Comment.getComments(travel);
+  $('.comments-public').after('<div><button id="btn-form-public-comment">Write a comment</button></div>'); 
+  $('.comments-private').after('<div><button id="btn-form-private-comment">Write a comment</button></div>')
 }
 
 TravelApp.Travel.getNewFormData = function() {

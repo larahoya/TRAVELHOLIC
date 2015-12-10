@@ -35,30 +35,65 @@ RSpec.describe 'Comments', type: :request do
       it 'respond with an error json' do
         expect(response.body).to eq('The travel doesn´t have any comment!')
       end
-      
+
     end
   end
 
   describe 'POST #create' do
     context 'all the attributes are correct' do
-      it 'returns a json with the comment' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel)
+        @user = FactoryGirl.create(:user)
+        @count = Comment.count
+        post travel_comments_path(@travel), {:description => 'This is a comment', :travel_id => @travel.id, :user_id => @user.id, :category => false} 
       end
+
+      it 'respond with a 201 status code' do
+        expect(response).to have_http_status(201)
+      end
+
+      it 'returns a json with the comment' do
+        data = JSON.parse(response.body)
+        expect(data['description']).to eq('This is a comment')
+      end
+
+      it 'creates a correct comment' do
+        expect(Comment.last.description).to eq("This is a comment")
+      end
+
       it 'creates a comment' do
+        expect(Comment.count).to eq(@count + 1)
       end
     end
 
     context 'some attribute is missing or incorrect' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel)
+        @comment = FactoryGirl.build(:comment, travel_id: @travel.id, description: '')
+        post travel_comments_path(@travel), {comment: @comment}
+      end
+
       it 'respond with a 404 status code' do
         expect(response).to have_http_status(404)
       end
+
       it 'respond with an error json' do
-        expect(response.body).to eq('The comment could´t be created!')
+        data = JSON.parse(response.body)
+        expect(data).to eq(["Description can't be blank"])
       end
     end
   end
 
   describe 'DESTROY #delete' do
     context 'the comment exists' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel)
+        @user = FactoryGirl.create(:user)
+        @comment = FactoryGirl.create(:comment, description: 'This is a comment',user_id: @user.id, travel_id: @travel.id)
+        @count = Comment.count
+
+        delete travel_comment_path(@travel, @comment)
+      end
       it 'respond with a 204 status code' do
         expect(response).to have_http_status(204)
       end
@@ -69,6 +104,14 @@ RSpec.describe 'Comments', type: :request do
     end
 
     context 'the comment doesn´t exist' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel)
+        @user = FactoryGirl.create(:user)
+        @count = Comment.count
+        
+        delete travel_comment_path(@travel, 10)
+      end
+
       it 'respond with a 404 status code' do
         expect(response).to have_http_status(404)
       end

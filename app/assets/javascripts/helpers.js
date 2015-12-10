@@ -12,4 +12,9 @@ TravelApp.Helpers.getCurrentUser = function() {
   return current_user
 } 
 
+TravelApp.Helpers.getCurrentTravel = function() {
+  var current_travel = JSON.parse(window.localStorage.getItem("current_travel")) || null
+  return current_travel
+}
+
 })()

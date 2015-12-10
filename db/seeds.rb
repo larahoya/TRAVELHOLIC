@@ -24,5 +24,18 @@ require 'faker'
 
   Travel.create(user_id: index, title: title1, description: description, initial_date: initial_date, final_date: final_date, budget: budget, maximum_people: maximum_people, people: 1)
   Travel.create(user_id: index, title: title2, description: description, initial_date: initial_date, final_date: final_date, budget: budget, maximum_people: maximum_people, people: 1)
+  Travel.create(user_id: index, title: title2, description: description, initial_date: initial_date, final_date: final_date, budget: budget, maximum_people: maximum_people, people: 1)
 
+end
+
+(0..10).each do |index|
+  name = [Faker::Name.first_name].sample
+  description = [Faker::Lorem.paragraph].sample
+  Comment.create(user_id: rand(10), travel_id: rand(20), name: name, description: description, category: true)
+end
+
+(0..10).each do |index|
+  name = [Faker::Name.first_name].sample
+  description = [Faker::Lorem.paragraph].sample
+  Comment.create(user_id: rand(10), travel_id: rand(20), name: name, description: description, category: false)
 end
