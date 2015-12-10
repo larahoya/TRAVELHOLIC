@@ -2,6 +2,38 @@ require 'rails_helper'
 
 RSpec.describe 'Travels', type: :request do
 
+  describe 'GET #index' do
+
+     context 'the user has travels' do
+      before (:each) do
+        @user = FactoryGirl.create(:user)
+        @travel = FactoryGirl.create(:travel, user_id: @user.id)
+        get user_travels_path(@user), format: :jbuilder
+      end
+
+      it 'returns a JSON with the travels' do
+        data = JSON.parse(response.body)
+        expect(data['travels'].length).to eq(1)
+      end
+     end
+
+     context 'the user doesn´t have travels' do
+      before (:each) do
+        @user = FactoryGirl.create(:user)
+        get user_travels_path(@user), format: :jbuilder
+      end
+
+      it 'respond with a 404 status code' do
+        expect(response).to have_http_status(404)
+      end
+
+      it 'respond with an error json' do
+        expect(response.body).to eq('The user doesn´t have any travel!')
+      end
+     end
+
+  end
+
   describe 'GET #show' do
 
     context 'the travel exists' do

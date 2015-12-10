@@ -36,10 +36,13 @@ TravelApp.User.showFirstProfile = function(user) {
 
   $('#user-header').html(HandlebarsTemplates['users/header-logout'](user))
   $('#content').empty();
-  $('#content').html(HandlebarsTemplates['users/profile'](user));
+  $('#aside').html(HandlebarsTemplates['users/user-info'](user));
+  $('#content').html(HandlebarsTemplates['users/user-profile']);
+  TravelApp.Travel.index(user);
 }
 
 TravelApp.User.printNewError = function(response) {
+  $('.errors').remove();
   var errors = response.responseJSON.errors;
   var errorHtml = '<div class="errors">';
   Object.keys(errors).forEach(function(key) {
@@ -62,9 +65,10 @@ TravelApp.User.printLoginError = function(response) {
 
 TravelApp.User.showProfile = function(user) {
   $('#content').empty();
-  $('#content').html(HandlebarsTemplates['users/profile'](user));
+  $('#aside').html(HandlebarsTemplates['users/user-info'](user));
+  $('#content').html(HandlebarsTemplates['users/user-profile']);
+  TravelApp.Travel.index(user);
 }
-
 
 })()
 
@@ -73,7 +77,8 @@ $(document).on('ready', function() {
   $(document).on('click', '#link-form-signup', function(event) {
     event.preventDefault();
     $('#content').empty();
-    $('#content').html(HandlebarsTemplates['users/signup']);
+    var template = HandlebarsTemplates['users/signup'];
+    $('#content').html(template);
   })
 
   $(document).on('click', '#link-logout', function(event) {
@@ -82,7 +87,7 @@ $(document).on('ready', function() {
     ajax.delet('/sign_out', TravelApp.User.showHome);
     window.localStorage.clear();
     $('#user-header').html(HandlebarsTemplates['users/header-login'])
-    $('.main').html(HandlebarsTemplates['site/home'])
+    $('#content').html(HandlebarsTemplates['site/home'])
   })
 
   $(document).on('click', '#btn-register', function(event) {

@@ -1,5 +1,13 @@
 class TravelsController < ApplicationController
 
+  def index
+    user = User.find_by(id: params[:user_id])
+    @travels = user.travels
+    if @travels.count == 0
+      render status: 404, json: 'The user doesn´t have any travel!'
+    end
+  end
+
   def show
     @travel = Travel.find_by(id: params[:id])
     if @travel == nil

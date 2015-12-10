@@ -56,11 +56,14 @@ TravelApp.Travel.printNewError = function(response) {
 
 TravelApp.Travel.showIndex = function(response) {
   $('#content').empty();
-  $('#content').append('<h4 class="errors">Travel deleted</h4>');
+  var current_user = TravelApp.Helpers.getCurrentUser();
+  TravelApp.User.showProfile(current_user);
+  $('.user-travels').prepend('<h4 class="errors">Travel deleted</h4>');
 }
 
 TravelApp.Travel.prototype.getUpdateForm = function() {
-  ajax.get('/travels/' + this.id, TravelApp.Travel.showUpdateForm);
+  var current_user = TravelApp.Helpers.getCurrentUser();
+  ajax.get('/users/' + current_user.id + '/travels/' + this.id, TravelApp.Travel.showUpdateForm);
 }
 
 TravelApp.Travel.showUpdateForm = function(travel) {
@@ -75,6 +78,18 @@ TravelApp.Travel.showUpdateForm = function(travel) {
   travel.requirementlist.forEach(function(requirement) {
     var string = '.requirements[value="'+ requirement + '"]'
     $(string).attr('checked', 'checked')
+  })
+}
+
+TravelApp.Travel.index = function(user) {
+  ajax = new TravelApp.Ajax();
+  ajax.get('/users/' + user.id + '/travels', TravelApp.Travel.showTravels);
+}
+
+TravelApp.Travel.showTravels = function(travels) {
+  var travels = travels.travels;
+  travels.forEach(function(travel) {
+    $('.user-travels').append(HandlebarsTemplates['travels/miniature'](travel));
   })
 }
 
@@ -135,7 +150,7 @@ $(document).on('ready', function() {
     ajax = new TravelApp.Ajax();
     var data = TravelApp.Travel.getNewFormData();
     var current_user = TravelApp.Helpers.getCurrentUser();
-    
+
     ajax.patch('/users/' + current_user.id + '/travels/' + id, data, TravelApp.Travel.printInfo);
   })
 

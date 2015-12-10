@@ -25,20 +25,20 @@ header {
 }
 
 .aside {
-  min-height: 640px;
+  min-height: 660px;
   background-color: $color-aside;
 }
 
 footer {
-  background-color: $color-aside;
-  height: 60px;
+  background-color: $color-header;
+  height: 35px;
 }
 
 .main {
-  min-height: 640px;
+  min-height: 660px;
   background-color: $color-main;
 }
 
 #back-img {
-  height: 640px;
+  height: 660px;
 }
