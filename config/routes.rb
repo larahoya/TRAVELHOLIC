@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post '/travels/:travel_id/join' => 'travels#join'
   post '/travels/:travel_id/left' => 'travels#left'
 
+  get '/travels/:travel_id/travelers' => 'travelers#travel_index'
+
   devise_for :users, path: '',
                      path_names: {sign_in: 'login', sign_up: 'signup'},
                      controllers: {registrations: 'users/registrations', sessions: 'users/sessions'}

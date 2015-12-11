@@ -12,6 +12,8 @@ TravelApp.Travel = function (id) {
   ajax = new TravelApp.Ajax();
 }; 
 
+//SHOW
+
 TravelApp.Travel.prototype.show = function() {
   var current_user = TravelApp.Helpers.getCurrentUser();
   ajax.get('/users/' + current_user.id + '/travels/' + this.id, TravelApp.Travel.printInfo);
@@ -25,10 +27,13 @@ TravelApp.Travel.printInfo = function(travel) {
   travel.final_date = travel.final_date.slice(0,10);
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['travels/show'](travel));
+  TravelApp.Traveler.travelIndex(travel);
   TravelApp.Comment.getComments(travel);
   $('.comments-public').after('<div><button id="btn-form-public-comment">Write a comment</button></div>'); 
   $('.comments-private').after('<div><button id="btn-form-private-comment">Write a comment</button></div>')
 }
+
+//CREATE
 
 TravelApp.Travel.getNewFormData = function() {
   var title = $('.input.name').val();
@@ -60,12 +65,16 @@ TravelApp.Travel.printNewError = function(response) {
   $('.form-travel').before(errorHtml);
 }
 
+//DELETE
+
 TravelApp.Travel.showIndex = function(response) {
   $('#content').empty();
   var current_user = TravelApp.Helpers.getCurrentUser();
   TravelApp.User.showProfile(current_user);
   $('.user-travels').prepend('<h4 class="errors">Travel deleted</h4>');
 }
+
+//UPDATE
 
 TravelApp.Travel.prototype.getUpdateForm = function() {
   var current_user = TravelApp.Helpers.getCurrentUser();
@@ -87,6 +96,8 @@ TravelApp.Travel.showUpdateForm = function(travel) {
   })
 }
 
+//INDEX USER
+
 TravelApp.Travel.index = function(user) {
   ajax = new TravelApp.Ajax();
   ajax.get('/users/' + user.id + '/travels', TravelApp.Travel.showTravels);
@@ -103,6 +114,8 @@ TravelApp.Travel.showTravels = function(travels) {
 
 $(document).on('ready', function() {
 
+//SHOW
+
   $(document).on('click','.link-travel', function(event) {
     event.preventDefault();
     var $link = $(event.currentTarget);
@@ -111,6 +124,8 @@ $(document).on('ready', function() {
     var travel = new TravelApp.Travel(id);
     travel.show();
   })
+
+//CREATE
 
   $(document).on('click','#link-form-new', function(event) {
     event.preventDefault();
@@ -128,6 +143,8 @@ $(document).on('ready', function() {
     ajax.post('/users/' + current_user.id + '/travels', data, TravelApp.Travel.printInfo, TravelApp.Travel.printNewError);
   })
 
+//DELETE
+
   $(document).on('click', '#btn-delete', function(event) {
     event.preventDefault();
     var $button = $(event.currentTarget);
@@ -138,6 +155,8 @@ $(document).on('ready', function() {
 
     ajax.delet('/users/' + current_user.id + '/travels/' + id, TravelApp.Travel.showIndex);
   })
+
+//DELETE
 
   $(document).on('click', '#link-form-update', function(event) {
     event.preventDefault();

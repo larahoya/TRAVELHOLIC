@@ -10,6 +10,8 @@ var ajax;
 TravelApp.Traveler = function(){
 };
 
+//UPDATE 
+
 TravelApp.Traveler.showUpdateForm = function(traveler) {
   traveler.date_of_birth = traveler.date_of_birth.slice(0,10);
   $('#content').empty();
@@ -17,6 +19,8 @@ TravelApp.Traveler.showUpdateForm = function(traveler) {
   var string = '.avatar[value="' + traveler.avatar + '"]';
   $(string).attr('checked', 'checked');
 }
+
+//CREATE
 
 TravelApp.Traveler.getTravelerFormInfo = function() {
   var first_name = $('.input.first-name').val();
@@ -27,6 +31,7 @@ TravelApp.Traveler.getTravelerFormInfo = function() {
   var avatar = $('input:checked.avatar').val();
   return {first_name: first_name, last_name: last_name, country: country, date_of_birth: date_of_birth, gender: gender, avatar: avatar}
 }
+
 
 TravelApp.Traveler.correctInfo = function(traveler) {
   var current_user = TravelApp.Helpers.getCurrentUser();
@@ -43,22 +48,56 @@ TravelApp.Traveler.incorrectInfo = function(response) {
   $('.form-traveler').before(errorHtml);
 }
 
-TravelApp.Traveler.index = function(user) {
+//USER INDEX
+
+TravelApp.Traveler.userIndex = function(user) {
   ajax = new TravelApp.Ajax();
-  ajax.get('/users/' + user.id + '/travelers', TravelApp.Traveler.showIndex);
+  ajax.get('/users/' + user.id + '/travelers', TravelApp.Traveler.showUserIndex);
 }
 
-TravelApp.Traveler.showIndex = function(travelers) {
+TravelApp.Traveler.showUserIndex = function(travelers) {
   var travelers = travelers.travelers;
   travelers.forEach(function(traveler) {
     $('.user-travelers').append(HandlebarsTemplates['travelers/miniature'](traveler));
   })
 }
 
+//TRAVEL INDEX
+
+TravelApp.Traveler.travelIndex = function(travel) {
+  ajax = new TravelApp.Ajax();
+  ajax.get('/travels/' + travel.id + '/travelers', TravelApp.Traveler.showTravelIndex);
+}
+
+TravelApp.Traveler.showTravelIndex = function(travelers) {
+  TravelApp.Traveler.showSelectForm(travelers);
+  var travelers = travelers.travelers;
+  travelers.forEach(function(traveler) {
+    $('.travel-travelers').append(HandlebarsTemplates['travelers/miniature'](traveler));
+  })
+}
+
+TravelApp.Traveler.showSelectForm = function(travelers) {
+  var travelers = travelers.travelers;
+  var select_html = '<div class="travelers-select"><label class="travelers-select">Join the travel!</label><select name="travel-travelers" class="select travelers">'
+  travelers.forEach(function(traveler) {
+    select_html += '<option value="' + traveler.id + '">' + traveler.first_name + '</option>';
+    console.log(select_html);
+  })
+  $('.travel-travelers').append(select_html + '</select></div>');
+}
 
 })()
 
 $(document).on('ready', function() {
+
+  //CREATE
+
+  $(document).on('click', '#link-new-form-traveler', function(event) {
+    event.preventDefault();
+    $('#content').empty();
+    $('#content').html(HandlebarsTemplates['travelers/new']);
+  })
 
   $(document).on('click', '#btn-traveler-create', function(event) {
     event.preventDefault();
@@ -69,6 +108,19 @@ $(document).on('ready', function() {
     ajax = new TravelApp.Ajax();
     ajax.post('/users/' + current_user.id + '/travelers', data, TravelApp.Traveler.correctInfo, TravelApp.Traveler.incorrectInfo)
 
+  })
+
+  //UPDATE
+
+  $(document).on('click', '#link-update-form-traveler', function(event) {
+    event.preventDefault();
+    var $link = $(event.currentTarget);
+    var id = $link.data('id');
+
+    ajax = new TravelApp.Ajax();
+    var current_user = TravelApp.Helpers.getCurrentUser();
+
+    ajax.get('/users/' + current_user.id + '/travelers/' + id, TravelApp.Traveler.showUpdateForm);
   })
 
   $(document).on('click', '#btn-traveler-update', function(event) {
@@ -84,6 +136,8 @@ $(document).on('ready', function() {
 
   })
 
+  //DELETE
+
   $(document).on('click', '#btn-traveler-delete', function(event) {
     event.preventDefault();
     var $button = $(event.currentTarget);
@@ -94,23 +148,6 @@ $(document).on('ready', function() {
 
     ajax.delet('/users/' + current_user.id + '/travelers/' + id, TravelApp.Traveler.correctInfo)
 
-  })
-
-  $(document).on('click', '#link-new-form-traveler', function(event) {
-    event.preventDefault();
-    $('#content').empty();
-    $('#content').html(HandlebarsTemplates['travelers/new']);
-  })
-
-  $(document).on('click', '#link-update-form-traveler', function(event) {
-    event.preventDefault();
-    var $link = $(event.currentTarget);
-    var id = $link.data('id');
-
-    ajax = new TravelApp.Ajax();
-    var current_user = TravelApp.Helpers.getCurrentUser();
-
-    ajax.get('/users/' + current_user.id + '/travelers/' + id, TravelApp.Traveler.showUpdateForm);
   })
 
 })

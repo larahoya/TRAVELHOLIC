@@ -52,4 +52,9 @@ class TravelersController < ApplicationController
 
   end
 
+  def travel_index
+    travel = Travel.find_by(id: params[:travel_id])
+    @travelers = travel.travelers
+  end
+
 end
