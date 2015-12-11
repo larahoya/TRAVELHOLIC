@@ -45,7 +45,31 @@ class TravelsController < ApplicationController
     if !@travel || !@travel.save
       render status: 404, json: 'The travel couldn´t be updated!'
     end
+  end
 
+# Methods to join or left a travel
+
+  def join
+    @travel = Travel.find_by(id: params[:travel_id])
+    @traveler = Traveler.find_by(id: params[:id])
+    validation = @travel.check_requirements(@traveler) if @travel
+    if @travel && validation
+      @travel.travelers << @traveler
+      render status: 200, json: :no_content
+    else
+      render status: 404, json: :no_content
+    end
+  end
+
+  def left
+    @travel = Travel.find_by(id: params[:travel_id])
+    @traveler = Traveler.find_by(id: params[:id])
+    if @travel && @travel.travelers.include?(@traveler)
+      @travel.travelers.delete(@traveler)
+      render status: 200, json: :no_content
+    else
+      render status: 404, json: :no_content
+    end
   end
 
 end

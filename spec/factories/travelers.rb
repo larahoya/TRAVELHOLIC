@@ -3,6 +3,7 @@ require 'faker'
 FactoryGirl.define do
 
   factory :traveler do |f|
+    f.user_id {Faker::Number.number(1)}
     f.first_name {Faker::Name.first_name}
     f.last_name {Faker::Name.last_name}
     f.country {Faker::Address.country}

@@ -16,4 +16,8 @@ class Traveler < ActiveRecord::Base
     self.avatar = params[:avatar]
   end
 
+  def get_age
+    age = Date.today.year - self.date_of_birth.year
+  end
+
 end

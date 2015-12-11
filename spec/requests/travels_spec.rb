@@ -213,5 +213,113 @@ RSpec.describe 'Travels', type: :request do
 
   end
 
+  describe 'POST #join' do
+
+    context 'the travel exists' do
+
+      context 'the traveler satisfy the requirements' do
+        before (:each) do
+          @user = FactoryGirl.create(:user, country: 'Spain')
+          @travel = FactoryGirl.create(:travel, user_id: @user.id, id: 1)
+          @travel.requirement_list.add(['only people from my country', 'not children'])
+          @traveler = FactoryGirl.create(:traveler, country: 'Spain', date_of_birth: Date.new(1980,12,12))
+          post '/travels/1/join', {id: @traveler.id}
+        end
+
+        it 'add the traveler to the travel' do
+          expect(@travel.travelers.count).to eq(1)
+        end
+
+        it 'returns a 200 code status' do
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'the traveler doesn´t satisfy the requirements' do
+        before (:each) do
+          @user = FactoryGirl.create(:user, country: 'Spain')
+          @travel = FactoryGirl.create(:travel, user_id: @user.id, id: 1)
+          @travel.requirement_list.add(['only people from my country','not children'])
+          @travel.save
+          @traveler = FactoryGirl.create(:traveler, country: 'Spain', date_of_birth: Date.new(2010,12,12))
+          post '/travels/1/join', {id: @traveler.id}
+        end
+
+        it 'doesn´t add the traveler to the travel' do
+          expect(@travel.travelers.count).to eq(0)
+        end
+
+        it 'returns a 404 code status' do
+          expect(response).to have_http_status(404)
+        end
+      end
+    end
+
+    context 'the travel doesn´t exist' do
+      before (:each) do
+        @traveler = FactoryGirl.create(:traveler, country: 'Spain', date_of_birth: Date.new(2010,12,12))
+        post '/travels/1/join', {id: @traveler.id}
+      end
+
+      it 'returns a 404 code status' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+  end
+
+  describe 'POST #left' do
+
+    context 'the travel exists' do
+
+      context 'the traveler is targeted to the trip' do
+        before (:each) do
+          @user = FactoryGirl.create(:user, country: 'Spain')
+          @travel = FactoryGirl.create(:travel, user_id: @user.id, id: 1)
+          @traveler = FactoryGirl.create(:traveler)
+          @travel.travelers << @traveler
+          @count = @travel.travelers.count
+          post '/travels/1/left', {id: @traveler.id}
+        end
+
+        it 'delete the traveler from the travel' do
+          expect(@travel.travelers.count).to eq(@count - 1)
+        end
+
+        it 'returns a 200 code status' do
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'the traveler isn´t targeted to the trip' do
+        before (:each) do
+          @user = FactoryGirl.create(:user, country: 'Spain')
+          @travel = FactoryGirl.create(:travel, user_id: @user.id, id: 1)
+          @traveler = FactoryGirl.create(:traveler)
+          @count = @travel.travelers.count
+          post '/travels/1/left', {id: @traveler.id}
+        end
+
+        it 'doesn´t delete the traveler from the travel' do
+          expect(@travel.travelers.count).to eq(@count)
+        end
+
+        it 'returns a 404 code status' do
+          expect(response).to have_http_status(404)
+        end
+      end 
+    end
+
+    context 'the travel doesn´t exist' do
+      before (:each) do
+          @traveler = FactoryGirl.create(:traveler)
+          post '/travels/1/left', {id: @traveler.id}
+        end
+
+      it 'returns a 404 code status' do
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
 
 end

@@ -41,7 +41,12 @@ class Travel < ActiveRecord::Base
 
 # Clean, add and get tags
 
-
+  def clean_all_tags
+    self.tags.destroy_all
+    self.countries.destroy_all
+    self.requirements.destroy_all
+    self.places.destroy_all
+  end
 
   def add_tags(array)
     array.each {|value| self.tag_list.add(value)} if array
@@ -87,11 +92,35 @@ class Travel < ActiveRecord::Base
     result[0..-2]
   end
 
-  def clean_all_tags
-    self.tags.destroy_all
-    self.countries.destroy_all
-    self.requirements.destroy_all
-    self.places.destroy_all
+# Check requirements to join a traveler
+
+  def check_age(traveler)
+    validation = true
+    validation = false if self.requirement_list.include?('only young people') && traveler.get_age > 25 || self.requirement_list.include?('not young people') && traveler.get_age < 25
+    return validation
+  end
+
+  def check_children(traveler)
+    validation = true
+    return false if self.requirement_list.include?('not children') && traveler.get_age < 18
+    return validation
+  end
+
+  def check_gender(traveler)
+    validation = true
+    return false if self.requirement_list.include?('only women') && traveler.gender == 'MALE' || self.requirement_list.include?('only men') && traveler.gender == 'FEMALE'
+    return validation
+  end
+
+  def check_country(traveler)
+    validation = true
+    travel_user = User.find_by(id: self.user_id)
+    validation = false if self.requirement_list.include?('only people from my country') && traveler.country != travel_user.country
+    return validation
+  end
+
+  def check_requirements(traveler)
+    return self.check_age(traveler) && self.check_children(traveler) && self.check_gender(traveler) && self.check_country(traveler)
   end
 
 end

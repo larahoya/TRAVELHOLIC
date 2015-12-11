@@ -257,4 +257,141 @@ RSpec.describe Travel, type: :model do
     end
   end
 
+  describe '#check_age' do
+
+    context 'only young people requirement' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel)
+        @travel.requirement_list.add('only young people')
+      end
+  
+      it 'returns true if the traveler satisfies the requirement' do
+        @traveler = FactoryGirl.create(:traveler, date_of_birth: Date.new(2000,12,12))
+        expect(@travel.check_age(@traveler)).to be true
+      end
+
+      it 'returns false if the traveler doesn´t satisfy the requirement' do
+        @traveler = FactoryGirl.create(:traveler, date_of_birth: Date.new(1980,12,12))
+        expect(@travel.check_age(@traveler)).to be false
+      end
+    end
+
+    context 'not young people requirement' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel)
+        @travel.requirement_list.add('not young people')
+      end
+  
+      it 'returns true if the traveler satisfies the requirement' do
+        @traveler = FactoryGirl.create(:traveler, date_of_birth: Date.new(2000,12,12))
+        expect(@travel.check_age(@traveler)).to be false
+      end
+
+      it 'returns false if the traveler doesn´t satisfy the requirement' do
+        @traveler = FactoryGirl.create(:traveler, date_of_birth: Date.new(1980,12,12))
+        expect(@travel.check_age(@traveler)).to be true
+      end
+    end
+
+  end
+
+  describe '#check_gender' do
+
+    context 'only women' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel)
+        @travel.requirement_list.add('only women')
+      end
+
+      it 'returns true if the traveler satisfies the requirement' do
+        @traveler = FactoryGirl.create(:traveler, gender: 'FEMALE')
+        expect(@travel.check_gender(@traveler)).to be true
+      end
+
+      it 'returns false if the traveler doesn´t satisfy the requirement' do
+        @traveler = FactoryGirl.create(:traveler, gender: 'MALE')
+        expect(@travel.check_gender(@traveler)).to be false
+      end
+    end
+
+    context 'only men' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel)
+        @travel.requirement_list.add('only men')
+      end
+
+      it 'returns true if the traveler satisfies the requirement' do
+        @traveler = FactoryGirl.create(:traveler, gender: 'FEMALE')
+        expect(@travel.check_gender(@traveler)).to be false
+      end
+
+      it 'returns false if the traveler doesn´t satisfy the requirement' do
+        @traveler = FactoryGirl.create(:traveler, gender: 'MALE')
+        expect(@travel.check_gender(@traveler)).to be true
+      end
+    end
+
+  end
+
+  describe '#check_children' do
+    before (:each) do
+      @travel = FactoryGirl.create(:travel)
+      @travel.requirement_list.add('not children')
+    end
+
+    it 'returns true if the traveler satisfies the requirement' do
+      @traveler = FactoryGirl.create(:traveler, date_of_birth: Date.new(1980,12,12))
+      expect(@travel.check_children(@traveler)).to be true
+    end
+
+    it 'returns false if the traveler doesn´t satisfy the requirement' do
+      @traveler = FactoryGirl.create(:traveler, date_of_birth: Date.new(2010,12,12))
+      expect(@travel.check_children(@traveler)).to be false
+    end
+  end
+
+  describe '#check_country' do
+    before (:each) do
+      @user = FactoryGirl.create(:user, country: 'Spain')
+      @travel = FactoryGirl.create(:travel, user_id: @user.id)
+      @travel.requirement_list.add('only people from my country')
+    end
+
+    it 'returns true if the traveler is from the same country' do
+      @traveler = FactoryGirl.create(:traveler, country: 'Spain')
+      expect(@travel.check_country(@traveler)).to be true
+    end
+
+    it 'returns false if the traveler is from other country' do
+      @traveler = FactoryGirl.create(:traveler, country: 'France')
+      expect(@travel.check_country(@traveler)).to be false
+    end
+  end
+
+  describe '#check_requirements' do
+    before (:each) do
+      @user = FactoryGirl.create(:user, country: 'Spain')
+      @travel = FactoryGirl.create(:travel, user_id: @user.id)
+    end
+
+    it 'returns true if the traveler satisfies all the requirements' do
+      @travel.requirement_list.add(['only people from my country','not children'])
+      @traveler = FactoryGirl.create(:traveler, country: 'Spain', date_of_birth: Date.new(1980,12,12))
+      expect(@travel.check_requirements(@traveler)).to be true
+    end
+
+    it 'returns false if the traveler doesn´t satisfy all the requirements' do
+      @travel.requirement_list.add(['only people from my country','not children'])
+      @traveler = FactoryGirl.create(:traveler, country: 'France', date_of_birth: Date.new(1980,12,12))
+      expect(@travel.check_requirements(@traveler)).to be false
+    end
+
+    it 'returns false if the traveler doesn´t satisfy all the requirements' do
+      @travel.requirement_list.add(['only people from my country','not children'])
+      @traveler = FactoryGirl.create(:traveler, country: 'Spain', date_of_birth: Date.new(2010,12,12))
+      expect(@travel.check_requirements(@traveler)).to be false
+    end
+    
+  end
+
 end
