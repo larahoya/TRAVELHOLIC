@@ -39,6 +39,7 @@ TravelApp.User.showFirstProfile = function(user) {
   $('#aside').html(HandlebarsTemplates['users/user-info'](user));
   $('#content').html(HandlebarsTemplates['users/user-profile']);
   TravelApp.Travel.index(user);
+  TravelApp.Traveler.index(user);
 }
 
 TravelApp.User.printNewError = function(response) {
@@ -68,6 +69,7 @@ TravelApp.User.showProfile = function(user) {
   $('#aside').html(HandlebarsTemplates['users/user-info'](user));
   $('#content').html(HandlebarsTemplates['users/user-profile']);
   TravelApp.Travel.index(user);
+  TravelApp.Traveler.index(user);
 }
 
 TravelApp.User.getUpdateFormData = function() {

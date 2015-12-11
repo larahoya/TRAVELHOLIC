@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210190657) do
+ActiveRecord::Schema.define(version: 20151211082322) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20151210190657) do
     t.string   "gender"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "avatar"
   end
 
   add_index "travelers", ["user_id"], name: "index_travelers_on_user_id"

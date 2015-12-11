@@ -1,0 +1,33 @@
+<div class='form-traveler'>
+  <form>
+    
+    <label class='first-name'>First name</label>
+    <input type='text' placeholder='First name' name='first-name' class='input first-name' value='{{first_name}}'><br>
+
+    <label class='last-name'>Last name</label>
+    <input type='text' placeholder='Last name' name='last-name' class='input last-name' value='{{last_name}}'><br>
+    
+    <label class='country'>Country</label>
+    <input type='text' placeholder='Country' name='country' class='input country' value='{{country}}'><br>
+    
+    <label class='date-of-birth'>Date of birth</label>
+    <input type='date' placeholder='Date of birth' name='date-of-birth' class='input date-of-birth' value='{{date_of_birth}}'><br>
+
+    <label class='gender'>Gender</label>
+    <select name='gender' class='select gender'>
+    <option value='MALE'>MALE</option>
+    <option value='FEMALE' selected>FEMALE</option>
+    </select><br>
+    
+    <label class='avatar'>Avatar</label><br>
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar1.jpg'><img class='avatar' src="/assets/avatar1.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar2.jpg'><img class='avatar' src="/assets/avatar2.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar3.jpg'><img class='avatar' src="/assets/avatar3.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar4.jpg'><img class='avatar' src="/assets/avatar4.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar5.jpg'><img class='avatar' src="/assets/avatar5.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar6.jpg'><img class='avatar' src="/assets/avatar6.jpg"><br>
+
+   
+    <button data-id='{{id}}' id='btn-traveler-update' type='submit'>Save!</button> 
+  </form>
+</div>

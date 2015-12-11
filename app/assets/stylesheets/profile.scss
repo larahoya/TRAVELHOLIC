@@ -35,6 +35,26 @@
 
 }
 
-.user-travels {
-  
+.user-travelers {
+  .traveler {
+    text-align: center;
+    float: left;
+    border: 1px solid #D7D9DF;
+    border-radius: 10px;
+    width: 160px;
+    height: 210px;
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 10px;
+
+  img {
+    width: 100px;
+  }
+}
+}
+
+.form-traveler {
+  img {
+    width: 100px;
+  }
 }

@@ -8,6 +8,7 @@ FactoryGirl.define do
     f.country {Faker::Address.country}
     f.date_of_birth {Faker::Date.backward(10)}
     f.gender 'FEMALE'
+    f.avatar {Faker::Avatar.image}
   end
 
 end

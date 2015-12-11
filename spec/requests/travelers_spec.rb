@@ -74,7 +74,7 @@ RSpec.describe 'Travelers', type: :request do
       before (:each) do
         @user = FactoryGirl.create(:user)
         @traveler = FactoryGirl.build(:traveler)
-        post user_travelers_path(@user), {:first_name => @traveler.first_name, :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => ''}
+        post user_travelers_path(@user), {:first_name => @traveler.first_name, :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => '', :avatar => @traveler.avatar}
       end
 
       it 'respond with a 404 status code' do
@@ -91,7 +91,7 @@ RSpec.describe 'Travelers', type: :request do
       before (:each) do
         @user = FactoryGirl.create(:user)
         @traveler = FactoryGirl.build(:traveler)
-        post user_travelers_path(@user), {:first_name => @traveler.first_name, :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => @traveler.gender}
+        post user_travelers_path(@user), {:first_name => @traveler.first_name, :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => @traveler.gender, :avatar => @traveler.avatar}
       end
 
       it 'respond with a 201 status code' do
@@ -160,7 +160,7 @@ RSpec.describe 'Travelers', type: :request do
         @user = FactoryGirl.create(:user)
         @traveler = FactoryGirl.create(:traveler, first_name: 'Maria', user_id: @user.id)
 
-        patch user_traveler_path(@user, @traveler), {:first_name => 'Lara', :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => ''}
+        patch user_traveler_path(@user, @traveler), {:first_name => 'Lara', :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => '', :avatar => @traveler.avatar}
       end
 
       it 'respond with a 404 status code' do
@@ -180,7 +180,7 @@ RSpec.describe 'Travelers', type: :request do
       before (:each) do
         @user = FactoryGirl.create(:user)
         @traveler = FactoryGirl.create(:traveler, first_name: 'Maria', user_id: @user.id)
-        patch user_traveler_path(@user, @traveler), {:first_name => 'Lara', :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => @traveler.gender}
+        patch user_traveler_path(@user, @traveler), {:first_name => 'Lara', :last_name => @traveler.last_name, :date_of_birth => @traveler.date_of_birth, :country => @traveler.country, :gender => @traveler.gender, :avatar => @traveler.avatar}
       end
 
       it 'update the attributes of the travel' do

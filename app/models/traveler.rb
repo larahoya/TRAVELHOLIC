@@ -13,6 +13,7 @@ class Traveler < ActiveRecord::Base
     self.country = params[:country]
     self.date_of_birth = params[:date_of_birth]
     self.gender = params[:gender]
+    self.avatar = params[:avatar]
   end
 
 end

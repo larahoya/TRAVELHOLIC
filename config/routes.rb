@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   get '/' => 'site#home'
 
+  post '/travels/:travel_id/travelers' => 'travels#join'
+  post '/travels/:travel_id/travelers' => 'travels#left'
+
   devise_for :users, path: '',
                      path_names: {sign_in: 'login', sign_up: 'signup'},
                      controllers: {registrations: 'users/registrations', sessions: 'users/sessions'}

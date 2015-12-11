@@ -26,6 +26,8 @@ require 'faker'
   Travel.create(user_id: index, title: title2, description: description, initial_date: initial_date, final_date: final_date, budget: budget, maximum_people: maximum_people, people: 1)
   Travel.create(user_id: index, title: title2, description: description, initial_date: initial_date, final_date: final_date, budget: budget, maximum_people: maximum_people, people: 1)
 
+  Traveler.create(user_id:index, first_name: first_name, last_name: last_name, country: country, date_of_birth: date_of_birth, gender: 'FEMALE', avatar: '/assets/avatar1.jpg')
+  Traveler.create(user_id:index, first_name: first_name, last_name: last_name, country: country, date_of_birth: date_of_birth, gender: 'FEMALE', avatar: '/assets/avatar1.jpg')
 end
 
 (0..10).each do |index|
