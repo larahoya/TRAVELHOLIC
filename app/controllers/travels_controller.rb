@@ -53,7 +53,8 @@ class TravelsController < ApplicationController
     @travel = Travel.find_by(id: params[:travel_id])
     @traveler = Traveler.find_by(id: params[:id])
     validation = @travel.check_requirements(@traveler) if @travel
-    if @travel && validation
+    already_included = @travel.travelers.include?(@traveler) if @travel
+    if @travel && validation && !already_included
       @travel.travelers << @traveler
       render status: 200, json: :no_content
     else

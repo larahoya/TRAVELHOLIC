@@ -5,7 +5,11 @@ if (window.TravelApp === undefined){
 }
 
 'use strict';
+
 var ajax;
+
+var user_travelers;
+var travel_travelers;
   
 TravelApp.Traveler = function(){
 };
@@ -64,27 +68,55 @@ TravelApp.Traveler.showUserIndex = function(travelers) {
 
 //TRAVEL INDEX
 
+  //get user_travelers && travel_travelers
+
 TravelApp.Traveler.travelIndex = function(travel) {
   ajax = new TravelApp.Ajax();
-  ajax.get('/travels/' + travel.id + '/travelers', TravelApp.Traveler.showTravelIndex);
+  ajax.get('/travels/' + travel.id + '/travelers', TravelApp.Traveler.setTravelTravelers);
 }
 
-TravelApp.Traveler.showTravelIndex = function(travelers) {
-  TravelApp.Traveler.showSelectForm(travelers);
-  var travelers = travelers.travelers;
-  travelers.forEach(function(traveler) {
-    $('.travel-travelers').append(HandlebarsTemplates['travelers/miniature'](traveler));
+TravelApp.Traveler.setTravelTravelers = function(travelers) {
+  travel_travelers = travelers.travelers;
+
+  var current_user = TravelApp.Helpers.getCurrentUser();
+  ajax = new TravelApp.Ajax();
+  ajax.get('/users/' + current_user.id + '/travelers', TravelApp.Traveler.setUserTravelers);
+}
+
+TravelApp.Traveler.setUserTravelers = function(travelers) {
+  user_travelers = travelers.travelers;
+  TravelApp.Traveler.setTravelIndex();
+}
+
+  //set travel index
+
+TravelApp.Traveler.setTravelIndex = function() {
+  TravelApp.Traveler.setIndex();
+  TravelApp.Traveler.setSelectForm();
+  TravelApp.Traveler.setDeleteLinks();
+}
+
+TravelApp.Traveler.setIndex = function() {
+  travel_travelers.forEach(function(traveler) {
+    $('.travel-travelers').append(HandlebarsTemplates['travelers/travel-miniature'](traveler));
   })
 }
 
-TravelApp.Traveler.showSelectForm = function(travelers) {
-  var travelers = travelers.travelers;
-  var select_html = '<div class="travelers-select"><label class="travelers-select">Join the travel!</label><select name="travel-travelers" class="select travelers">'
-  travelers.forEach(function(traveler) {
+TravelApp.Traveler.setSelectForm = function() {
+  var user_travelers_not_in_travel = user_travelers.filter(function(a){return !~this.indexOf(a);},travel_travelers);
+
+  var select_html  = '<div class="travelers-select"><label class="travelers-select">Join the travel!</label><select name="travel-travelers" class="select travelers">'
+  user_travelers_not_in_travel.forEach(function(traveler) {
     select_html += '<option value="' + traveler.id + '">' + traveler.first_name + '</option>';
-    console.log(select_html);
   })
-  $('.travel-travelers').append(select_html + '</select></div>');
+  $('.travel-travelers').append(select_html + '</select><button id="btn-travel-join">JOIN</button></div>');
+}
+
+TravelApp.Traveler.setDeleteLinks = function() {
+  user_travelers.forEach(function(traveler) {
+    var string = '#' + traveler.id;
+    $(string).append('<a href="/" id="btn-travel-left" data-id="' + traveler.id + '">Delete</a>');
+  })
 }
 
 })()

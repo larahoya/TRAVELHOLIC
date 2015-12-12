@@ -7,30 +7,31 @@ if (window.TravelApp === undefined){
 'use strict';
 var ajax;
 
-TravelApp.Travel = function (id) {
-  this.id = id;
-  ajax = new TravelApp.Ajax();
+TravelApp.Travel = function () {
 }; 
 
 //SHOW
 
-TravelApp.Travel.prototype.show = function() {
-  var current_user = TravelApp.Helpers.getCurrentUser();
-  ajax.get('/users/' + current_user.id + '/travels/' + this.id, TravelApp.Travel.printInfo);
-}
+  //private
 
-TravelApp.Travel.printInfo = function(travel) {
+TravelApp.Travel.printPrivateInfo = function(travel) {
   var current_travel = JSON.stringify(travel);
   window.localStorage.setItem("current_travel", current_travel);
 
   travel.initial_date = travel.initial_date.slice(0,10);
   travel.final_date = travel.final_date.slice(0,10);
   $('#content').empty();
-  $('#content').html(HandlebarsTemplates['travels/show'](travel));
+  $('#content').html(HandlebarsTemplates['travels/show-private'](travel));
   TravelApp.Traveler.travelIndex(travel);
   TravelApp.Comment.getComments(travel);
   $('.comments-public').after('<div><button id="btn-form-public-comment">Write a comment</button></div>'); 
   $('.comments-private').after('<div><button id="btn-form-private-comment">Write a comment</button></div>')
+}
+
+  //public
+
+TravelApp.Travel.printPublicInfo = function(travel) {
+
 }
 
 //CREATE
@@ -106,8 +107,34 @@ TravelApp.Travel.index = function(user) {
 TravelApp.Travel.showTravels = function(travels) {
   var travels = travels.travels;
   travels.forEach(function(travel) {
-    $('.user-travels').append(HandlebarsTemplates['travels/miniature'](travel));
+    $('.user-travels').append(HandlebarsTemplates['travels/miniature-private'](travel));
   })
+}
+
+//JOIN
+
+TravelApp.Travel.travelerJoin = function(response) {
+  var current_travel = TravelApp.Helpers.getCurrentTravel();
+  var travel = new TravelApp.Travel(current_travel.id);
+  travel.show();
+}
+
+TravelApp.Travel.joinError = function(response) {
+  $('.errors').remove();
+  $('.travel-travelers').prepend('<div class="errors">You can´t join the travel</div>');
+}
+
+//LEFT
+
+TravelApp.Travel.travelerLeft = function(response) {
+  var current_travel = TravelApp.Helpers.getCurrentTravel();
+  var travel = new TravelApp.Travel(current_travel.id);
+  travel.show();
+}
+
+TravelApp.Travel.leftError = function(response) {
+  $('.errors').remove();
+  $('.travel-travelers').prepend('<div class="errors">You can´t left the travel</div>');
 }
 
 })()
@@ -116,13 +143,31 @@ $(document).on('ready', function() {
 
 //SHOW
 
-  $(document).on('click','.link-travel', function(event) {
+  //private
+
+  $(document).on('click','.link-private-travel', function(event) {
     event.preventDefault();
+    ajax = new TravelApp.Ajax();
+
     var $link = $(event.currentTarget);
     var id = $link.data('id');
+    var current_user = TravelApp.Helpers.getCurrentUser();
 
-    var travel = new TravelApp.Travel(id);
-    travel.show();
+    ajax.get('/users/' + current_user.id + '/travels/' + id, TravelApp.Travel.printPrivateInfo);
+  })
+
+  //public
+
+  $(document).on('click','.link-public-travel', function(event) {
+    event.preventDefault();
+    ajax = new TravelApp.Ajax();
+
+    var $link = $(event.currentTarget);
+    var user = $link.data('user');
+    var travel = $link.data('travel');
+
+
+    ajax.get('/users/' + user + '/travels/' + travel, TravelApp.Travel.printPublicInfo);
   })
 
 //CREATE
@@ -156,7 +201,7 @@ $(document).on('ready', function() {
     ajax.delet('/users/' + current_user.id + '/travels/' + id, TravelApp.Travel.showIndex);
   })
 
-//DELETE
+//UPDATE
 
   $(document).on('click', '#link-form-update', function(event) {
     event.preventDefault();
@@ -177,6 +222,34 @@ $(document).on('ready', function() {
     var current_user = TravelApp.Helpers.getCurrentUser();
 
     ajax.patch('/users/' + current_user.id + '/travels/' + id, data, TravelApp.Travel.printInfo);
+  })
+
+  //JOIN
+
+  $(document).on('click', '#btn-travel-join', function(event) {
+    event.preventDefault();
+
+    var id = $('.select.travelers').val();
+    var current_travel = TravelApp.Helpers.getCurrentTravel();
+    var data = {"id": id};
+
+    ajax = new TravelApp.Ajax();
+    ajax.post('/travels/' + current_travel.id + '/join', data, TravelApp.Travel.travelerJoin, TravelApp.Travel.joinError);
+  })
+
+  //LEFT
+
+  $(document).on('click', '#btn-travel-left', function(event) {
+    event.preventDefault();
+    
+    var $button = $(event.currentTarget);
+    var id = $button.data('id');
+    var current_travel = TravelApp.Helpers.getCurrentTravel();
+
+    var data = {"id": id};
+
+    ajax = new TravelApp.Ajax();
+    ajax.post('/travels/' + current_travel.id + '/left', data, TravelApp.Travel.travelerLeft, TravelApp.Travel.leftError); 
   })
 
 })

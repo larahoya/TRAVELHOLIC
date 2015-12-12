@@ -253,6 +253,26 @@ RSpec.describe 'Travels', type: :request do
           expect(response).to have_http_status(404)
         end
       end
+
+      context 'the traveler is already included' do
+        before (:each) do
+          @user = FactoryGirl.create(:user, country: 'Spain')
+          @travel = FactoryGirl.create(:travel, user_id: @user.id, id: 1)
+          @travel.requirement_list.add(['only people from my country','not children'])
+          @travel.save
+          @traveler = FactoryGirl.create(:traveler, country: 'Spain', date_of_birth: Date.new(2010,12,12))
+          @travel.travelers << @traveler
+          post '/travels/1/join', {id: @traveler.id}
+        end
+
+        it 'doesn´t add the traveler to the travel' do
+          expect(@travel.travelers.count).to eq(1)
+        end
+
+        it 'returns a 404 code status' do
+          expect(response).to have_http_status(404)
+        end
+      end
     end
 
     context 'the travel doesn´t exist' do
