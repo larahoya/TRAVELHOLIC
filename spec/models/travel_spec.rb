@@ -475,6 +475,32 @@ RSpec.describe Travel, type: :model do
       end
     end
 
+    describe '::filter_by_tags' do
+      before (:each) do
+        @travel = FactoryGirl.create(:travel, final_date: Date.new(2010,10,10))
+      end
+      it 'return the travel if the tag is tagged in the travel' do
+        @travel.add_tags(['cruise'])
+        @travel.save
+        expect(Travel.filter_by_tags({'tags' => ['cruise']}, Travel.all)).to match_array([@travel])
+      end
+      it 'return the travel if the tags are tagged in the travel' do
+        @travel.add_tags(['cruise','adventure'])
+        @travel.save
+        expect(Travel.filter_by_tags({'tags' => ['cruise','adventure']}, Travel.all)).to match_array([@travel])
+      end
+      it 'return an empty array if the tag is not tagged in the travel' do
+        @travel.add_tags(['adventure'])
+        @travel.save
+        expect(Travel.filter_by_tags({'tags' => ['cruise']}, Travel.all)).to match_array([])
+      end
+      it 'return an empty array if on of the tags is not tagged in the travel' do
+        @travel.add_tags(['cruise'])
+        @travel.save
+        expect(Travel.filter_by_tags({'tags' => ['cruise','adventure']}, Travel.all)).to match_array([])
+      end
+    end
+
     describe '::filter' do
       before (:each) do
         @travel = FactoryGirl.create(:travel, final_date: Date.new(2010,10,10), budget: 'medium', initial_date: Date.new(2010,10,10))
@@ -483,13 +509,13 @@ RSpec.describe Travel, type: :model do
         @travel.save
       end
       it 'returns the travel if it satisfies all the parameters' do
-        expect(Travel.filter({'budget' => 'medium','initial_date' => Date.today,'country' => 'Spain','place' => 'Madrid','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter({'tags' => '', 'budget' => 'medium','initial_date' => Date.today,'country' => 'Spain','place' => 'Madrid','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([@travel])
       end
       it 'returns the travel if it satisfies all the parameters' do
-        expect(Travel.filter({'budget' => '','initial_date' => '','country' => '','place' => 'Madrid','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter({'tags' => '', 'budget' => '','initial_date' => '','country' => '','place' => 'Madrid','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([@travel])
       end
       it 'returns an empty array if it doens´t satisfy all the parameters' do
-        expect(Travel.filter({'budget' => '','initial_date' => '','country' => '','place' => 'Barcelona','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([])
+        expect(Travel.filter({'tags' => '', 'budget' => '','initial_date' => '','country' => '','place' => 'Barcelona','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([])
       end
     end
   end

@@ -76,8 +76,8 @@ class TravelsController < ApplicationController
 # Method to search
 
   def search
-    @travels = Travel.filter(params)
-    if !@travels
+    @travels = Travel.filter(params, Travel.all)
+    if @travels.length == 0
       render status: 404, json: :no_content
     end
   end

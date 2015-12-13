@@ -12,6 +12,7 @@ class Travel < ActiveRecord::Base
   has_many :travelers, through: :participations
   has_many :participations
 
+
   def set_maximum_people(string)
     if string != ''
       self.maximum_people = string.to_i
@@ -145,13 +146,18 @@ class Travel < ActiveRecord::Base
     params['final_date'] != '' ? travels.where("final_date >= ?", params['final_date']) : travels
   end
 
+  def self.filter_by_tags(params, travels)
+    params['tags'] != '' ? travels.tagged_with(params['tags']) : travels
+
+  end
+
   def self.filter(params, travels)
     result = travels.filter_by_country(params, Travel.all)
     result = Travel.filter_by_place(params, result)
     result = Travel.filter_by_budget(params, result)
     result = Travel.filter_by_initial_date(params, result)
     result = Travel.filter_by_final_date(params, result)
-    return result
+    result = Travel.filter_by_tags(params, result)
   end
 
 end
