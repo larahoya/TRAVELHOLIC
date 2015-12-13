@@ -123,4 +123,35 @@ class Travel < ActiveRecord::Base
     return self.check_age(traveler) && self.check_children(traveler) && self.check_gender(traveler) && self.check_country(traveler)
   end
 
+# Filter travels
+  
+  def self.filter_by_country(params, travels)
+    params['country'] != '' ? travels.tagged_with(params['country']) : travels
+  end
+
+  def self.filter_by_place(params, travels)
+    params['place'] != '' ? travels.tagged_with(params['place']) : travels
+  end
+
+  def self.filter_by_budget(params, travels)
+    params['budget'] != '' ? travels.where("budget = ?", params['budget']) : travels
+  end
+
+  def self.filter_by_initial_date(params, travels)
+    params['initial_date'] != '' ? travels.where("initial_date <= ?", params['initial_date']) : travels
+  end
+
+  def self.filter_by_final_date(params, travels)
+    params['final_date'] != '' ? travels.where("final_date >= ?", params['final_date']) : travels
+  end
+
+  def self.filter(params, travels)
+    result = travels.filter_by_country(params, Travel.all)
+    result = Travel.filter_by_place(params, result)
+    result = Travel.filter_by_budget(params, result)
+    result = Travel.filter_by_initial_date(params, result)
+    result = Travel.filter_by_final_date(params, result)
+    return result
+  end
+
 end

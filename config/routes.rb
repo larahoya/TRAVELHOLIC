@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get '/' => 'site#home'
 
+  post '/travels/search' => 'travels#search'
+
   post '/travels/:travel_id/join' => 'travels#join'
   post '/travels/:travel_id/left' => 'travels#left'
 

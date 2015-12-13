@@ -18,6 +18,7 @@ TravelApp.render = function() {
   }
   
   $('#content').html(HandlebarsTemplates['site/home']);
+  $('#aside').html(HandlebarsTemplates['site/search-form']);
 }
 
 })()

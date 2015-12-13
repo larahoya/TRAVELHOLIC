@@ -342,4 +342,29 @@ RSpec.describe 'Travels', type: :request do
     end
   end
 
+  describe 'POST #search' do
+    before (:each) do
+      @travel = FactoryGirl.create(:travel, final_date: Date.new(2010,10,10), budget: 'medium', initial_date: Date.new(2010,10,10))
+      @travel.add_places('Madrid')
+      @travel.add_countries('Spain')
+      @travel.save
+      binding.pry
+    end
+
+    context 'there are travels that satisfies all the conditions' do
+      it 'returns an array of travels' do
+        post '/travels/search', {'budget': 'medium','initial_date': Date.today,'country': 'Spain','place': 'Madrid','final_date': Date.new(2000,10,10), format: :jbuilder}
+        data = JSON.parse(response.body)
+        expect(data.length).to eq(1)
+      end
+    end
+    context 'there aren´t travels that satisfies all the conditions' do
+      it 'returns an empty array' do
+        post '/travels/search', {'budget': 'low','initial_date': Date.today,'country': 'France','place': 'Madrid','final_date': Date.new(2000,10,10), format: :jbuilder}
+        data = JSON.parse(response.body)
+        expect(data.length).to eq(0)
+      end
+    end
+  end
+
 end
