@@ -7,7 +7,7 @@ if (window.TravelApp === undefined){
 'use strict';
 var ajax;
 
-TravelApp.render = function() {
+TravelApp.renderHome = function() {
 
   var current_user = TravelApp.Helpers.getCurrentUser();
 
@@ -25,7 +25,7 @@ TravelApp.render = function() {
 
 $(document).on('ready', function() {
 
-  TravelApp.render();
+  TravelApp.renderHome();
 
   $(document).on('click', '#load-home', function() {
     $('.main').html(HandlebarsTemplates['site/home']);

@@ -142,9 +142,7 @@ $(document).on('ready', function() {
     ajax = new TravelApp.Ajax();
     ajax.delet('/sign_out', TravelApp.User.showHome);
     window.localStorage.clear();
-    $('#aside').empty();
-    $('#user-header').html(HandlebarsTemplates['users/header-login'])
-    $('#content').html(HandlebarsTemplates['site/home'])
+    TravelApp.renderHome();
   })
 
 //UPDATE

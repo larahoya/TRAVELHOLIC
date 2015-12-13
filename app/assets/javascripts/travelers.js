@@ -79,8 +79,10 @@ TravelApp.Traveler.setTravelTravelers = function(travelers) {
   travel_travelers = travelers.travelers;
 
   var current_user = TravelApp.Helpers.getCurrentUser();
-  ajax = new TravelApp.Ajax();
-  ajax.get('/users/' + current_user.id + '/travelers', TravelApp.Traveler.setUserTravelers);
+  if (current_user) {
+    ajax = new TravelApp.Ajax();
+    ajax.get('/users/' + current_user.id + '/travelers', TravelApp.Traveler.setUserTravelers);
+  }
 }
 
 TravelApp.Traveler.setUserTravelers = function(travelers) {

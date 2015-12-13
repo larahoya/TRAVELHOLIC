@@ -23,16 +23,29 @@ TravelApp.Search.getSearchForm= function() {
   return {initial_date: initial_date, final_date:final_date, budget: budget, country: country, place: place, tags: tags}
 }
 
+TravelApp.Search.showResult = function(travels) {
+  var travels = travels.travels;
+  $('#content').empty();
+  travels.forEach(function(travel) {
+    $('#content').append(HandlebarsTemplates['travels/miniature-public'](travel));
+  })
+}
 
-
+TravelApp.Search.showNoResult = function(response) {
+  $('#content').empty();
+  $('#content').append('<div class="errors">No results!</div>');
+}
 
 })()
 
 $(document).on('ready', function() {
 
-  $(document).on('click', '#btn-search', function() {
+  $(document).on('click', '#btn-search', function(event) {
+    event.preventDefault();
     var data = TravelApp.Search.getSearchForm();
     ajax = new TravelApp.Ajax();
+
+    ajax.post('/travels/search', data, TravelApp.Search.showResult, TravelApp.Search.showNoResult)
   })
 
 })
