@@ -20,7 +20,7 @@ class TravelsController < ApplicationController
     travel = Travel.new
     travel.user_id = user.id
     travel.set_params(params)
-
+    travel.travelers << user.travelers.first
     if travel.save
       render status: 201, json: travel
     else
@@ -56,6 +56,7 @@ class TravelsController < ApplicationController
     already_included = @travel.travelers.include?(@traveler) if @travel
     if @travel && validation && !already_included
       @travel.travelers << @traveler
+      @travel.update_people
       render status: 200, json: :no_content
     else
       render status: 404, json: :no_content
@@ -67,6 +68,7 @@ class TravelsController < ApplicationController
     @traveler = Traveler.find_by(id: params[:id])
     if @travel && @travel.travelers.include?(@traveler)
       @travel.travelers.delete(@traveler)
+      @travel.update_people
       render status: 200, json: :no_content
     else
       render status: 404, json: :no_content

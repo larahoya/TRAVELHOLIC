@@ -1,16 +1,16 @@
 <div id='user-reg'>
   <form class="new_user" id="new_user" action="/login" accept-charset="UTF-8" method="post">
     <input name="utf8" type="hidden" value="&#x2713;" />
-    <input type="hidden" name="authenticity_token" />
+    <input type="hidden" name="login_authenticity_token" />
 
     <span class="my_field">
       <label for="user_email">Email</label>
-      <input autocomplete="off" type="email" value="" name="user[email]" id="user_email" />
+      <input autocomplete="off" type="email" value="" name="user[email]" id="login_user_email" />
     </span><br>
 
     <span class="my_field">
       <label for="user_password">Password</label>
-      <input autocomplete="off" type="password" name="user[password]" id="user_password" />
+      <input autocomplete="off" type="password" name="user[password]" id="login_user_password" />
     </span><br>
 
     <a href="/" id='link-form-signup'>Sign up</a>   

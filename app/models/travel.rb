@@ -3,7 +3,7 @@ class Travel < ActiveRecord::Base
   acts_as_taggable
   acts_as_taggable_on :tags, :countries, :places, :requirements
 
-  validates :title, :initial_date, :final_date,  presence: true
+  validates :title, :initial_date, :final_date, :maximum_people, presence: true
   validates :maximum_people, :people, numericality: true
   validates :budget, inclusion: {in: ['high', 'medium', 'low']}
 
@@ -11,15 +11,6 @@ class Travel < ActiveRecord::Base
   has_many :comments
   has_many :travelers, through: :participations
   has_many :participations
-
-
-  def set_maximum_people(string)
-    if string != ''
-      self.maximum_people = string.to_i
-    else
-      self.maximum_people = 0
-    end
-  end
 
 # Create and update
 
@@ -29,7 +20,7 @@ class Travel < ActiveRecord::Base
     self.final_date = params['final_date'] if params['final_date']
     self.description = params['description'] if params['description']
     self.budget = (params['budget'] || 'medium')
-    self.set_maximum_people(params['maximum_people']) if params['maximum_people']
+    self.maximum_people = params['maximum_people'].to_i if params['maximum_people']
     self.people = 1
 
     self.clean_all_tags
@@ -39,6 +30,7 @@ class Travel < ActiveRecord::Base
     self.add_countries(params['countries'])
     self.add_places(params['places'])
   end
+
 
 # Clean, add and get tags
 
@@ -94,6 +86,10 @@ class Travel < ActiveRecord::Base
   end
 
 # Check requirements to join a traveler
+  
+  def check_maximum_people
+    self.people == self.maximum_people ? false : true
+  end
 
   def check_age(traveler)
     validation = true
@@ -121,7 +117,7 @@ class Travel < ActiveRecord::Base
   end
 
   def check_requirements(traveler)
-    return self.check_age(traveler) && self.check_children(traveler) && self.check_gender(traveler) && self.check_country(traveler)
+    return self.check_maximum_people && self.check_age(traveler) && self.check_children(traveler) && self.check_gender(traveler) && self.check_country(traveler)
   end
 
 # Filter travels
@@ -158,6 +154,12 @@ class Travel < ActiveRecord::Base
     result = Travel.filter_by_initial_date(params, result)
     result = Travel.filter_by_final_date(params, result)
     result = Travel.filter_by_tags(params, result)
+  end
+
+# Update the people in the travel
+  
+  def update_people
+    self.people = self.travelers.count
   end
 
 end

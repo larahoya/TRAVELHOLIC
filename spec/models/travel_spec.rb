@@ -19,6 +19,10 @@ RSpec.describe Travel, type: :model do
       expect(FactoryGirl.build(:travel, final_date: nil)).not_to be_valid
     end
 
+    it 'is invalid without a maximum_people' do
+      expect(FactoryGirl.build(:travel, maximum_people: nil)).not_to be_valid
+    end
+
     it 'has an integer as maximum_people' do
       expect(FactoryGirl.build(:travel, maximum_people: 'four')).not_to be_valid
     end
@@ -29,31 +33,6 @@ RSpec.describe Travel, type: :model do
 
     it 'has high, medium or low as budget value' do
       expect(FactoryGirl.build(:travel, budget: 'very high')).not_to be_valid
-    end
-  end
-
-  describe '#set_maximum_people' do
-    before (:each) { @travel = FactoryGirl.build(:travel, maximum_people: nil)}
-
-    it 'sets it to 0 if there is no input' do
-      n = nil
-      @travel.set_maximum_people(n)
-
-      expect(@travel.maximum_people).to eq(0)
-    end
-
-    it 'sets it to 0 if the input is not a number' do
-      n = 'string'
-      @travel.set_maximum_people(n)
-
-      expect(@travel.maximum_people).to eq(0)
-    end
-
-    it 'sets it to a number if there is an input' do
-      n = '10'
-      @travel.set_maximum_people(n)
-
-      expect(@travel.maximum_people).to eq(10)
     end
   end
 
@@ -257,6 +236,17 @@ RSpec.describe Travel, type: :model do
     end
   end
 
+  describe '#check_maximum_people' do
+    it 'returns false if the maximum_people is equal than the people' do
+      @travel = FactoryGirl.create(:travel, maximum_people: 10, people: 10)
+      expect(@travel.check_maximum_people).to be false
+    end
+    it 'returns true if the maximum_people is greater than the people' do
+      @travel = FactoryGirl.create(:travel, maximum_people: 10, people: 8)
+      expect(@travel.check_maximum_people).to be true
+    end
+  end
+
   describe '#check_age' do
 
     context 'only young people requirement' do
@@ -371,7 +361,7 @@ RSpec.describe Travel, type: :model do
   describe '#check_requirements' do
     before (:each) do
       @user = FactoryGirl.create(:user, country: 'Spain')
-      @travel = FactoryGirl.create(:travel, user_id: @user.id)
+      @travel = FactoryGirl.create(:travel, user_id: @user.id, maximum_people: 10)
     end
 
     it 'returns true if the traveler satisfies all the requirements' do
@@ -389,6 +379,14 @@ RSpec.describe Travel, type: :model do
     it 'returns false if the traveler doesn´t satisfy all the requirements' do
       @travel.requirement_list.add(['only people from my country','not children'])
       @traveler = FactoryGirl.create(:traveler, country: 'Spain', date_of_birth: Date.new(2010,12,12))
+      expect(@travel.check_requirements(@traveler)).to be false
+    end
+
+    it 'returns false if the travel is full' do
+      @travel.requirement_list.add(['only people from my country','not children'])
+      @travel.people = 10
+      @travel.save
+      @traveler = FactoryGirl.create(:traveler, country: 'Spain', date_of_birth: Date.new(1980,12,12))
       expect(@travel.check_requirements(@traveler)).to be false
     end
     

@@ -94,8 +94,11 @@ TravelApp.Traveler.setUserTravelers = function(travelers) {
 
 TravelApp.Traveler.setTravelIndex = function() {
   TravelApp.Traveler.setIndex();
-  TravelApp.Traveler.setSelectForm();
   TravelApp.Traveler.setDeleteLinks();
+  var current_travel = TravelApp.Helpers.getCurrentTravel(); 
+  if(current_travel.maximum_people < current_travel.people) {
+    TravelApp.Traveler.setSelectForm();
+  }
 }
 
 TravelApp.Traveler.setIndex = function() {
@@ -119,6 +122,14 @@ TravelApp.Traveler.setDeleteLinks = function() {
     var string = '#' + traveler.id;
     $(string).append('<a href="/" id="btn-travel-left" data-id="' + traveler.id + '">Delete</a>');
   })
+}
+
+TravelApp.Traveler.firstTravelerCorrect = function(response) {
+  console.log('Traveler correct');
+}
+
+TravelApp.Traveler.firstTravelerIncorrect = function(response) {
+  console.log('Traveler incorrect');
 }
 
 })()

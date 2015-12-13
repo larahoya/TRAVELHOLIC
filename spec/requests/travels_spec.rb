@@ -74,6 +74,8 @@ RSpec.describe 'Travels', type: :request do
       before (:each) do
         @user = FactoryGirl.create(:user)
         @invalid_travel = FactoryGirl.build(:invalid_travel)
+        @traveler = FactoryGirl.create(:traveler)
+        @user.travelers << @traveler
         post user_travels_path(@user), {:travel => @invalid_travel, :countries => '', :places => ''}
       end
 
@@ -91,6 +93,8 @@ RSpec.describe 'Travels', type: :request do
       before (:each) do
         @user = FactoryGirl.create(:user)
         @travel = FactoryGirl.build(:travel)
+        @traveler = FactoryGirl.create(:traveler)
+        @user.travelers << @traveler
         post user_travels_path(@user), {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}
       end
 
@@ -110,6 +114,7 @@ RSpec.describe 'Travels', type: :request do
       it 'the new travel belongs to the user' do
         expect(Travel.last.user_id).to eq(@user.id)
       end
+      
     end
   end
 

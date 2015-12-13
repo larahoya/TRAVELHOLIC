@@ -58,9 +58,9 @@ TravelApp.User.printNewError = function(response) {
 //LOG IN
 
 TravelApp.User.getLoginData = function() {
-  var email = $('#user_email').val();
-  var password = $('#user_password').val();
-  var auth = $('#authenticity_token').val();
+  var email = $('#login_user_email').val();
+  var password = $('#login_user_password').val();
+  var auth = $('#login_authenticity_token').val();
   return {"utf8": "✓", "authenticity_token": auth, "user": {"email": email, "password": password, "remember_me": "0"}, "commit": "Log in"}
 }
 
@@ -129,7 +129,7 @@ $(document).on('ready', function() {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
     var data = TravelApp.User.getNewFormData();
-    ajax.post('/', data, TravelApp.User.showFirstProfile, TravelApp.User.printNewError);
+    ajax.post('/', data, TravelApp.User.showNewProfile, TravelApp.User.printNewError);
   })
 
 //LOG IN
