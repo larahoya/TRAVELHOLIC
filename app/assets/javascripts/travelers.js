@@ -82,6 +82,8 @@ TravelApp.Traveler.setTravelTravelers = function(travelers) {
   if (current_user) {
     ajax = new TravelApp.Ajax();
     ajax.get('/users/' + current_user.id + '/travelers', TravelApp.Traveler.setUserTravelers);
+  } else {
+    TravelApp.Traveler.setTravelIndex();
   }
 }
 
@@ -94,10 +96,16 @@ TravelApp.Traveler.setUserTravelers = function(travelers) {
 
 TravelApp.Traveler.setTravelIndex = function() {
   TravelApp.Traveler.setIndex();
-  TravelApp.Traveler.setDeleteLinks();
-  var current_travel = TravelApp.Helpers.getCurrentTravel(); 
-  if(current_travel.maximum_people < current_travel.people) {
+  
+  //show join form only if maximum_people < people
+  var current_travel = TravelApp.Helpers.getCurrentTravel();
+  var current_user = TravelApp.Helpers.getCurrentUser();  
+  if(current_user && current_travel.maximum_people < current_travel.people) {
     TravelApp.Traveler.setSelectForm();
+  }
+  //add delete links only if there is a current user
+  if(current_user) {
+    TravelApp.Traveler.setDeleteLinks();
   }
 }
 

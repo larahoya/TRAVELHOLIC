@@ -28,12 +28,9 @@ RSpec.describe 'Comments', type: :request do
         get travel_comments_path(@travel), format: :jbuilder
       end
 
-      it 'respond with a 404 status code' do
-        expect(response).to have_http_status(404)
-      end
-
-      it 'respond with an error json' do
-        expect(response.body).to eq('The travel doesn´t have any comment!')
+      it 'respond with an empty json' do
+        data = JSON.parse(response.body)
+        expect(data['comments'].length).to eq(0)
       end
 
     end

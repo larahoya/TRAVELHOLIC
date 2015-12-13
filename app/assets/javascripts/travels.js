@@ -12,34 +12,33 @@ TravelApp.Travel = function () {
 
 //SHOW
 
-  //private
-
-TravelApp.Travel.printPrivateInfo = function(travel) {
+TravelApp.Travel.printTravelInfo = function(travel) {
   var current_travel = JSON.stringify(travel);
   window.localStorage.setItem("current_travel", current_travel);
 
   travel.initial_date = travel.initial_date.slice(0,10);
   travel.final_date = travel.final_date.slice(0,10);
   $('#content').empty();
-  $('#content').html(HandlebarsTemplates['travels/show-private'](travel));
+  $('#content').html(HandlebarsTemplates['travels/show'](travel));
+
   TravelApp.Traveler.travelIndex(travel);
   TravelApp.Comment.getComments(travel);
-  $('.comments-public').after('<div><button id="btn-form-public-comment">Write a comment</button></div>'); 
-  $('.comments-private').after('<div><button id="btn-form-private-comment">Write a comment</button></div>')
-}
 
-  //public
+  var current_user = TravelApp.Helpers.getCurrentUser();
+  //hide buttons if there is no logged user
+  if(current_user == null) {
+    $('#btn-form-public-comment').remove();
+    $('#btn-form-private-comment').remove();
+    $('#btn-delete').remove();
+    $('#link-form-update').remove();
+  //hide private comments if the user is not into the travel
+  } else if($('.' + current_user.id).length == 0) {
+    $('.comments-private').remove();
+  } else {
+    $('.comments-public').after('<div><button id="btn-form-public-comment">Write a comment</button></div>'); 
+    $('.comments-private').after('<div><button id="btn-form-private-comment">Write a comment</button></div>');
+  }
 
-TravelApp.Travel.printPublicInfo = function(travel) {
-  var current_travel = JSON.stringify(travel);
-  window.localStorage.setItem("current_travel", current_travel);
-
-  travel.initial_date = travel.initial_date.slice(0,10);
-  travel.final_date = travel.final_date.slice(0,10);
-  $('#content').empty();
-  $('#content').html(HandlebarsTemplates['travels/show-public'](travel));
-  TravelApp.Traveler.travelIndex(travel);
-  $('.comments-public').after('<div>Login to write a comment!</div>'); 
 }
 
 //CREATE
@@ -116,7 +115,7 @@ TravelApp.Travel.index = function(user) {
 TravelApp.Travel.showTravels = function(travels) {
   var travels = travels.travels;
   travels.forEach(function(travel) {
-    $('.user-travels').append(HandlebarsTemplates['travels/miniature-private'](travel));
+    $('.user-travels').append(HandlebarsTemplates['travels/miniature'](travel));
   })
 }
 
@@ -152,32 +151,17 @@ $(document).on('ready', function() {
 
 //SHOW
 
-  //private
-
-  $(document).on('click','.link-private-travel', function(event) {
+  $(document).on('click','.link-travel', function(event) {
     event.preventDefault();
     ajax = new TravelApp.Ajax();
 
     var $link = $(event.currentTarget);
-    var id = $link.data('id');
-    var current_user = TravelApp.Helpers.getCurrentUser();
+    var user_id = $link.data('user');
+    var travel_id = $link.data('travel');
 
-    ajax.get('/users/' + current_user.id + '/travels/' + id, TravelApp.Travel.printPrivateInfo);
+    ajax.get('/users/' + user_id + '/travels/' + travel_id, TravelApp.Travel.printTravelInfo);
   })
 
-  //public
-
-  $(document).on('click','.link-public-travel', function(event) {
-    event.preventDefault();
-    ajax = new TravelApp.Ajax();
-
-    var $link = $(event.currentTarget);
-    var user = $link.data('user');
-    var travel = $link.data('travel');
-
-
-    ajax.get('/users/' + user + '/travels/' + travel, TravelApp.Travel.printPublicInfo);
-  })
 
 //CREATE
 

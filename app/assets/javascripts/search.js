@@ -27,7 +27,7 @@ TravelApp.Search.showResult = function(travels) {
   var travels = travels.travels;
   $('#content').empty();
   travels.forEach(function(travel) {
-    $('#content').append(HandlebarsTemplates['travels/miniature-public'](travel));
+    $('#content').append(HandlebarsTemplates['travels/miniature'](travel));
   })
 }
 

@@ -10,7 +10,7 @@ var ajax;
 TravelApp.Comment = function(){
 };
 
-//To show the comment in a travel view.
+//To show the comments in a travel view.
 
 TravelApp.Comment.getComments = function(travel) {
   ajax = new TravelApp.Ajax();
@@ -19,6 +19,8 @@ TravelApp.Comment.getComments = function(travel) {
 
 TravelApp.Comment.showComments = function(comments) {
   var comments = comments.comments;
+
+  //show comments
   comments.forEach(function(comment) {
     if(comment.category == true) {
       $('.comments-public').append(HandlebarsTemplates['comments/public-comment'](comment));
@@ -26,15 +28,6 @@ TravelApp.Comment.showComments = function(comments) {
       $('.comments-private').append(HandlebarsTemplates['comments/private-comment'](comment));
     } 
   })
-  TravelApp.Comment.checkPrivacy();
-}
-
-TravelApp.Comment.checkPrivacy = function() {
-  var current_user = TravelApp.Helpers.getCurrentUser();
-  var string = '.' + current_user.id;
-  if ($(string).length == 0) {
-    $('.comments-private').hide();
-  }
 }
 
 //To create and show a new public comment.
