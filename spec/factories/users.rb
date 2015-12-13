@@ -11,7 +11,8 @@ FactoryGirl.define do
     f.email {Faker::Internet.email}
     f.password '12345678'
     f.password_confirmation '12345678'
-    
+    f.gender 'FEMALE'
+    f.avatar '/assets/avatar1.jpg'
   end
 
 end

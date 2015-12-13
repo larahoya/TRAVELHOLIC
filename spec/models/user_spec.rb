@@ -14,5 +14,21 @@ RSpec.describe User, type: :model do
     it 'is invalid without a last name' do
       expect(FactoryGirl.build(:user, last_name: nil)).not_to be_valid
     end
+
+    it 'is invalid without a gender' do
+      expect(FactoryGirl.build(:user, gender: nil)).not_to be_valid
+    end
+
+    it 'is invalid without a country' do
+      expect(FactoryGirl.build(:user, country: nil)).not_to be_valid
+    end
+
+    it 'is invalid without a date of birth' do
+      expect(FactoryGirl.build(:user, date_of_birth: nil)).not_to be_valid
+    end
+
+    it 'is invalid without a date of birth' do
+      expect(FactoryGirl.build(:user, date_of_birth: nil)).not_to be_valid
+    end
   end
 end
