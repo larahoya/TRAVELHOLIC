@@ -23,3 +23,5 @@ json.countries @travel.get_countries
 json.taglist @travel.tag_list
 
 json.requirementlist @travel.requirement_list
+
+json.people @travel.people

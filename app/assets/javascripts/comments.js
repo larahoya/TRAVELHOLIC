@@ -26,6 +26,15 @@ TravelApp.Comment.showComments = function(comments) {
       $('.comments-private').append(HandlebarsTemplates['comments/private-comment'](comment));
     } 
   })
+  TravelApp.Comment.checkPrivacy();
+}
+
+TravelApp.Comment.checkPrivacy = function() {
+  var current_user = TravelApp.Helpers.getCurrentUser();
+  var string = '.' + current_user.id;
+  if ($(string).length == 0) {
+    $('.comments-private').hide();
+  }
 }
 
 //To create and show a new public comment.
