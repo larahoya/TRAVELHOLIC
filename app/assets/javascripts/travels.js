@@ -125,7 +125,7 @@ TravelApp.Travel.showTravels = function(travels) {
 TravelApp.Travel.travelerJoin = function(response) {
   var current_travel = TravelApp.Helpers.getCurrentTravel();
   var travel = new TravelApp.Travel(current_travel.id);
-  travel.show();
+  TravelApp.Travel.printPrivateInfo(current_travel);
 }
 
 TravelApp.Travel.joinError = function(response) {
@@ -138,7 +138,7 @@ TravelApp.Travel.joinError = function(response) {
 TravelApp.Travel.travelerLeft = function(response) {
   var current_travel = TravelApp.Helpers.getCurrentTravel();
   var travel = new TravelApp.Travel(current_travel.id);
-  travel.show();
+  TravelApp.Travel.printPrivateInfo(current_travel);
 }
 
 TravelApp.Travel.leftError = function(response) {

@@ -15,3 +15,7 @@ json.date_of_birth @user.date_of_birth
 json.telephone @user.telephone
 
 json.email @user.email
+
+json.avatar @user.avatar
+
+json.gender @user.gender

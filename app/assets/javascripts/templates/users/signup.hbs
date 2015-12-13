@@ -21,11 +21,25 @@
     <label for="user_date_of_birth">Date of birth</label>
     <input type="date" name="user[date_of_birth]" id="user_date_of_birth" /><br>
 
+    <label class='gender'>Gender</label>
+    <select name='gender' class='select gender'>
+    <option value='MALE'>MALE</option>
+    <option value='FEMALE' selected>FEMALE</option>
+    </select><br>
+
     <label for="user_telephone">Telephone</label>
     <input type="number" name="user[telephone]" id="user_telephone" /><br>
 
     <label for="user_email">Email</label>
     <input type="email" value="" name="user[email]" id="user_email" /><br>
+
+    <label class='avatar'>Avatar</label><br>
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar1.jpg'><img class='avatar' src="/assets/avatar1.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar2.jpg'><img class='avatar' src="/assets/avatar2.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar3.jpg'><img class='avatar' src="/assets/avatar3.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar4.jpg'><img class='avatar' src="/assets/avatar4.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar5.jpg'><img class='avatar' src="/assets/avatar5.jpg">
+    <input type='radio' class='avatar' name ='avatar' value='/assets/avatar6.jpg'><img class='avatar' src="/assets/avatar6.jpg"><br><br>
 
     <label for="user_password">Password</label>
     <em>(8 characters minimum)</em>

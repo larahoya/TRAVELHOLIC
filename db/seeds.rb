@@ -11,8 +11,10 @@ require 'faker'
   telephone = [Faker::Number.number(4)].sample
   password = '12345678'
   password_confirmation = '12345678'
+  avatar = '/assets/avatar1.jpg'
+  gender = 'FEMALE'
 
-  User.create(first_name: first_name, last_name: last_name, address: address, city: city, country: country, date_of_birth:date_of_birth, email: email, telephone: telephone, password: password, password_confirmation: password_confirmation)
+  User.create(first_name: first_name, last_name: last_name, address: address, city: city, country: country, date_of_birth:date_of_birth, email: email, telephone: telephone, password: password, password_confirmation: password_confirmation, gender: gender, avatar: avatar)
 
   title1 = [Faker::Lorem.sentence(3, true, 4)].sample
   title2 = [Faker::Lorem.sentence(3, true, 4)].sample

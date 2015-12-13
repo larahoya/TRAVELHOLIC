@@ -20,18 +20,22 @@ TravelApp.User.getNewFormData = function() {
   var city = $('#user_city').val();
   var country = $('#user_country').val();
   var date_of_birth = $('#user_date_of_birth').val();
+  var gender = $('.select.gender').val();
+  var avatar = $('input:checked.avatar').val();
   var telephone = $('#user_telephone').val();
   var email = $('#user_email').val();
   var password = $('#user_password').val();
   var password_confirmation = $('#user_password_confirmation').val();
   var auth = $('#authenticity_token').val();
-  return {"utf8": "✓", "authenticity_token": auth, "user": {"first_name": first_name, "last_name":last_name, "address": address, "city": city, "country": country, "date_of_birth": date_of_birth, "telephone": telephone, "email": email, "password": password, "password_confirmation": password_confirmation},  "commit": "Sign up"};
+  return {"utf8": "✓", "authenticity_token": auth, "user": {"first_name": first_name, "last_name":last_name, "address": address, "city": city, "country": country, "date_of_birth": date_of_birth, "telephone": telephone, "email": email, "password": password, "password_confirmation": password_confirmation, "gender": gender, "avatar": avatar},  "commit": "Sign up"};
 }
 
 TravelApp.User.showNewProfile = function(user) {
 
   var current_user = JSON.stringify(user);
   window.localStorage.setItem("current_user", current_user);
+
+
 
   $('#user-header').html(HandlebarsTemplates['users/header-logout'](user))
   $('#content').empty();
@@ -91,13 +95,15 @@ TravelApp.User.getUpdateFormData = function() {
   var city = $('#user_city').val();
   var country = $('#user_country').val();
   var date_of_birth = $('#user_date_of_birth').val();
+  var gender = $('.select.gender').val();
+  var avatar = $('input:checked.avatar').val();
   var telephone = $('#user_telephone').val();
   var email = $('#user_email').val();
   var password = $('#user_password').val();
   var password_confirmation = $('#user_password_confirmation').val();
   var auth = $('#authenticity_token').val();
   var current_password = $('#user_current_password').val()
-  return {"utf8": "✓", "authenticity_token": auth, "user": {"first_name": first_name, "last_name":last_name, "address": address, "city": city, "country": country, "date_of_birth": date_of_birth, "telephone": telephone, "email": email, "password": password, "password_confirmation": password_confirmation, "current_password": current_password},  "commit": "Update"};
+  return {"utf8": "✓", "authenticity_token": auth, "user": {"first_name": first_name, "last_name":last_name, "address": address, "city": city, "country": country, "date_of_birth": date_of_birth, "telephone": telephone, "email": email, "password": password, "password_confirmation": password_confirmation, "current_password": current_password, "gender": gender, "avatar": avatar},  "commit": "Update"};
 }
 
 TravelApp.User.showUpdatedProfile = function(response) {
@@ -152,11 +158,14 @@ $(document).on('ready', function() {
     var current_user = TravelApp.Helpers.getCurrentUser();
     current_user.date_of_birth = current_user.date_of_birth.slice(0,10);
     $('#content').html(HandlebarsTemplates['users/user-update'](current_user));
+    var string = '.avatar[value="' + current_user.avatar + '"]';
+    $(string).attr('checked', 'checked');
   })
 
   $(document).on('click', '#btn-user-update', function(event) {
     event.preventDefault();
     var data = TravelApp.User.getUpdateFormData();
+    ajax = new TravelApp.Ajax();
     
     ajax.patch('/', data, TravelApp.User.showUpdatedProfile);
   })
