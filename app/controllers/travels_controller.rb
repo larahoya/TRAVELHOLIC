@@ -17,9 +17,9 @@ class TravelsController < ApplicationController
 
   def create
     user = User.find_by(id: params[:user_id])
-    travel = Travel.new
-    travel.user_id = user.id
-    travel.set_params(params)
+    travel = user.travels.new(travel_params)
+    travel.set_tags(params)
+    travel.people = 1
     travel.travelers << user.travelers.first
     if travel.save
       render status: 201, json: travel
@@ -40,7 +40,8 @@ class TravelsController < ApplicationController
 
   def update
     @travel = Travel.find_by(id: params[:id])
-    @travel.set_params(params)
+    @travel.update(travel_params)
+    @travel.set_tags(params)
 
     if !@travel || !@travel.save
       render status: 404, json: 'The travel couldn´t be updated!'
@@ -83,5 +84,12 @@ class TravelsController < ApplicationController
       render status: 404, json: :no_content
     end
   end
+
+  private
+
+  def travel_params
+    params.require(:travel).permit(:title, :initial_date, :final_date, :description, :budget, :maximum_people)
+  end
+
 
 end

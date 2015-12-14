@@ -32,10 +32,7 @@ TravelApp.User.getNewFormData = function() {
 
 TravelApp.User.showNewProfile = function(user) {
 
-  var current_user = JSON.stringify(user);
-  window.localStorage.setItem("current_user", current_user);
-
-
+  TravelApp.Helpers.setCurrentUser(user);
 
   $('#user-header').html(HandlebarsTemplates['users/header-logout'](user))
   $('#content').empty();

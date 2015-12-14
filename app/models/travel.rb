@@ -6,6 +6,7 @@ class Travel < ActiveRecord::Base
   validates :title, :initial_date, :final_date, :maximum_people, presence: true
   validates :maximum_people, :people, numericality: true
   validates :budget, inclusion: {in: ['high', 'medium', 'low']}
+  
 
   belongs_to :user
   has_many :comments
@@ -14,21 +15,13 @@ class Travel < ActiveRecord::Base
 
 # Create and update
 
-  def set_params(params)
-    self.title = (params['title']) if params['title']
-    self.initial_date = params['initial_date'] if params['initial_date']
-    self.final_date = params['final_date'] if params['final_date']
-    self.description = params['description'] if params['description']
-    self.budget = (params['budget'] || 'medium')
-    self.maximum_people = params['maximum_people'].to_i if params['maximum_people']
-    self.people = 1
-
+  def set_tags(params)
     self.clean_all_tags
 
-    self.add_tags(params['tags'])
-    self.add_requirements(params['requirements'])
-    self.add_countries(params['countries'])
-    self.add_places(params['places'])
+    self.add_tags(params['travel']['tags'])
+    self.add_requirements(params['travel']['requirements'])
+    self.add_countries(params['travel']['countries'])
+    self.add_places(params['travel']['places'])
   end
 
 
@@ -160,6 +153,7 @@ class Travel < ActiveRecord::Base
   
   def update_people
     self.people = self.travelers.count
+    self.save
   end
 
 end

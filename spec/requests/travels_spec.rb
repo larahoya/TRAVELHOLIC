@@ -73,10 +73,10 @@ RSpec.describe 'Travels', type: :request do
     context 'some attribute is missing or incorrect' do
       before (:each) do
         @user = FactoryGirl.create(:user)
-        @invalid_travel = FactoryGirl.build(:invalid_travel)
+        @travel = FactoryGirl.build(:travel)
         @traveler = FactoryGirl.create(:traveler)
         @user.travelers << @traveler
-        post user_travels_path(@user), {:travel => @invalid_travel, :countries => '', :places => ''}
+        post user_travels_path(@user), {travel: {title: '', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}}
       end
 
       it 'respond with a 404 status code' do
@@ -95,7 +95,7 @@ RSpec.describe 'Travels', type: :request do
         @travel = FactoryGirl.build(:travel)
         @traveler = FactoryGirl.create(:traveler)
         @user.travelers << @traveler
-        post user_travels_path(@user), {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}
+        post user_travels_path(@user), {travel: {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}}
       end
 
       it 'respond with a 201 status code' do
@@ -165,7 +165,7 @@ RSpec.describe 'Travels', type: :request do
         @user = FactoryGirl.create(:user)
         @travel = FactoryGirl.create(:travel, title: 'European Tour', user_id: @user.id)
 
-        patch user_travel_path(@user, @travel), {title: '', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}
+        patch user_travel_path(@user, @travel), {travel: {title: '', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}}
       end
 
       it 'respond with a 404 status code' do
@@ -190,27 +190,27 @@ RSpec.describe 'Travels', type: :request do
       end
 
       it 'update the attributes of the travel' do
-        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', format: :jbuilder}
+        patch user_travel_path(@user, @travel), {travel: {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}, format: :jbuilder}
         expect(Travel.find_by(id: @travel.id).title).to eq('Spain Tour')
       end
 
       it 'delete the tag if the user deletes it' do
-        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', format: :jbuilder}
+        patch user_travel_path(@user, @travel), {travel: {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}, format: :jbuilder}
         expect(Travel.find_by(id: @travel.id).tags.count).to eq(0)
       end
 
       it 'add the tag the user checks' do
-        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', :tags => ['adventure', 'cruise'], format: :jbuilder}
+        patch user_travel_path(@user, @travel),  {travel: {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: '', :tags => ['adventure', 'cruise']}, format: :jbuilder}
         expect(Travel.find_by(id: @travel.id).tags.count).to eq(2)
       end
 
       it 'delete the place if the user deletes it' do
-        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', format: :jbuilder}
+        patch user_travel_path(@user, @travel), {travel: {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}, format: :jbuilder}
         expect(Travel.find_by(id: @travel.id).places.count).to eq(0)
       end
 
       it 'add the place the user enters' do
-        patch user_travel_path(@user, @travel), {:travel => @travel.id, :title => 'Spain Tour', :places => 'Madrid,Sevilla', format: :jbuilder}
+        patch user_travel_path(@user, @travel), {travel: {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', :places => 'Madrid,Sevilla'}, format: :jbuilder}
         expect(Travel.find_by(id: @travel.id).places.count).to eq(2)
       end
 
