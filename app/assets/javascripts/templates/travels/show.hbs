@@ -3,6 +3,14 @@
   <div class='col-xs-8'>
     
     <div class='row show-travel-info'>
+
+    <div class='col-xs-4'>
+      <div class='travel-img'>
+        <img src={{avatar}}>
+      </div>
+    </div>
+
+    <div class='col-xs-8'>
       <h2>{{title}}</h2>
       <dl>
         <dt> Initial date </dt><dd>{{initial_date}}</dd>
@@ -18,6 +26,8 @@
       </dl>
       <button id='link-form-update' data-id='{{id}}' type='submit'>Update!</button>
       <button id='btn-delete' data-id='{{id}}' type='submit'>Delete!</button>
+    </div>
+
     </div>
   
     <div class='row comments-private'>

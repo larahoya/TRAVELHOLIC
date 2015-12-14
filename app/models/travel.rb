@@ -24,6 +24,11 @@ class Travel < ActiveRecord::Base
     self.add_places(params['travel']['places'])
   end
 
+  def set_image
+    num = rand(9)
+    self.avatar = "/assets/travels/travel#{num}.jpg"
+  end
+
 
 # Clean, add and get tags
 

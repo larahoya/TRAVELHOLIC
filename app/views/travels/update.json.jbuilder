@@ -25,3 +25,5 @@ json.taglist @travel.tag_list
 json.requirementlist @travel.requirement_list
 
 json.people @travel.people
+
+json.avatar @travel.avatar

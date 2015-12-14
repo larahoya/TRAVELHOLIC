@@ -27,3 +27,5 @@ json.requirementlist @travel.requirement_list
 json.people @travel.people
 
 json.user_id @travel.user_id
+
+json.avatar @travel.avatar

@@ -20,6 +20,7 @@ class TravelsController < ApplicationController
     travel = user.travels.new(travel_params)
 
     travel.set_tags(params)
+    travel.set_image
     travel.people = 1
     travel.travelers << user.travelers.first
 

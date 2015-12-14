@@ -28,7 +28,7 @@
     padding: 20px;
 
     img {
-      width: 170px;
+      height: 280px;
       margin-bottom: 15px;
     }
   }
@@ -56,5 +56,20 @@
 .form-traveler {
   img {
     width: 100px;
+  }
+}
+
+.travel {
+  img {
+    height: 280px;
+    margin-bottom: 15px;
+  }
+}
+
+.travel-img {
+  img {
+    width: 200px;
+    height: 350px;
+    margin-top: 30px;
   }
 }

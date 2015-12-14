@@ -50,7 +50,8 @@ Travel.create(
   final_date: Date.new(2015,8,8), 
   budget: 'high', 
   maximum_people: 10, 
-  people: 1)
+  people: 1,
+  avatar: '/assets/travels/travel1.jpg')
 
 Travel.create(
   user_id: 0, 
@@ -60,7 +61,8 @@ Travel.create(
   final_date: Date.new(2015,8,8), 
   budget: 'low', 
   maximum_people: 20, 
-  people: 1)
+  people: 1,
+  avatar: '/assets/travels/travel2.jpg')
 
 Travel.create(
   user_id: 1, 
@@ -70,7 +72,8 @@ Travel.create(
   final_date: Date.new(2015,7,7), 
   budget: 'high', 
   maximum_people: 30, 
-  people: 1)
+  people: 1,
+  avatar: '/assets/travels/travel3.jpg')
 
 Travel.create(
   user_id: 1, 
@@ -80,7 +83,8 @@ Travel.create(
   final_date: Date.new(2015,12,31), 
   budget: 'medium', 
   maximum_people: 6, 
-  people: 1)
+  people: 1,
+  avatar: '/assets/travels/travel4.jpg')
 
 Travel.create(
   user_id: 2, 
@@ -90,7 +94,8 @@ Travel.create(
   final_date: Date.new(2015,8,8), 
   budget: 'low', 
   maximum_people: 12, 
-  people: 1)
+  people: 1,
+  avatar: '/assets/travels/travel5.jpg')
 
 Travel.create(
   user_id: 2, 
@@ -100,7 +105,8 @@ Travel.create(
   final_date: Date.new(2015,11,1), 
   budget: 'low', 
   maximum_people: 20, 
-  people: 1)
+  people: 1,
+  avatar: '/assets/travels/travel6.jpg')
 
 (0..15).each do |index|
   Comment.create(
