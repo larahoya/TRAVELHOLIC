@@ -33,12 +33,14 @@ TravelApp.Travel.printTravelInfo = function(travel) {
         console.log(err)
       }
       var current_user = TravelApp.Helpers.getCurrentUser();
-      TravelApp.Travel.setPrivacy(travel, current_user);
+      TravelApp.Travel.setPrivacy();
     }
   )
 }
 
-TravelApp.Travel.setPrivacy = function(travel, current_user) {
+TravelApp.Travel.setPrivacy = function() {
+  var current_user = TravelApp.Helpers.getCurrentUser();
+  var current_travel = TravelApp.Helpers.getCurrentTravel();
 
   if(current_user == null) { //not logged
     $('.comments-public').prepend('<h5>Log in to comment!</h5><br>')
@@ -46,11 +48,11 @@ TravelApp.Travel.setPrivacy = function(travel, current_user) {
     $('#btn-form-public-comment').remove();
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-  } else if(current_user.id != travel.id && $('.' + current_user.id).length === 0) {//logged && not the travel user && not in the travel
+  } else if(current_user.id != current_travel.id && $('.' + current_user.id).length === 0) {//logged && not the travel user && not in the travel
     $('.comments-private').remove();
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-  } else if(current_user.id != travel.id) { //logged && not the travel user
+  } else if(current_user.id != current_travel.user_id) { //logged && not the travel user
     $('#btn-delete').remove();
     $('#link-form-update').remove();
   }

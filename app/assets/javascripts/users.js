@@ -58,7 +58,10 @@ TravelApp.User.showProfile = function(user) {
     user.travels.forEach(function(travel) {
       ajax = new TravelApp.Ajax();
       ajax.get('/travels/' + travel, function(travel) {
-        $('.my-travels').append('<a href="/" class="link-travel" data-travel="' + travel.id + '" data-user="' + travel.user_id + '">' + travel.title + '</a>');
+        var current_user = TravelApp.Helpers.getCurrentUser();
+        if(travel.user_id != current_user.id) {
+          $('.my-travels').append('<a href="/" class="link-travel" data-travel="' + travel.id + '" data-user="' + travel.user_id + '">' + travel.title + '</a><br>');
+        }
       })
     })
     if (user.travels.length > 0) {

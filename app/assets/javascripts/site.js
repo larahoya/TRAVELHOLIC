@@ -16,9 +16,19 @@ TravelApp.renderHome = function() {
   } else {
     $('#user-header').html(HandlebarsTemplates['users/header-login'])
   }
-  
-  $('#content').html(HandlebarsTemplates['site/home']);
+
   $('#aside').html(HandlebarsTemplates['site/search-form']);
+
+  var data = {initial_date:'', final_date:'', budget:'', country:'', place:''}
+  ajax = new TravelApp.Ajax();
+  ajax.post('/travels/search', data, function(travels) {
+    var n = travels.travels.length;
+    travels.travels.slice(n - 4,n).forEach(function(travel) {
+      $('#content').append(HandlebarsTemplates['travels/miniature'](travel));
+    })
+  }, function(err) {
+    console.log(err)
+  })
 }
 
 
@@ -27,9 +37,5 @@ TravelApp.renderHome = function() {
 $(document).on('ready', function() {
 
   TravelApp.renderHome();
-
-  $(document).on('click', '#load-home', function() {
-    $('.main').html(HandlebarsTemplates['site/home']);
-  })
 
 })
