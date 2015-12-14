@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :travelers, only: [:index, :show, :create, :update, :destroy]
   end
 
-  resources :travels, only: [:index] do
+  resources :travels, only: [:index, :show] do
     resources :comments, only: [:index, :create, :destroy]
   end
 

@@ -196,30 +196,3 @@ $(document).on('ready', function() {
   })
 
 })
-
-// TravelApp.Traveler.setUserTravelers = function(travelers) {
-//   user_travelers = travelers.travelers;
-//   TravelApp.Traveler.setTravelIndex();
-// }
-
-// TravelApp.Traveler.travelIndex = function(travel) {
-//   ajax = new TravelApp.Ajax();
-//   ajax.get('/travels/' + travel.id + '/travelers', TravelApp.Traveler.setTravelTravelers); 
-// }
-
-// TravelApp.Traveler.setTravelTravelers = function(travelers) {
-//   travel_travelers = travelers.travelers;
-
-//   var current_user = TravelApp.Helpers.getCurrentUser();
-//   if (current_user) {
-//     ajax = new TravelApp.Ajax();
-//     ajax.get('/users/' + current_user.id + '/travelers', TravelApp.Traveler.setUserTravelers);
-//   } else {
-//     TravelApp.Traveler.setTravelIndex();
-//   }
-// }
-
-// TravelApp.Traveler.setUserTravelers = function(travelers) {
-//   user_travelers = travelers.travelers;
-//   TravelApp.Traveler.setTravelIndex();
-// }

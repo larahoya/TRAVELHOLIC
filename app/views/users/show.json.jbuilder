@@ -19,3 +19,5 @@ json.email @user.email
 json.avatar @user.avatar
 
 json.gender @user.gender
+
+json.travels @user.get_user_travels

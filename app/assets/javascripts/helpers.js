@@ -9,7 +9,6 @@ TravelApp.Helpers = function () {
 
 var current_user;
 var current_travel;
-var current_travelers;
 
 //current_user
 
@@ -33,18 +32,6 @@ TravelApp.Helpers.setCurrentTravel = function(travel) {
 TravelApp.Helpers.getCurrentTravel = function() {
   current_travel = JSON.parse(window.localStorage.getItem("current_travel")) || null
   return current_travel
-}
-
-//current_travelers
-
-TravelApp.Helpers.setCurrentTravelers = function() {
-  current_travelers = JSON.stringify(user);
-  window.localStorage.setItem("current_travelers", current_travelers);
-}
-
-TravelApp.Helpers.getCurrentTravelers = function() {
-  current_travelers = JSON.parse(window.localStorage.getItem("current_travelers")) || null
-  return current_travelers
 }
 
 })()

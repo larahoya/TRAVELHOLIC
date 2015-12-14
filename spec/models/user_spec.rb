@@ -31,4 +31,30 @@ RSpec.describe User, type: :model do
       expect(FactoryGirl.build(:user, date_of_birth: nil)).not_to be_valid
     end
   end
+
+  describe '#get_user_travels' do
+    before (:each) do
+      @user = FactoryGirl.create(:user)
+      @traveler = FactoryGirl.create(:traveler, user_id: @user.id)
+      @traveler2 = FactoryGirl.create(:traveler, user_id: @user.id)
+      @travel = FactoryGirl.create(:travel)
+      @travel2 = FactoryGirl.create(:travel)
+    end
+
+    it 'returns an array with the travels of the user' do
+      @travel.travelers << @traveler
+      expect(@user.get_user_travels.length).to eq(1)
+    end
+
+    it 'returns an array with the travels of the user' do
+      @travel.travelers << @traveler
+      @travel2.travelers << @traveler2
+      expect(@user.get_user_travels.length).to eq(2)
+    end
+
+    it 'returns an empty array if there is not travels' do
+      expect(@user.get_user_travels.length).to eq(0)
+    end
+
+  end
 end
