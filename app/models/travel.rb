@@ -116,37 +116,39 @@ class Travel < ActiveRecord::Base
 # Filter travels
   
   def self.filter_by_country(params, travels)
-    params['country'] != '' ? travels.tagged_with(params['country']) : travels
+    travels.tagged_with(params[:country])
   end
 
   def self.filter_by_place(params, travels)
-    params['place'] != '' ? travels.tagged_with(params['place']) : travels
+    travels.tagged_with(params[:place])
   end
 
   def self.filter_by_budget(params, travels)
-    params['budget'] != '' ? travels.where("budget = ?", params['budget']) : travels
+    travels.where("budget = ?", params[:budget])
   end
 
   def self.filter_by_initial_date(params, travels)
-    params['initial_date'] != '' ? travels.where("initial_date <= ?", params['initial_date']) : travels
+    travels.where("initial_date <= ?", params[:initial_date])
   end
 
   def self.filter_by_final_date(params, travels)
-    params['final_date'] != '' ? travels.where("final_date >= ?", params['final_date']) : travels
+    travels.where("final_date >= ?", params[:final_date])
   end
 
   def self.filter_by_tags(params, travels)
-    params['tags'] != '' ? travels.tagged_with(params['tags']) : travels
-
+    travels.tagged_with(params[:tags])
   end
 
   def self.filter(params, travels)
-    result = travels.filter_by_country(params, Travel.all)
-    result = Travel.filter_by_place(params, result)
-    result = Travel.filter_by_budget(params, result)
-    result = Travel.filter_by_initial_date(params, result)
-    result = Travel.filter_by_final_date(params, result)
-    result = Travel.filter_by_tags(params, result)
+    # binding.pry
+    result = travels
+    result = Travel.filter_by_country(params, result) if params[:country] != ''
+    result = Travel.filter_by_place(params, result) if params[:place] != ''
+    result = Travel.filter_by_budget(params, result) if params[:budget] != ''
+    result = Travel.filter_by_initial_date(params, result) if params[:initial_date] != ''
+    result = Travel.filter_by_final_date(params, result) if params[:final_date] != ''
+    result = Travel.filter_by_tags(params, result) if params[:tags] != nil
+    return result
   end
 
 # Update the people in the travel

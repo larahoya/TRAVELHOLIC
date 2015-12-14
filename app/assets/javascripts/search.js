@@ -44,7 +44,6 @@ $(document).on('ready', function() {
     event.preventDefault();
     var data = TravelApp.Search.getSearchForm();
     ajax = new TravelApp.Ajax();
-    console.log(data);
 
     ajax.post('/travels/search', data, TravelApp.Search.showResult, TravelApp.Search.showNoResult)
   })

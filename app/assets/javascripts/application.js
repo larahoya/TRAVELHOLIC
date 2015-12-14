@@ -16,5 +16,6 @@
 //= require init
 //= require helpers
 //= require handlebars
+//= require async
 //= require_tree ./templates
 //= require_tree .

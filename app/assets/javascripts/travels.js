@@ -14,44 +14,39 @@ TravelApp.Travel = function () {
 
 TravelApp.Travel.printTravelInfo = function(travel) {
   TravelApp.Helpers.setCurrentTravel(travel);
+  var current_user = TravelApp.Helpers.getCurrentUser();
 
   travel.initial_date = travel.initial_date.slice(0,10);
   travel.final_date = travel.final_date.slice(0,10);
+
   $('#content').empty();
-  //info
   $('#content').html(HandlebarsTemplates['travels/show'](travel));
+  
   //travelers
   TravelApp.Traveler.travelIndex(travel);
   //comments
   TravelApp.Comment.getComments(travel);
-
-  var travel_user_id = $('.show-travel').data('user')
-  var current_user = TravelApp.Helpers.getCurrentUser();
-
   //filter by privacy
+  TravelApp.Travel.setPrivacy(travel, current_user)
+}
+
+TravelApp.Travel.setPrivacy = function(travel, current_user) {
 
   if(current_user == null) { //not logged
     $('.comments-public').prepend('<h5>Log in to comment!</h5><br>')
     $('.comments-private').remove()
     $('#btn-form-public-comment').remove();
-    $('#btn-form-private-comment').remove();
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-  } else if(current_user.id != travel_user_id){//logged && not the travel user && not in the travel
-    $('#btn-form-private-comment').remove();
+  } else if(current_user.id != travel.id) {//logged && not the travel user && not in the travel
+    // $('.comments-private').remove();
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-    $('.comments-public').after('<div><button id="btn-form-public-comment">Write a comment</button></div>');
-  } else if(current_user.id != travel_user_id) { //logged && not the travel user
+  } else if(current_user.id != travel.id) { //logged && not the travel user
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-    $('.comments-public').after('<div><button id="btn-form-public-comment">Write a comment</button></div>'); 
-    $('.comments-private').after('<div><button id="btn-form-private-comment">Write a comment</button></div>');
   } else { // travel user
-    $('.comments-public').after('<div><button id="btn-form-public-comment">Write a comment</button></div>'); 
-    $('.comments-private').after('<div><button id="btn-form-private-comment">Write a comment</button></div>');
   }
-
 }
 
 //CREATE

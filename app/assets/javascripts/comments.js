@@ -14,18 +14,16 @@ TravelApp.Comment = function(){
 
 TravelApp.Comment.getComments = function(travel) {
   ajax = new TravelApp.Ajax();
-  ajax.get('/travels/' + travel.id + '/comments', TravelApp.Comment.showComments)
+  ajax.get('/travels/' + travel.id + '/comments', TravelApp.Comment.showComments);
 }
 
 TravelApp.Comment.showComments = function(comments) {
   var comments = comments.comments;
-
-  //show comments
   comments.forEach(function(comment) {
     if(comment.category == true) {
-      $('.comments-public').append(HandlebarsTemplates['comments/public-comment'](comment));
+      $('.comments-public').prepend(HandlebarsTemplates['comments/public-comment'](comment));
     } else {
-      $('.comments-private').append(HandlebarsTemplates['comments/private-comment'](comment));
+      $('.comments-private').prepend(HandlebarsTemplates['comments/private-comment'](comment));
     } 
   })
 }
@@ -33,7 +31,7 @@ TravelApp.Comment.showComments = function(comments) {
 //To create and show a new public comment.
 
 TravelApp.Comment.addPublicComment = function(comment) {
-  $('.comments-public').append(HandlebarsTemplates['comments/public-comment'](comment))
+  $('.comments-public').prepend(HandlebarsTemplates['comments/public-comment'](comment))
 }
 
 TravelApp.Comment.showPublicError = function(errors) {
@@ -47,7 +45,7 @@ TravelApp.Comment.showPublicError = function(errors) {
 //To create and show a new private comment.
 
 TravelApp.Comment.addPrivateComment = function(comment) {
-  $('.comments-private').append(HandlebarsTemplates['comments/private-comment'](comment))
+  $('.comments-private').prepend(HandlebarsTemplates['comments/private-comment'](comment))
 }
 
 TravelApp.Comment.showPrivateError = function(errors) {
@@ -66,11 +64,13 @@ $(document).on('ready', function() {
 
   $(document).on('click', '#btn-form-public-comment', function(event) {
     event.preventDefault();
+    $('#public-comment-form').remove();
     $('#btn-form-public-comment').after(HandlebarsTemplates['comments/public-comment-form'])
   })
 
   $(document).on('click', '#btn-form-private-comment', function(event) {
     event.preventDefault();
+    $('#private-comment-form').remove();
     $('#btn-form-private-comment').after(HandlebarsTemplates['comments/private-comment-form'])
   })
 

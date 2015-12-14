@@ -18,9 +18,11 @@ class TravelsController < ApplicationController
   def create
     user = User.find_by(id: params[:user_id])
     travel = user.travels.new(travel_params)
+
     travel.set_tags(params)
     travel.people = 1
     travel.travelers << user.travelers.first
+
     if travel.save
       render status: 201, json: travel
     else
@@ -41,6 +43,7 @@ class TravelsController < ApplicationController
   def update
     @travel = Travel.find_by(id: params[:id])
     @travel.update(travel_params)
+
     @travel.set_tags(params)
 
     if !@travel || !@travel.save

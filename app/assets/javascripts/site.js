@@ -21,6 +21,7 @@ TravelApp.renderHome = function() {
   $('#aside').html(HandlebarsTemplates['site/search-form']);
 }
 
+
 })()
 
 $(document).on('ready', function() {
@@ -32,3 +33,32 @@ $(document).on('ready', function() {
   })
 
 })
+
+
+// TravelApp.renderHome = function(num) {
+//   async.parallel([
+//     function(callback) {
+//       TravelApp.sum(num);
+//       callback();
+//     },
+//     function(callback) {
+//       TravelApp.sum(num);
+//       callback();
+//     }
+//   ],
+//     function(err) {
+//       if (err) {
+//         console.log(err);
+//       }
+//       TravelApp.renderHola(num);
+//     }
+//   )
+// }
+
+// TravelApp.renderHola = function(word) {
+//   console.log(word + 'ey');
+// }
+
+// TravelApp.sum = function(num) {
+//   console.log(num + 1)
+// }

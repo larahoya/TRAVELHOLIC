@@ -401,10 +401,7 @@ RSpec.describe Travel, type: :model do
         @travel.save
       end
       it 'return the travel if the country is tagged in the travel' do
-        expect(Travel.filter_by_country({'country' => 'Spain'}, Travel.all)).to match_array([@travel])
-      end
-      it 'return the travel if the country is tagged in the travel' do
-        expect(Travel.filter_by_country({'country' => ''}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter_by_country({'country': 'Spain'}, Travel.all)).to match_array([@travel])
       end
       it 'return an empty array if the country is not tagged in the travel' do
         expect(Travel.filter_by_country({'country': 'France'}, Travel.all)).to match_array([])
@@ -418,10 +415,7 @@ RSpec.describe Travel, type: :model do
         @travel.save
       end
       it 'return the travel if the place is tagged in the travel' do
-        expect(Travel.filter_by_place({'place' => 'Madrid'}, Travel.all)).to match_array([@travel])
-      end
-      it 'return the travel if the place is tagged in the travel' do
-        expect(Travel.filter_by_place({'place' => ''}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter_by_place({'initial_date': '','final_date': '','country': '','place': 'Madrid', 'budget': ''}, Travel.all)).to match_array([@travel])
       end
       it 'return an empty array if the place is not tagged in the travel' do
         expect(Travel.filter_by_place({'place' => 'Barcelona'}, Travel.all)).to match_array([])
@@ -433,13 +427,10 @@ RSpec.describe Travel, type: :model do
         @travel = FactoryGirl.create(:travel, budget: 'medium')
       end
       it 'return the travel if the budget is the same' do
-        expect(Travel.filter_by_budget({'budget' => 'medium'}, Travel.all)).to match_array([@travel])
-      end
-      it 'return the travel if the budget is the same' do
-        expect(Travel.filter_by_budget({'budget' => ''}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter_by_budget({'initial_date': '','final_date': '','country': '','place': 'Madrid', 'budget': 'medium'}, Travel.all)).to match_array([@travel])
       end
       it 'return an empty array if the budget is not the same' do
-        expect(Travel.filter_by_budget({'budget' => 'low'}, Travel.all)).to match_array([])
+        expect(Travel.filter_by_budget({'initial_date': '','final_date': '','country': '','place': 'Madrid', 'budget': 'low'}, Travel.all)).to match_array([])
       end
     end
 
@@ -448,13 +439,10 @@ RSpec.describe Travel, type: :model do
         @travel = FactoryGirl.create(:travel, initial_date: Date.new(2010,10,10))
       end
       it 'return the travel if initial date is after the initial date of the travel' do
-        expect(Travel.filter_by_initial_date({'initial_date' => Date.today}, Travel.all)).to match_array([@travel])
-      end
-      it 'return the travel if initial date is after the initial date of the travel' do
-        expect(Travel.filter_by_initial_date({'initial_date' => ''}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter_by_initial_date({'initial_date': Date.today,'final_date': '','country': '','place': '', 'budget': ''}, Travel.all)).to match_array([@travel])
       end
       it 'return an empty array if the initial date is before the initial date of the travel' do
-        expect(Travel.filter_by_initial_date({'initial_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([])
+        expect(Travel.filter_by_initial_date({'initial_date': Date.new(2010,10,10),'final_date': '','country': '','place': '', 'budget': ''}, Travel.all)).to match_array([])
       end
     end
 
@@ -463,13 +451,10 @@ RSpec.describe Travel, type: :model do
         @travel = FactoryGirl.create(:travel, final_date: Date.new(2010,10,10))
       end
       it 'return the travel if the final date is before the final date of the travel' do
-        expect(Travel.filter_by_final_date({'final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([@travel])
-      end
-      it 'return the travel if the final date is before the final date of the travel' do
-        expect(Travel.filter_by_final_date({'final_date' => ''}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter_by_final_date({'initial_date': '','final_date': Date.new(2010,10,10),'country': '','place': '', 'budget': ''}, Travel.all)).to match_array([@travel])
       end
       it 'return an empty array if the final date is after the final date of the travel' do
-        expect(Travel.filter_by_final_date({'final_date' => Date.today}, Travel.all)).to match_array([])
+        expect(Travel.filter_by_final_date({'initial_date': '','final_date': Date.today,'country': '','place': '', 'budget': ''}, Travel.all)).to match_array([])
       end
     end
 
@@ -480,22 +465,22 @@ RSpec.describe Travel, type: :model do
       it 'return the travel if the tag is tagged in the travel' do
         @travel.add_tags(['cruise'])
         @travel.save
-        expect(Travel.filter_by_tags({'tags' => ['cruise']}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter_by_tags({'initial_date': '','final_date': '','country': '','place': 'Madrid', 'budget': '', 'tags': ['cruise']}, Travel.all)).to match_array([@travel])
       end
       it 'return the travel if the tags are tagged in the travel' do
         @travel.add_tags(['cruise','adventure'])
         @travel.save
-        expect(Travel.filter_by_tags({'tags' => ['cruise','adventure']}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter_by_tags({'initial_date': '','final_date': '','country': '','place': 'Madrid', 'budget': '', 'tags': ['cruise', 'adventure']}, Travel.all)).to match_array([@travel])
       end
       it 'return an empty array if the tag is not tagged in the travel' do
         @travel.add_tags(['adventure'])
         @travel.save
-        expect(Travel.filter_by_tags({'tags' => ['cruise']}, Travel.all)).to match_array([])
+        expect(Travel.filter_by_tags({'initial_date': '','final_date': '','country': '','place': 'Madrid', 'budget': '', 'tags': ['cruise']}, Travel.all)).to match_array([])
       end
-      it 'return an empty array if on of the tags is not tagged in the travel' do
+      it 'return an empty array if one of the tags is not tagged in the travel' do
         @travel.add_tags(['cruise'])
         @travel.save
-        expect(Travel.filter_by_tags({'tags' => ['cruise','adventure']}, Travel.all)).to match_array([])
+        expect(Travel.filter_by_tags({'initial_date': '','final_date': '','country': '','place': 'Madrid', 'budget': '', 'tags': ['cruise', 'adventure']}, Travel.all)).to match_array([])
       end
     end
 
@@ -506,14 +491,14 @@ RSpec.describe Travel, type: :model do
         @travel.add_countries('Spain')
         @travel.save
       end
-      it 'returns the travel if it satisfies all the parameters' do
-        expect(Travel.filter({'tags' => '', 'budget' => 'medium','initial_date' => Date.today,'country' => 'Spain','place' => 'Madrid','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([@travel])
+      it'returns all the travels if there is no parameters' do
+        expect(Travel.filter({'initial_date': '', 'final_date': '','country': '','place': '', 'budget': 'medium'}, Travel.all)).to match_array([@travel])
       end
       it 'returns the travel if it satisfies all the parameters' do
-        expect(Travel.filter({'tags' => '', 'budget' => '','initial_date' => '','country' => '','place' => 'Madrid','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([@travel])
+        expect(Travel.filter({'initial_date': Date.today,'final_date': Date.new(2000,10,10),'country': 'Spain','place': 'Madrid', 'budget': 'medium'}, Travel.all)).to match_array([@travel])
       end
       it 'returns an empty array if it doens´t satisfy all the parameters' do
-        expect(Travel.filter({'tags' => '', 'budget' => '','initial_date' => '','country' => '','place' => 'Barcelona','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([])
+        expect(Travel.filter({'budget' => 'medium','initial_date' => '','country' => '','place' => 'Barcelona','final_date' => Date.new(2000,10,10)}, Travel.all)).to match_array([])
       end
     end
   end

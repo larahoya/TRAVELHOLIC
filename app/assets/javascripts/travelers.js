@@ -71,25 +71,42 @@ TravelApp.Traveler.showUserIndex = function(travelers) {
   //get user_travelers && travel_travelers
 
 TravelApp.Traveler.travelIndex = function(travel) {
-  ajax = new TravelApp.Ajax();
-  ajax.get('/travels/' + travel.id + '/travelers', TravelApp.Traveler.setTravelTravelers); 
+  async.parallel([
+    function(callback) {
+      ajax = new TravelApp.Ajax();
+      ajax.get('/travels/' + travel.id + '/travelers', function(data){
+          TravelApp.Traveler.setTravelTravelers(data);
+          callback(); 
+        }); 
+    },
+    function(callback) {
+      var current_user = TravelApp.Helpers.getCurrentUser();
+      if (current_user) {
+        ajax = new TravelApp.Ajax();
+        ajax.get('/users/' + current_user.id + '/travelers', function(data){
+          TravelApp.Traveler.setUserTravelers(data);
+          callback();
+        });
+      }else{
+        callback();
+      }
+      
+    }],
+    function(err, results) {
+      if(err) {
+        console.log(err);
+      }
+      TravelApp.Traveler.setTravelIndex(results);
+    }
+  )
 }
 
 TravelApp.Traveler.setTravelTravelers = function(travelers) {
   travel_travelers = travelers.travelers;
-
-  var current_user = TravelApp.Helpers.getCurrentUser();
-  if (current_user) {
-    ajax = new TravelApp.Ajax();
-    ajax.get('/users/' + current_user.id + '/travelers', TravelApp.Traveler.setUserTravelers);
-  } else {
-    TravelApp.Traveler.setTravelIndex();
-  }
 }
 
 TravelApp.Traveler.setUserTravelers = function(travelers) {
   user_travelers = travelers.travelers;
-  TravelApp.Traveler.setTravelIndex();
 }
 
   //set travel index
@@ -130,14 +147,6 @@ TravelApp.Traveler.setDeleteLinks = function() {
     var string = '#' + traveler.id;
     $(string).append('<a href="/" id="btn-travel-left" data-id="' + traveler.id + '">Left</a>');
   })
-}
-
-TravelApp.Traveler.firstTravelerCorrect = function(response) {
-  console.log('Traveler correct');
-}
-
-TravelApp.Traveler.firstTravelerIncorrect = function(response) {
-  console.log('Traveler incorrect');
 }
 
 })()
@@ -204,3 +213,30 @@ $(document).on('ready', function() {
   })
 
 })
+
+// TravelApp.Traveler.setUserTravelers = function(travelers) {
+//   user_travelers = travelers.travelers;
+//   TravelApp.Traveler.setTravelIndex();
+// }
+
+// TravelApp.Traveler.travelIndex = function(travel) {
+//   ajax = new TravelApp.Ajax();
+//   ajax.get('/travels/' + travel.id + '/travelers', TravelApp.Traveler.setTravelTravelers); 
+// }
+
+// TravelApp.Traveler.setTravelTravelers = function(travelers) {
+//   travel_travelers = travelers.travelers;
+
+//   var current_user = TravelApp.Helpers.getCurrentUser();
+//   if (current_user) {
+//     ajax = new TravelApp.Ajax();
+//     ajax.get('/users/' + current_user.id + '/travelers', TravelApp.Traveler.setUserTravelers);
+//   } else {
+//     TravelApp.Traveler.setTravelIndex();
+//   }
+// }
+
+// TravelApp.Traveler.setUserTravelers = function(travelers) {
+//   user_travelers = travelers.travelers;
+//   TravelApp.Traveler.setTravelIndex();
+// }
