@@ -12,9 +12,12 @@ TravelApp.Comment = function(){
 
 //To show the comments in a travel view.
 
-TravelApp.Comment.getComments = function(travel) {
+TravelApp.Comment.getComments = function(travel, old_callback) {
   ajax = new TravelApp.Ajax();
-  ajax.get('/travels/' + travel.id + '/comments', TravelApp.Comment.showComments);
+  ajax.get('/travels/' + travel.id + '/comments', function(data) {
+    TravelApp.Comment.showComments(data);
+    old_callback();
+  });
 }
 
 TravelApp.Comment.showComments = function(comments) {

@@ -14,7 +14,6 @@ TravelApp.Travel = function () {
 
 TravelApp.Travel.printTravelInfo = function(travel) {
   TravelApp.Helpers.setCurrentTravel(travel);
-  var current_user = TravelApp.Helpers.getCurrentUser();
 
   travel.initial_date = travel.initial_date.slice(0,10);
   travel.final_date = travel.final_date.slice(0,10);
@@ -22,12 +21,21 @@ TravelApp.Travel.printTravelInfo = function(travel) {
   $('#content').empty();
   $('#content').html(HandlebarsTemplates['travels/show'](travel));
   
-  //travelers
-  TravelApp.Traveler.travelIndex(travel);
-  //comments
-  TravelApp.Comment.getComments(travel);
-  //filter by privacy
-  TravelApp.Travel.setPrivacy(travel, current_user)
+  async.parallel([
+    function(callback) {
+      TravelApp.Traveler.travelIndex(travel, callback);
+    },
+    function(callback) {
+      TravelApp.Comment.getComments(travel, callback);
+    }],
+    function(err) {
+      if(err) {
+        console.log(err)
+      }
+      var current_user = TravelApp.Helpers.getCurrentUser();
+      TravelApp.Travel.setPrivacy(travel, current_user);
+    }
+  )
 }
 
 TravelApp.Travel.setPrivacy = function(travel, current_user) {
@@ -38,15 +46,15 @@ TravelApp.Travel.setPrivacy = function(travel, current_user) {
     $('#btn-form-public-comment').remove();
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-  } else if(current_user.id != travel.id) {//logged && not the travel user && not in the travel
-    // $('.comments-private').remove();
+  } else if(current_user.id != travel.id && $('.' + current_user.id).length === 0) {//logged && not the travel user && not in the travel
+    $('.comments-private').remove();
     $('#btn-delete').remove();
     $('#link-form-update').remove();
   } else if(current_user.id != travel.id) { //logged && not the travel user
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-  } else { // travel user
   }
+
 }
 
 //CREATE

@@ -68,14 +68,12 @@ TravelApp.Traveler.showUserIndex = function(travelers) {
 
 //TRAVEL INDEX
 
-  //get user_travelers && travel_travelers
-
-TravelApp.Traveler.travelIndex = function(travel) {
+TravelApp.Traveler.travelIndex = function(travel, old_callback) {
   async.parallel([
     function(callback) {
       ajax = new TravelApp.Ajax();
-      ajax.get('/travels/' + travel.id + '/travelers', function(data){
-          TravelApp.Traveler.setTravelTravelers(data);
+      ajax.get('/travels/' + travel.id + '/travelers', function(travelers){
+          travel_travelers = travelers.travelers;
           callback(); 
         }); 
     },
@@ -83,8 +81,8 @@ TravelApp.Traveler.travelIndex = function(travel) {
       var current_user = TravelApp.Helpers.getCurrentUser();
       if (current_user) {
         ajax = new TravelApp.Ajax();
-        ajax.get('/users/' + current_user.id + '/travelers', function(data){
-          TravelApp.Traveler.setUserTravelers(data);
+        ajax.get('/users/' + current_user.id + '/travelers', function(travelers){
+          user_travelers = travelers.travelers;
           callback();
         });
       }else{
@@ -96,34 +94,19 @@ TravelApp.Traveler.travelIndex = function(travel) {
       if(err) {
         console.log(err);
       }
-      TravelApp.Traveler.setTravelIndex(results);
+
+      var current_user = TravelApp.Helpers.getCurrentUser();
+
+      TravelApp.Traveler.setIndex();
+      if(current_user && travel.maximum_people > travel.people) {
+        TravelApp.Traveler.setSelectForm();
+      }
+      if(current_user) {
+        TravelApp.Traveler.setDeleteLinks();
+      }
+      old_callback();
     }
   )
-}
-
-TravelApp.Traveler.setTravelTravelers = function(travelers) {
-  travel_travelers = travelers.travelers;
-}
-
-TravelApp.Traveler.setUserTravelers = function(travelers) {
-  user_travelers = travelers.travelers;
-}
-
-  //set travel index
-
-TravelApp.Traveler.setTravelIndex = function() {
-  TravelApp.Traveler.setIndex();
-  
-  //show join form only if maximum_people < people
-  var current_travel = TravelApp.Helpers.getCurrentTravel();
-  var current_user = TravelApp.Helpers.getCurrentUser();  
-  if(current_user && current_travel.maximum_people > current_travel.people) {
-    TravelApp.Traveler.setSelectForm();
-  }
-  //add delete links only if there is a current user
-  if(current_user) {
-    TravelApp.Traveler.setDeleteLinks();
-  }
 }
 
 TravelApp.Traveler.setIndex = function() {
