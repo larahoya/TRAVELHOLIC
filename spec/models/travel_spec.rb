@@ -503,4 +503,15 @@ RSpec.describe Travel, type: :model do
     end
   end
 
+  describe '#update_people' do
+    before (:each) do
+      @travel = FactoryGirl.create(:travel)
+      @traveler = FactoryGirl.create(:traveler)
+      @travel.travelers << @traveler
+      @travel.update_people
+    end
+    it 'returns the the number of travelers' do
+      expect(@travel.people).to eq(1)
+    end
+  end
 end

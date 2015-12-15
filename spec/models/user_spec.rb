@@ -57,4 +57,20 @@ RSpec.describe User, type: :model do
     end
 
   end
+
+  describe '#set_first_traveler' do
+    before (:each) do
+      @user = FactoryGirl.create(:user, first_name: 'Prueba')
+      @user.set_first_traveler
+    end
+    it 'create a new traveler' do
+      expect(Traveler.count).to eq(1)
+    end
+    it 'create a new traveler that belongs to the user' do
+      expect(@user.travelers.count).to eq(1)
+    end
+    it 'creates a new traveler with the same first_name than the user' do
+      expect(Traveler.last.first_name).to eq('Prueba')
+    end
+  end
 end

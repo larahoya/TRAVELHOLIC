@@ -92,8 +92,8 @@ RSpec.describe 'Travels', type: :request do
     context 'all the attributes are correct' do
       before (:each) do
         @user = FactoryGirl.create(:user)
-        @travel = FactoryGirl.build(:travel)
-        @traveler = FactoryGirl.create(:traveler)
+        @traveler = FactoryGirl.create(:traveler, user_id: @user.id)
+        @travel = FactoryGirl.build(:travel, title: "Spain Tour")
         @user.travelers << @traveler
         post user_travels_path(@user), {travel: {title: 'Spain Tour', initial_date: @travel.initial_date, final_date:@travel.final_date, description: @travel.description, budget: @travel.budget, maximum_people: @travel.maximum_people, countries: '', places: ''}}
       end

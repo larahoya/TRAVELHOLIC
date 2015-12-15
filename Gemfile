@@ -41,6 +41,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker'
   gem 'rspec-rails', '~> 3.0'
+  gem 'simplecov'
 end
 
 group :development do

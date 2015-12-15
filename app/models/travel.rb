@@ -97,13 +97,13 @@ class Travel < ActiveRecord::Base
 
   def check_children(traveler)
     validation = true
-    return false if self.requirement_list.include?('not children') && traveler.get_age < 18
+    validation = false if self.requirement_list.include?('not children') && traveler.get_age < 18
     return validation
   end
 
   def check_gender(traveler)
     validation = true
-    return false if self.requirement_list.include?('only women') && traveler.gender == 'MALE' || self.requirement_list.include?('only men') && traveler.gender == 'FEMALE'
+    validation = false if self.requirement_list.include?('only women') && traveler.gender == 'MALE' || self.requirement_list.include?('only men') && traveler.gender == 'FEMALE'
     return validation
   end
 

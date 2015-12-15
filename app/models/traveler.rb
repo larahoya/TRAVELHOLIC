@@ -20,13 +20,4 @@ class Traveler < ActiveRecord::Base
     age = Date.today.year - self.date_of_birth.year
   end
 
-  def set_first_traveler(user)
-    self.first_name = user.first_name
-    self.last_name = user.last_name
-    self.country = user.country
-    self.date_of_birth = user.date_of_birth
-    self.gender = user.gender
-    self.avatar = user.avatar
-  end
-
 end

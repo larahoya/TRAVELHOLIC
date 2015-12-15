@@ -20,4 +20,16 @@ class User < ActiveRecord::Base
     return user_travels.uniq
   end
 
+  def set_first_traveler
+    traveler = self.travelers.new
+    traveler.first_name = self.first_name
+    traveler.last_name = self.last_name
+    traveler.country = self.country
+    traveler.date_of_birth = self.date_of_birth
+    traveler.gender = self.gender
+    traveler.avatar = self.avatar
+    traveler.save
+  end
+
+
 end

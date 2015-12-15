@@ -52,9 +52,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(user)
-    first_traveler = user.travelers.new
-    first_traveler.set_first_traveler(user)
-    first_traveler.save
+    user.set_first_traveler
     super(resource)
   end
 
