@@ -4,6 +4,7 @@ SimpleCov.start
 require 'factory_girl_rails'
 require 'database_cleaner'
 require "capybara/rspec"
+require 'capybara-webkit'
 require "support/factory_girl"
 require "support/database_cleaner"
 

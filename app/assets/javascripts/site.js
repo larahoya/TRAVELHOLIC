@@ -24,7 +24,7 @@ TravelApp.renderHome = function() {
   ajax = new TravelApp.Ajax();
   ajax.post('/travels/search', data, function(travels) {
     var n = travels.travels.length;
-    travels.travels.slice(n - 4,n).forEach(function(travel) {
+    travels.travels.slice(n - 8,n).forEach(function(travel) {
       $('#content').append(HandlebarsTemplates['travels/miniature'](travel));
     })
   }, function(err) {

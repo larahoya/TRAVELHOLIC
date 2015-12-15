@@ -34,6 +34,7 @@ class TravelsController < ApplicationController
 
   def destroy
     travel = Travel.find_by(id: params[:id])
+    Participation.where('travel_id = ?', travel.id).destroy_all if travel
     if travel && travel.destroy
       render status: 204, json: :no_content
     else

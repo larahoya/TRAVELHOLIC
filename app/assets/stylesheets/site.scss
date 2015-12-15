@@ -62,7 +62,7 @@ header {
       padding: 10px;
       margin-top: 20px;
       margin-left: 20px;
-      height: 500px;
+      height: 620px;
       color: black;
       background-color: $background;
 
@@ -147,4 +147,7 @@ header {
 footer {
   background-color: $background;
   height: 35px;
+  -webkit-box-shadow: 0px -3px 5px 0px rgba(50, 50, 50, 0.19);
+  -moz-box-shadow:    0px -3px 5px 0px rgba(50, 50, 50, 0.19);
+  box-shadow:         0px -3px 5px 0px rgba(50, 50, 50, 0.19);
 }
