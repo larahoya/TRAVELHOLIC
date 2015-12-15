@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
         user_travels << p.travel_id
       end
     end
-    return user_travels
+    return user_travels.uniq
   end
 
 end

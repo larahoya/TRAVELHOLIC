@@ -1,21 +1,84 @@
-/*.travel {
-  text-align: center;
-  float: left;
-  border: 1px solid #D7D9DF;
-  height: 400px;
-  width: 240px;
-  margin-left: 20px;
-  margin-top: 10px;
-  padding: 20px;
+@import 'variables';
 
-  img {
-    width: 170px;
-    margin-bottom: 15px;
+button {
+  background-color: $red;
+  border:1px solid rgba(128, 128, 128, 0.27);
+  border-radius: 2px;
+}
+
+.show-travel {
+  padding: 10px;
+  .date {
+    color: grey;
+    font-style: italic;
+  }
+  #link-form-update {
+    width: 100px;
+    height: 30px;
+    padding-top: 15 px;
+  }
+  #btn-delete {
+    width: 100px;
+    height: 30px;
+    padding-top: 15 px;
+    margin-left: 15px;
+  }
+  .show-travel-info {
+    .travel-img {
+      img {
+        opacity: 0.8;
+        width: 240px;
+        height: 210px;
+        margin-top: 0px;
+        margin-left: -10px;
+        margin-bottom: 10px;
+      }
+    }
+    .info {
+      margin-top: -25px;
+      .description {
+        font-size: 13px;
+      }
+
+    }
+  }
+  .comments-private {
+    padding-top: 20px;
+    font-size: 12px;
+    text-align: justify;
+  }
+  .travel-travelers {
+    padding-top: 20px;
+    font-style: italic;
+    font-size: 12px;
+    img {
+      width: 100%;
+      margin-top: -5px;
+    }
+    h5 {
+      margin-top: 5px;
+    }
+    button {
+      width: 65px;
+    }
+    .select.travelers {
+      border-radius: 1px;
+      background-color: white;
+    }
+  }
+  .comments-public {
+    padding-top: 20px;
+    font-size: 12px;
+    text-align: justify;
   }
 }
 
-.traveler-travel {
-  img {
-    width: 100%;
-  }
-}*/
+#btn-form-private-comment {
+  width: 150px;
+  height: 30px;
+}
+
+#btn-form-public-comment {
+  width: 150px;
+  height: 30px;
+}

@@ -1,57 +1,61 @@
-#profile-img {
-  width: 230px;
-  border: 1px solid #D7D9DF;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
+@import 'variables';
 
 .user-info {
-  padding-top: 30px;
-  padding-left: 60px;
+  padding-top: 20px;
+  padding-left: 25px;
   font-size: 13px;
+  margin-left: 10px;
+  margin-top: 20px;
+  -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  box-shadow:         3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  background-color: white;
+
+  #profile-img {
+    width: 170px;
+    border: 1px solid #D7D9DF;
+    margin-bottom: 15px;
+  }
+}
+
+.user-links {
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-bottom: 20px;
+  font-size: 13px;
+  margin-left: 10px;
+  margin-top: 20px;
+  -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  background-color: white;
 }
 
 .user-profile {
 
 }
 
-.user-travels {
-  .travel {
-    text-align: center;
-    float: left;
-    border: 1px solid #D7D9DF;
-    border-radius: 10px;
-    height: 400px;
-    width: 240px;
-    margin-left: 20px;
-    margin-top: 10px;
-    padding: 20px;
-
-    img {
-      height: 280px;
-      margin-bottom: 15px;
-    }
-  }
-
-}
-
-.user-travelers {
-  .traveler {
-    text-align: center;
-    float: left;
-    border: 1px solid #D7D9DF;
-    border-radius: 10px;
-    width: 160px;
-    height: 210px;
-    margin-left: 20px;
-    margin-top: 10px;
-    font-size: 10px;
+.traveler {
+  float: left;
+  text-align: center;
+  width: 170px;
+  height: 170px;
+  margin-left: 20px;
+  margin-top: 154px;
+  font-size: 12px;
+  background-color: white;
+  -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
 
   img {
-    width: 100px;
+    width: 118px;
+  }
+  h5 {
   }
 }
-}
+
+
 
 .form-traveler {
   img {

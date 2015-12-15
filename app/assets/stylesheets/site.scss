@@ -1,12 +1,14 @@
 @import 'variables';
 
 * {
-  font-family: 'Libre Baskerville', Serif;
+  font-family: Verdana;
+  a {
+    color: black;
+  }
 }
 
 header {
-/*  background-image:  url("/assets/header.jpg");*/
-  /*background: $black url("/assets/header.jpg") right;*/
+  background: $black url("/assets/header.jpg") right;
   /*background-color: $black;*/
   height: 110px;
   padding: 10px;
@@ -52,15 +54,17 @@ header {
   #aside {
 
     #search-form {
+      -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+      -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+      box-shadow:         3px 0px 5px 0px rgba(50, 50, 50, 0.19);
       
-      -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.5);
-      -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.5);
-      box-shadow:         3px 0px 5px 0px rgba(50, 50, 50, 0.5);
 
-      padding: 20px;
-      background-color: $blue;
-      min-height: 660px;
+      padding: 10px;
+      margin-top: 20px;
+      margin-left: 20px;
+      height: 500px;
       color: black;
+      background-color: $background;
 
       .input.initial-date {
         margin-left: 30px;
@@ -81,9 +85,21 @@ header {
       button {
         width: 120px;
         height: 30px;
-        background-color: white;
-        margin-top: 50px;
+        background-color: $red;
+        margin-top: 10px;
         margin-left: 80px;
+        border:none;
+        border-radius: 2px;
+      }
+      button:hover {
+        background-color: white;
+        box-shadow: none;
+      }
+
+      button:visited {
+        background-color: white;
+        box-shadow: none;
+        border: 1px solid black;
       }
       
     }
@@ -93,6 +109,7 @@ header {
   .main {
 
     .travel {
+      /*border-radius: 5px;*/
       text-align: center;
       float: left;
       height: 270px;
@@ -119,6 +136,7 @@ header {
       a {
         display: block;
         margin-top: -10px;
+        color: black;
       }
     } 
   }
@@ -127,6 +145,6 @@ header {
 }
 
 footer {
-  background-color: $footer;
+  background-color: $background;
   height: 35px;
 }

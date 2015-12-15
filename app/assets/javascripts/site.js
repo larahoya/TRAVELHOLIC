@@ -9,6 +9,7 @@ var ajax;
 
 TravelApp.renderHome = function() {
 
+  $('#content').empty();
   var current_user = TravelApp.Helpers.getCurrentUser();
 
   if (current_user) {
