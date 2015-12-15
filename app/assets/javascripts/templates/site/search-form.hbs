@@ -1,5 +1,5 @@
 <form id='search-form'>
-  <h4>Search your next destination!</h4>
+  
 
     <label class='initial-date'>Initial date</label>
     <input type='date' placeholder='Initial date' name='initial_date' class='input initial-date'><br>
@@ -15,23 +15,24 @@
 
     <label class='budget'>Budget</label>
     <select name='budget' class='select budget'>
+      <option value='' selected>ALL</option>
       <option value='low'>LOW</option>
-      <option value='medium' selected>MEDIUM</option>
+      <option value='medium'>MEDIUM</option>
       <option value='high'>HIGH</option>
     </select><br>
 
     <label class='tags'>Tags</label><br>
-    <input type='checkbox' class='tags' name ='tags[1]' value='adventure'><label>Adventure</label>
-    <input type='checkbox' class='tags' name ='tags[2]' value='cultural'><label>Cultural</label>
-    <input type='checkbox' class='tags' name ='tags[3]' value='safari'><label>Safari</label>
+    <input type='checkbox' class='tags' name ='tags[1]' value='adventure'><label>Adventure</label><br>
+    <input type='checkbox' class='tags' name ='tags[2]' value='cultural'><label>Cultural</label><br>
+    <input type='checkbox' class='tags' name ='tags[3]' value='safari'><label>Safari</label><br>
     <input type='checkbox' class='tags' name ='tags[4]' value='business'><label>Business</label><br>
-    <input type='checkbox' class='tags' name ='tags[5]' value='road trip'><label>Road trip</label>
-    <input type='checkbox' class='tags' name ='tags[6]' value='weekend break'><label>Weekend break</label>
-    <input type='checkbox' class='tags' name ='tags[7]' value='event travel'><label>Event travel</label>
+    <input type='checkbox' class='tags' name ='tags[5]' value='road trip'><label>Road trip</label><br>
+    <input type='checkbox' class='tags' name ='tags[6]' value='weekend break'><label>Weekend break</label><br>
+    <input type='checkbox' class='tags' name ='tags[7]' value='event travel'><label>Event travel</label><br>
     <input type='checkbox' class='tags' name ='tags[8]' value='cruise'><label>Cruise</label><br>
-    <input type='checkbox' class='tags' name ='tags[9]' value='backpacker'><label>Backpacker</label>
-    <input type='checkbox' class='tags' name ='tags[10]' value='traveling with children'><label>Traveling with children</label>
-    <input type='checkbox' class='tags' name ='tags[11]' value='relax'><label>Relax</label>
+    <input type='checkbox' class='tags' name ='tags[9]' value='backpacker'><label>Backpacker</label><br>
+    <input type='checkbox' class='tags' name ='tags[10]' value='traveling with children'><label>Traveling with children</label><br>
+    <input type='checkbox' class='tags' name ='tags[11]' value='relax'><label>Relax</label><br>
     <input type='checkbox' class='tags' name ='tags[12]' value='camping'><label>Camping</label><br>
 
     <button id='btn-search' type='submit'>Search!</button> 

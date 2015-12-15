@@ -105,6 +105,7 @@ TravelApp.Travel.showIndex = function(response) {
 TravelApp.Travel.getUpdateForm = function() {
   var current_user = TravelApp.Helpers.getCurrentUser();
   var current_travel = TravelApp.Helpers.getCurrentTravel();
+  ajax = new TravelApp.Ajax();
   ajax.get('/users/' + current_user.id + '/travels/' + current_travel.id, TravelApp.Travel.showUpdateForm);
 }
 
