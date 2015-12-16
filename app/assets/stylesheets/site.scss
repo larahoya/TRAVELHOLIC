@@ -1,8 +1,6 @@
 @import 'variables';
 
 * {
-  // font-family: 'Source Sans Pro', sans-serif;
-  // font-size: 16px;
   a {
     color: black;
   }
@@ -55,12 +53,9 @@ header {
 
   #user-header {
     background-color: rgb(249, 248, 245);
-    // width: 325px;
-    // margin-right: -90px;
   }
   #user-reg {
     background-color: $background;
-    padding: 5px;
   }
   #link-logout {
     font-size: 16px;
@@ -88,9 +83,6 @@ header {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
   background-color: $background;
-/*  background-size:cover;
-  background-image:  url("/assets/paisaje.jpg");
-  opacity: 0.8;*/
   min-height: 660px;
   
   #aside {
@@ -166,7 +158,6 @@ header {
     font-size: 16px;
 
     .travel {
-      /*border-radius: 5px;*/
       text-align: center;
       float: left;
       height: 270px;

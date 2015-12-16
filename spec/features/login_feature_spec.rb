@@ -32,16 +32,21 @@ feature 'home page' do
     expect(page).to have_content('Invalid')
   end
 
-  scenario 'rendering search', :js => true do
-    visit '/'
-    click_button 'Search!'
-    expect(page).to have_content('Last travel')
-  end
-
   scenario 'sign up a new user', :js => true do
     visit '/'
     click_link('link-form-signup')
     expect(page).to have_content('Telephone')
   end
+end
 
+feature 'not logged user' do
+  background do
+    @travel = FactoryGirl.create(:travel, title:'First travel')
+  end
+  scenario 'visiting a travel', :js => true do
+    visit '/'
+    click_link('First travel')
+
+    expect(page).to have_content('Log in to comment!')
+  end
 end

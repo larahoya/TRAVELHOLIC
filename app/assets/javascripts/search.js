@@ -7,8 +7,7 @@ if (window.TravelApp === undefined){
 'use strict';
 var ajax;
   
-TravelApp.Search = function(){
-};
+TravelApp.Search = TravelApp.Search || {};
 
 TravelApp.Search.getSearchForm= function() {
   var initial_date = $('.input.initial-date').val();

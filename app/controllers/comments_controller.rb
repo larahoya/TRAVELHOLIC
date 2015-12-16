@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def index
     travel = Travel.find_by(id: params[:travel_id])
-    @comments = travel.comments
+    @comments = travel.comments if travel
   end
 
   def create

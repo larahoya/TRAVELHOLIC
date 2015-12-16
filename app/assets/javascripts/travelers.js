@@ -132,7 +132,7 @@ TravelApp.Traveler.setDeleteLinks = function() {
   })
 }
 
-})()
+})();
 
 $(document).on('ready', function() {
 

@@ -3,7 +3,7 @@ class TravelersController < ApplicationController
   def index
     user = User.find_by(id: params[:user_id])
     @travelers = user.travelers if user
-    if @travelers.count == 0
+    if !@travelers || @travelers.count == 0
       render status: 404, json: 'The user doesn´t have any traveler!'
     end
   end
