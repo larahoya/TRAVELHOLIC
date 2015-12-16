@@ -1,7 +1,7 @@
 @import 'variables';
 
 button {
-  background-color: $red;
+  background-color: $white;
   border:1px solid rgba(128, 128, 128, 0.27);
   border-radius: 2px;
 }
@@ -37,20 +37,20 @@ button {
     .info {
       margin-top: -25px;
       .description {
-        font-size: 13px;
+        font-size: 15px;
       }
 
     }
   }
   .comments-private {
     padding-top: 20px;
-    font-size: 12px;
+    font-size: 15px;
     text-align: justify;
   }
   .travel-travelers {
     padding-top: 20px;
     font-style: italic;
-    font-size: 12px;
+    font-size: 15px;
     img {
       width: 100%;
       margin-top: -5px;
@@ -63,12 +63,12 @@ button {
     }
     .select.travelers {
       border-radius: 1px;
-      background-color: white;
+      background-color: $white;
     }
   }
   .comments-public {
     padding-top: 20px;
-    font-size: 12px;
+    font-size: 15px;
     text-align: justify;
   }
 }

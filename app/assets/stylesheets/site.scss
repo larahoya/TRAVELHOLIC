@@ -1,17 +1,23 @@
 @import 'variables';
 
 * {
-  font-family: Verdana;
+  // font-family: 'Source Sans Pro', sans-serif;
+  // font-size: 16px;
   a {
     color: black;
   }
 }
 
 header {
-  background: $black url("/assets/header.jpg") right;
-  /*background-color: $black;*/
-  height: 110px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  background: url("/assets/header.jpg") right;
+  height: 100px;
   padding: 10px;
+
+  -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.19);
+  box-shadow:         3px 0px 5px 0px rgba(50, 50, 50, 0.19);
 
   .header-name {
     font-weight: bold;
@@ -25,7 +31,11 @@ header {
     text-align: right;
     .actions {
       margin-right: 5px;
+
     }
+  .label {
+    font-size: 15px;
+  }
   }
   
   #logo {
@@ -37,14 +47,46 @@ header {
   }
   
   #title {
-    font-size: 40px;
-    margin-left: 100px;
-    margin-top: 20px;
-    font-family: monospace;
+    font-size: 45px;
+    margin-left: 110px;
+    margin-top: 25px;
+    font-family: 'Special Elite', cursive;
+  }
+
+  #user-header {
+    background-color: rgb(249, 248, 245);
+    // width: 325px;
+    // margin-right: -90px;
+  }
+  #user-reg {
+    background-color: $background;
+    padding: 5px;
+  }
+  #link-logout {
+    font-size: 16px;
+  }
+  input#login_user_email {
+    width: 210px;
+    height: 24px;
+    margin-top: 3px;
+    margin-right: 20px;
+  }
+  input#login_user_password {
+    width: 210px;
+    height: 24px;
+    margin-top: 1px;
+    margin-right: 20px;
+  }
+  input#btn-login {
+    margin-right: 20px;
+    height: 25px;
+    margin-bottom: 2px;
   }
 }
 
 .center {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
   background-color: $background;
 /*  background-size:cover;
   background-image:  url("/assets/paisaje.jpg");
@@ -52,8 +94,12 @@ header {
   min-height: 660px;
   
   #aside {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
 
     #search-form {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 15px;
       -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
       -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.19);
       box-shadow:         3px 0px 5px 0px rgba(50, 50, 50, 0.19);
@@ -65,39 +111,48 @@ header {
       height: 620px;
       color: black;
       background-color: $background;
-
+      
+      label.initial-date {
+        margin-top: 20px;
+      }
+      label.tags {
+        margin-top: 35px;
+      }
       .input.initial-date {
-        margin-left: 30px;
+        margin-left: 50px;
       }
       .input.final-date {
-        margin-left: 28px;
+        margin-left: 56px;
       }
       .input.country {
-        margin-left: 40px;
+        margin-left: 73px;
       }
       .input.place {
-        margin-left: 27px;
+        margin-left: 89px;
       }
-      .input.budget {
-        margin-left: 18px;
+      .select.budget {
+        margin-left: 77px;
         width: 100px;
+      }
+      input.tags {
+        margin-right: 15px;
       }
       button {
         width: 120px;
         height: 30px;
-        background-color: $red;
+        background-color: $white;
         margin-top: 10px;
         margin-left: 80px;
         border:none;
         border-radius: 2px;
       }
       button:hover {
-        background-color: white;
+        background-color: $white;
         box-shadow: none;
       }
 
       button:visited {
-        background-color: white;
+        background-color: $white;
         box-shadow: none;
         border: 1px solid black;
       }
@@ -107,6 +162,8 @@ header {
   }
   
   .main {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
 
     .travel {
       /*border-radius: 5px;*/
@@ -116,7 +173,7 @@ header {
       width: 240px;
       margin-left: 20px;
       margin-top: 20px;
-      background-color: white;
+      background-color: $white;
       -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
       -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.19);
       box-shadow:         3px 0px 5px 0px rgba(50, 50, 50, 0.19);

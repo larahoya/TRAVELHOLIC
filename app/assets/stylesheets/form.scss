@@ -1,5 +1,5 @@
 form {
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal;
 }
 
@@ -80,6 +80,14 @@ form {
 
   .input.maximum {
     width: 42px;
+  }
+  input.tags {
+    margin-right: 10px;
+    margin-left: 15px;
+  }
+  input.requirements {
+    margin-right: 10px;
+    margin-left: 15px;
   }
 
   button#btn-create {
