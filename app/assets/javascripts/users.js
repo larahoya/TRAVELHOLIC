@@ -58,13 +58,10 @@ TravelApp.User.showProfile = function(user) {
       TravelApp.Ajax.get('/travels/' + travel, function(travel) {
         var current_user = TravelApp.Helpers.getCurrentUser();
         if(travel.user_id != current_user.id) {
-          $('.my-travels').append('<a href="/" class="link-travel" data-travel="' + travel.id + '" data-user="' + travel.user_id + '">' + travel.title + '</a><br>');
+          $('.user-travels-joined').append(HandlebarsTemplates['travels/miniature'](travel));
         }
       })
     })
-    if (user.travels.length > 0) {
-      $('.my-travels').prepend('<h6>My travels</h6>');
-    }
   })
   
 }
@@ -82,6 +79,13 @@ TravelApp.User.printLoginError = function(response) {
   var error = response.responseText;
   $('#user-reg').append('<span class="errors">' + error + '</span>');
 }
+
+//LOG OUT
+TravelApp.User.logOut = function(response) {
+  window.localStorage.clear();
+  TravelApp.renderHome();
+}
+
 
 //UPDATE
 
@@ -134,9 +138,7 @@ $(document).on('ready', function() {
 
   $(document).on('click', '#link-logout', function(event) {
     event.preventDefault();
-    TravelApp.Ajax.delet('/sign_out', TravelApp.User.showHome);
-    window.localStorage.clear();
-    TravelApp.renderHome();
+    TravelApp.Ajax.delet('/sign_out', TravelApp.User.logOut);
   })
 
 //UPDATE

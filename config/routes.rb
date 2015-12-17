@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
   get '/' => 'site#home'
 
-  #post '/travels/search' => 'travels#search'
+  post '/travels/search' => 'travels#search'
 
   post '/travels/:travel_id/join' => 'travels#join'
   post '/travels/:travel_id/left' => 'travels#left'
 
-  #get '/travels/:travel_id/travelers' => 'travelers#travel_index'
+  get '/travels/:travel_id/travelers' => 'travelers#travel_index'
 
   devise_for :users, path: '',
                      path_names: {sign_in: 'login', sign_up: 'signup'},
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :travels, only: [:index, :show] do
-    #resources :comments, only: [:index, :create, :destroy]
+    resources :comments, only: [:index, :create, :destroy]
   end
 
 end
