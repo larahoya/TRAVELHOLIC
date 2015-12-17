@@ -7,6 +7,7 @@ require "capybara/rspec"
 require 'capybara-webkit'
 require "support/factory_girl"
 require "support/database_cleaner"
+require "support/login_helper"
 
 Capybara.javascript_driver = :webkit
 Capybara::Webkit.configure do |config|

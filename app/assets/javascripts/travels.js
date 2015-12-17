@@ -7,8 +7,7 @@ if (window.TravelApp === undefined){
 'use strict';
 var ajax;
 
-TravelApp.Travel = function () {
-}; 
+TravelApp.Travel = TravelApp.Travel || {};
 
 //SHOW
 
@@ -33,26 +32,28 @@ TravelApp.Travel.printTravelInfo = function(travel) {
         console.log(err)
       }
       var current_user = TravelApp.Helpers.getCurrentUser();
-      TravelApp.Travel.setPrivacy();
+      setPrivacy();
     }
   )
 }
 
-TravelApp.Travel.setPrivacy = function() {
+function setPrivacy() {
   var current_user = TravelApp.Helpers.getCurrentUser();
   var current_travel = TravelApp.Helpers.getCurrentTravel();
-
-  if(current_user == null) { //not logged
+  //not logged
+  if(current_user == null) {
     $('.comments-public').prepend('<h5>Log in to comment!</h5><br>')
     $('.comments-private').remove()
     $('#btn-form-public-comment').remove();
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-  } else if(current_user.id != current_travel.id && $('.' + current_user.id).length === 0) {//logged && not the travel user && not in the travel
+  //logged && not travel user && not joined
+  } else if(current_user.id != current_travel.id && $('.' + current_user.id).length === 0) {
     $('.comments-private').remove();
     $('#btn-delete').remove();
     $('#link-form-update').remove();
-  } else if(current_user.id != current_travel.user_id) { //logged && not the travel user
+  //logged && not the travel user
+  } else if(current_user.id != current_travel.user_id) {
     $('#btn-delete').remove();
     $('#link-form-update').remove();
   }
@@ -105,11 +106,10 @@ TravelApp.Travel.showIndex = function(response) {
 TravelApp.Travel.getUpdateForm = function() {
   var current_user = TravelApp.Helpers.getCurrentUser();
   var current_travel = TravelApp.Helpers.getCurrentTravel();
-  ajax = new TravelApp.Ajax();
-  ajax.get('/users/' + current_user.id + '/travels/' + current_travel.id, TravelApp.Travel.showUpdateForm);
+  TravelApp.Ajax.get('/users/' + current_user.id + '/travels/' + current_travel.id, showUpdateForm);
 }
 
-TravelApp.Travel.showUpdateForm = function(travel) {
+function showUpdateForm(travel) {
   travel.initial_date = travel.initial_date.slice(0,10);
   travel.final_date = travel.final_date.slice(0,10);
   $('#content').empty();
@@ -127,11 +127,10 @@ TravelApp.Travel.showUpdateForm = function(travel) {
 //INDEX USER
 
 TravelApp.Travel.index = function(user) {
-  ajax = new TravelApp.Ajax();
-  ajax.get('/users/' + user.id + '/travels', TravelApp.Travel.showTravels);
+  TravelApp.Ajax.get('/users/' + user.id + '/travels', showTravels);
 }
 
-TravelApp.Travel.showTravels = function(travels) {
+function showTravels(travels) {
   var travels = travels.travels;
   travels.forEach(function(travel) {
     $('.user-travels').append(HandlebarsTemplates['travels/miniature'](travel));
@@ -142,26 +141,24 @@ TravelApp.Travel.showTravels = function(travels) {
 
 TravelApp.Travel.travelerJoin = function(response) {
   var current_travel = TravelApp.Helpers.getCurrentTravel();
-  var travel = new TravelApp.Travel(current_travel.id);
   TravelApp.Travel.printTravelInfo(current_travel);
 }
 
 TravelApp.Travel.joinError = function(response) {
   $('.errors').remove();
-  $('.travel-travelers').prepend('<div class="errors">You can´t join the travel</div>');
+  $('#content').prepend('<div class="errors">You can´t join the travel</div>');
 }
 
 //LEFT
 
 TravelApp.Travel.travelerLeft = function(response) {
   var current_travel = TravelApp.Helpers.getCurrentTravel();
-  var travel = new TravelApp.Travel(current_travel.id);
   TravelApp.Travel.printTravelInfo(current_travel);
 }
 
 TravelApp.Travel.leftError = function(response) {
   $('.errors').remove();
-  $('.travel-travelers').prepend('<div class="errors">You can´t left the travel</div>');
+  $('#content').prepend('<div class="errors">You can´t left the travel</div>');
 }
 
 })()
@@ -172,13 +169,12 @@ $(document).on('ready', function() {
 
   $(document).on('click','.link-travel', function(event) {
     event.preventDefault();
-    ajax = new TravelApp.Ajax();
 
     var $link = $(event.currentTarget);
     var user_id = $link.data('user');
     var travel_id = $link.data('travel');
 
-    ajax.get('/users/' + user_id + '/travels/' + travel_id, TravelApp.Travel.printTravelInfo);
+    TravelApp.Ajax.get('/users/' + user_id + '/travels/' + travel_id, TravelApp.Travel.printTravelInfo);
   })
 
 
@@ -192,25 +188,22 @@ $(document).on('ready', function() {
 
   $(document).on('click', '#btn-create',function(event) {
     event.preventDefault();
-    ajax = new TravelApp.Ajax();
 
     var data = TravelApp.Travel.getNewFormData();
     var current_user = TravelApp.Helpers.getCurrentUser();
 
-    ajax.post('/users/' + current_user.id + '/travels', data, TravelApp.Travel.printTravelInfo, TravelApp.Travel.printNewError);
+    TravelApp.Ajax.post('/users/' + current_user.id + '/travels', data, TravelApp.Travel.printTravelInfo, TravelApp.Travel.printNewError);
   })
 
 //DELETE
 
   $(document).on('click', '#btn-delete', function(event) {
     event.preventDefault();
-    var $button = $(event.currentTarget);
-    var id = $button.data('id');
+    var id = TravelApp.Helpers.getId(event);
 
-    ajax = new TravelApp.Ajax();
     var current_user = TravelApp.Helpers.getCurrentUser();
 
-    ajax.delet('/users/' + current_user.id + '/travels/' + id, TravelApp.Travel.showIndex);
+    TravelApp.Ajax.delet('/users/' + current_user.id + '/travels/' + id, TravelApp.Travel.showIndex);
   })
 
 //UPDATE
@@ -222,14 +215,12 @@ $(document).on('ready', function() {
 
   $(document).on('click', '#btn-update', function(event) {
     event.preventDefault();
-    var $button = $(event.currentTarget);
-    var id = $button.data('id');
+    var id = TravelApp.Helpers.getId(event);
 
-    ajax = new TravelApp.Ajax();
     var data = TravelApp.Travel.getNewFormData();
     var current_user = TravelApp.Helpers.getCurrentUser();
 
-    ajax.patch('/users/' + current_user.id + '/travels/' + id, data, TravelApp.Travel.printTravelInfo);
+    TravelApp.Ajax.patch('/users/' + current_user.id + '/travels/' + id, data, TravelApp.Travel.printTravelInfo);
   })
 
   //JOIN
@@ -241,8 +232,7 @@ $(document).on('ready', function() {
     var current_travel = TravelApp.Helpers.getCurrentTravel();
     var data = {"id": id};
 
-    ajax = new TravelApp.Ajax();
-    ajax.post('/travels/' + current_travel.id + '/join', data, TravelApp.Travel.travelerJoin, TravelApp.Travel.joinError);
+    TravelApp.Ajax.post('/travels/' + current_travel.id + '/join', data, TravelApp.Travel.travelerJoin, TravelApp.Travel.joinError);
   })
 
   //LEFT
@@ -250,14 +240,12 @@ $(document).on('ready', function() {
   $(document).on('click', '#btn-travel-left', function(event) {
     event.preventDefault();
     
-    var $button = $(event.currentTarget);
-    var id = $button.data('id');
+    var id = TravelApp.Helpers.getId(event);
     var current_travel = TravelApp.Helpers.getCurrentTravel();
 
     var data = {"id": id};
 
-    ajax = new TravelApp.Ajax();
-    ajax.post('/travels/' + current_travel.id + '/left', data, TravelApp.Travel.travelerLeft, TravelApp.Travel.leftError); 
+    TravelApp.Ajax.post('/travels/' + current_travel.id + '/left', data, TravelApp.Travel.travelerLeft, TravelApp.Travel.leftError); 
   })
 
 })

@@ -1,12 +1,8 @@
 require 'rails_helper'
 
-feature 'create a traveler' do
+feature 'a user delete a traveler from a travel' do
   background do
-    @user = FactoryGirl.create(:user)
-    visit '/'
-    fill_in('login_user_email', :with => @user.email)
-    fill_in('login_user_password', :with => '12345678')
-    click_button 'Log in'
+    login
   end
 
   scenario 'all the information is correct', :js => true do
@@ -37,23 +33,5 @@ feature 'create a traveler' do
 
     expect(page).to have_content("First name can't be blank")
   end
+
 end
-
-feature 'delete a traveler' do
-  background do
-    @user = FactoryGirl.create(:user)
-    @traveler = FactoryGirl.create(:traveler, user_id: @user.id, first_name: 'Lara')
-    visit '/'
-    fill_in('login_user_email', :with => @user.email)
-    fill_in('login_user_password', :with => '12345678')
-    click_button 'Log in'
-  end
-
-  scenario 'it delete the traveler', :js => true do
-    click_link('Delete')
-    expect(page).not_to have_content('Delete')
-  end
-end
-
-
-

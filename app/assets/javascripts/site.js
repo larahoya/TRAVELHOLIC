@@ -21,8 +21,7 @@ TravelApp.renderHome = function() {
   $('#aside').html(HandlebarsTemplates['site/search-form']);
 
   var data = {initial_date:'', final_date:'', budget:'', country:'', place:''}
-  ajax = new TravelApp.Ajax();
-  ajax.post('/travels/search', data, function(travels) {
+  TravelApp.Ajax.post('/travels/search', data, function(travels) {
     var n = travels.travels.length;
     travels.travels.slice(n - 8,n).forEach(function(travel) {
       $('#content').append(HandlebarsTemplates['travels/miniature'](travel));

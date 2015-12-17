@@ -51,7 +51,7 @@ group :development do
   gem 'spring'
   gem 'database_cleaner', '~> 1.4.1'
   gem 'capybara'
-  gem 'capybara-webkit'
+#  gem 'capybara-webkit'
   gem 'guard-rspec'
   gem 'launchy'
 end

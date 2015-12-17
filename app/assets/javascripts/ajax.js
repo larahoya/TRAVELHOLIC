@@ -4,10 +4,9 @@
     window.TravelApp = {};
   }
   
-  TravelApp.Ajax = function(){
-  };
+  TravelApp.Ajax = TravelApp.Ajax || {};
 
-  TravelApp.Ajax.prototype.get = function(uri, callback_function){
+  TravelApp.Ajax.get = function(uri, callback_function){
     $.ajax({
       url: uri,
       success: function(response){
@@ -19,7 +18,7 @@
     });
   };
 
-  TravelApp.Ajax.prototype.post = function(uri, data_hash, success_function, error_function){
+  TravelApp.Ajax.post = function(uri, data_hash, success_function, error_function){
     var request = $.post(uri, data_hash);
     request.done(function(response) {
       success_function(response);
@@ -29,7 +28,7 @@
     });
   };
 
-  TravelApp.Ajax.prototype.delet= function(uri, callback_function){
+  TravelApp.Ajax.delet= function(uri, callback_function){
     $.ajax({
       type: 'DELETE',
       url: uri,
@@ -39,7 +38,7 @@
     });
   };
 
-  TravelApp.Ajax.prototype.patch= function(uri, data_hash, callback_function){
+  TravelApp.Ajax.patch= function(uri, data_hash, callback_function){
     $.ajax({
       type: 'PATCH',
       url: uri,

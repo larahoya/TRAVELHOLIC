@@ -3,7 +3,6 @@ if (window.TravelApp === undefined){
 }
 
 TravelApp.init = function() {
-
 };
 
 $(document).on("ready",function(){

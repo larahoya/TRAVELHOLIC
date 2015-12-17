@@ -42,9 +42,8 @@ $(document).on('ready', function() {
   $(document).on('click', '#btn-search', function(event) {
     event.preventDefault();
     var data = TravelApp.Search.getSearchForm();
-    ajax = new TravelApp.Ajax();
 
-    ajax.post('/travels/search', data, TravelApp.Search.showResult, TravelApp.Search.showNoResult)
+    TravelApp.Ajax.post('/travels/search', data, TravelApp.Search.showResult, TravelApp.Search.showNoResult)
   })
 
 })

@@ -7,14 +7,12 @@ if (window.TravelApp === undefined){
 'use strict';
 var ajax;
   
-TravelApp.Comment = function(){
-};
+TravelApp.Comment = TravelApp.Comment || {};
 
 //To show the comments in a travel view.
 
 TravelApp.Comment.getComments = function(travel, old_callback) {
-  ajax = new TravelApp.Ajax();
-  ajax.get('/travels/' + travel.id + '/comments', function(data) {
+  TravelApp.Ajax.get('/travels/' + travel.id + '/comments', function(data) {
     TravelApp.Comment.showComments(data);
     old_callback();
   });
@@ -23,6 +21,7 @@ TravelApp.Comment.getComments = function(travel, old_callback) {
 TravelApp.Comment.showComments = function(comments) {
   var comments = comments.comments;
   comments.forEach(function(comment) {
+    comment.created_at = comment.created_at.slice(0,10);
     if(comment.category == true) {
       $('.comments-public').prepend(HandlebarsTemplates['comments/public-comment'](comment));
     } else {
@@ -34,6 +33,7 @@ TravelApp.Comment.showComments = function(comments) {
 //To create and show a new public comment.
 
 TravelApp.Comment.addPublicComment = function(comment) {
+  comment.created_at = comment.created_at.slice(0,10);
   $('.comments-public').prepend(HandlebarsTemplates['comments/public-comment'](comment))
 }
 
@@ -48,6 +48,7 @@ TravelApp.Comment.showPublicError = function(errors) {
 //To create and show a new private comment.
 
 TravelApp.Comment.addPrivateComment = function(comment) {
+  comment.created_at = comment.created_at.slice(0,10);
   $('.comments-private').prepend(HandlebarsTemplates['comments/private-comment'](comment))
 }
 
@@ -87,8 +88,7 @@ $(document).on('ready', function() {
 
     var data = {name: current_user.first_name, user_id: current_user.id, description: description, category: true};
 
-    ajax = new TravelApp.Ajax();
-    ajax.post('/travels/' + current_travel.id + '/comments', data, TravelApp.Comment.addPublicComment, TravelApp.Comment.showPublicError);
+    TravelApp.Ajax.post('/travels/' + current_travel.id + '/comments', data, TravelApp.Comment.addPublicComment, TravelApp.Comment.showPublicError);
   })
 
   $(document).on('click', '#btn-create-private-comment', function(event) {
@@ -99,8 +99,7 @@ $(document).on('ready', function() {
 
     var data = {name: current_user.first_name, user_id: current_user.id, description: description, category: false};
 
-    ajax = new TravelApp.Ajax();
-    ajax.post('/travels/' + current_travel.id + '/comments', data, TravelApp.Comment.addPrivateComment, TravelApp.Comment.showPrivateError);
+    TravelApp.Ajax.post('/travels/' + current_travel.id + '/comments', data, TravelApp.Comment.addPrivateComment, TravelApp.Comment.showPrivateError);
   })
 
   //Button to delete the comment
