@@ -91,3 +91,43 @@
     margin-top: 30px;
   }
 }
+
+.form-signup {
+  padding: 30px;
+  img.avatar {
+    width: 100px;
+  }
+  label.avatar {
+    margin-top: 30px;
+  }
+  input#user_first_name {
+    margin-left: 50px;
+  }
+  input#user_last_name {
+    margin-left: 51px;
+  }
+  input#user_address {
+    margin-left: 67px;
+  }
+  input#user_city {
+    margin-left: 93px;
+  }
+  input#user_country {
+    margin-left: 68px;
+  }
+  input#user_date_of_birth {
+    margin-left: 35px;
+  }
+  input#user_telephone {
+    margin-left: 51px;
+  }
+  input#user_email {
+    margin-left: 83px;
+  }
+  input#user_password_confirmation {
+    margin-left: 68px;
+  }
+  .select.gender {
+    margin-left: 150px;
+  }
+}
