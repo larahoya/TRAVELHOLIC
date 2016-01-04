@@ -5,7 +5,6 @@ if (window.TravelApp === undefined){
 }
 
 'use strict';
-var ajax;
   
 TravelApp.User = TravelApp.User || {};
 

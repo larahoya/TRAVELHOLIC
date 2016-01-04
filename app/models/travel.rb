@@ -145,7 +145,7 @@ class Travel < ActiveRecord::Base
   end
 
   def self.filter(params, travels)
-    # binding.pry
+    
     result = travels
     result = Travel.filter_by_country(params, result) if params[:country] != ''
     result = Travel.filter_by_place(params, result) if params[:place] != ''

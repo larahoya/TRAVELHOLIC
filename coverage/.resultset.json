@@ -1,12 +1,12 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/support/factory_girl.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/support/factory_girl.rb": [
         1,
         1,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/support/database_cleaner.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/support/database_cleaner.rb": [
         1,
         null,
         1,
@@ -14,35 +14,35 @@
         null,
         null,
         1,
-        192,
+        191,
         null,
         null,
         1,
-        17,
+        16,
         null,
         null,
         1,
-        192,
+        191,
         null,
         null,
         1,
-        192,
+        191,
         null,
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/support/login_helper.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/support/login_helper.rb": [
         1,
-        9,
-        9,
-        9,
-        9,
-        9,
-        9,
-        9,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/controllers/site_controller_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/controllers/site_controller_spec.rb": [
         1,
         null,
         1,
@@ -58,77 +58,77 @@
         1,
         null,
         null,
-        null,
-        null,
-        null
-      ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/rails_helper.rb": [
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
         null,
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/environment.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/rails_helper.rb": [
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/application.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/application.rb": [
         1,
         null,
         1,
@@ -177,12 +177,12 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/boot.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/environments/test.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/environments/test.rb": [
         1,
         null,
         null,
@@ -226,7 +226,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/assets.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -239,7 +239,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/backtrace_silencers.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -248,12 +248,12 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/cookies_serializer.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/devise.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/devise.rb": [
         null,
         null,
         1,
@@ -517,13 +517,13 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/filter_parameter_logging.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/inflections.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -541,18 +541,18 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/mime_types.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/session_store.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/initializers/wrap_parameters.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -568,7 +568,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/factories/comments.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/factories/comments.rb": [
         1,
         null,
         1,
@@ -582,7 +582,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/factories/travelers.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/factories/travelers.rb": [
         1,
         null,
         1,
@@ -590,16 +590,16 @@
         1,
         46,
         58,
-        72,
-        59,
-        54,
+        71,
+        58,
+        53,
         1,
-        73,
+        72,
         null,
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/factories/travels.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/factories/travels.rb": [
         1,
         null,
         1,
@@ -607,9 +607,9 @@
         1,
         104,
         114,
-        142,
+        141,
         1,
-        130,
+        129,
         1,
         1,
         1,
@@ -621,18 +621,18 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/factories/users.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/factories/users.rb": [
         1,
         1,
         null,
-        97,
-        101,
-        102,
-        102,
-        85,
+        96,
         100,
-        102,
-        102,
+        101,
+        101,
+        84,
+        99,
+        101,
+        101,
         1,
         1,
         1,
@@ -641,7 +641,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/config/routes.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/config/routes.rb": [
         1,
         null,
         1,
@@ -668,7 +668,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/models/user.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/models/user.rb": [
         1,
         null,
         null,
@@ -682,13 +682,13 @@
         1,
         null,
         1,
+        16,
+        16,
         17,
-        17,
-        18,
         3,
         null,
         null,
-        17,
+        16,
         null,
         null,
         1,
@@ -705,7 +705,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/helpers/application_helper.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/helpers/application_helper.rb": [
         1,
         null,
         1,
@@ -714,27 +714,27 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/helpers/comments_helper.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/helpers/comments_helper.rb": [
         1,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/helpers/site_helper.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/helpers/site_helper.rb": [
         1,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/helpers/travelers_helper.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/helpers/travelers_helper.rb": [
         1,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/helpers/travels_helper.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/helpers/travels_helper.rb": [
         1,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/helpers/users_helper.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/controllers/site_controller.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/controllers/site_controller.rb": [
         1,
         null,
         1,
@@ -742,7 +742,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/controllers/application_controller.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -750,7 +750,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_creates_travel_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_creates_travel_spec.rb": [
         1,
         null,
         1,
@@ -786,7 +786,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_creates_traveler_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_creates_traveler_spec.rb": [
         1,
         null,
         1,
@@ -825,7 +825,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_deletes_travel_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_deletes_travel_spec.rb": [
         1,
         null,
         1,
@@ -842,7 +842,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_joins_travel_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_joins_travel_spec.rb": [
         1,
         null,
         1,
@@ -860,7 +860,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_lefts_travel_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_lefts_travel_spec.rb": [
         1,
         null,
         1,
@@ -881,79 +881,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_logs_in_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        3,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_logs_out_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_searchs_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_signs_up_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_logs_in_spec.rb": [
         1,
         null,
         1,
@@ -968,6 +896,78 @@
         null,
         1,
         1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_logs_out_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_searchs_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/features/user_signs_up_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        3,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
         null,
         1,
         1,
@@ -1001,25 +1001,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/features/user_writes_comment_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null
-      ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/helpers/application_helper_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/helpers/application_helper_spec.rb": [
         1,
         null,
         1,
@@ -1032,7 +1014,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/models/comment_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/models/comment_spec.rb": [
         1,
         null,
         1,
@@ -1053,7 +1035,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/models/comment.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/models/comment.rb": [
         1,
         null,
         1,
@@ -1063,7 +1045,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/models/travel_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/models/travel_spec.rb": [
         1,
         null,
         1,
@@ -1582,7 +1564,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/models/travel.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/models/travel.rb": [
         1,
         null,
         1,
@@ -1641,31 +1623,31 @@
         null,
         null,
         1,
-        12,
+        11,
         5,
         null,
-        12,
+        11,
         null,
         null,
         1,
-        12,
+        11,
         3,
         null,
-        12,
+        11,
         null,
         null,
         1,
-        12,
+        11,
         5,
         null,
-        12,
+        11,
         null,
         null,
         1,
-        12,
+        11,
         3,
         null,
-        12,
+        11,
         null,
         null,
         null,
@@ -1731,14 +1713,14 @@
         null,
         1,
         null,
-        29,
-        29,
-        29,
-        29,
-        29,
-        29,
-        29,
-        29,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
         null,
         null,
         null,
@@ -1750,7 +1732,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/models/traveler_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/models/traveler_spec.rb": [
         1,
         null,
         1,
@@ -1796,7 +1778,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/models/traveler.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/models/traveler.rb": [
         1,
         null,
         1,
@@ -1821,7 +1803,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/models/user_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -1899,7 +1881,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/requests/comments_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/requests/comments_spec.rb": [
         1,
         null,
         1,
@@ -2027,7 +2009,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/requests/travelers_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/requests/travelers_spec.rb": [
         1,
         null,
         1,
@@ -2224,7 +2206,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/requests/travels_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/requests/travels_spec.rb": [
         1,
         null,
         1,
@@ -2599,7 +2581,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/spec/requests/users_spec.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/spec/requests/users_spec.rb": [
         1,
         null,
         1,
@@ -2637,20 +2619,20 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/controllers/travels_controller.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/controllers/travels_controller.rb": [
         1,
         null,
         1,
-        16,
-        16,
-        16,
+        15,
+        15,
+        15,
         4,
         null,
         null,
         null,
         1,
-        6,
-        6,
+        5,
+        5,
         2,
         null,
         null,
@@ -2724,8 +2706,8 @@
         null,
         null,
         1,
-        26,
-        26,
+        25,
+        25,
         8,
         null,
         null,
@@ -2739,7 +2721,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/controllers/users/sessions_controller.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/controllers/users/sessions_controller.rb": [
         1,
         1,
         1,
@@ -2768,19 +2750,19 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/controllers/users_controller.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/controllers/users_controller.rb": [
         1,
         null,
         1,
-        16,
-        16,
+        15,
+        15,
         2,
         null,
         null,
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/models/participation.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/models/participation.rb": [
         1,
         null,
         1,
@@ -2788,13 +2770,13 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/controllers/travelers_controller.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/controllers/travelers_controller.rb": [
         1,
         null,
         1,
-        22,
-        22,
-        22,
+        21,
+        21,
+        21,
         4,
         null,
         null,
@@ -2844,25 +2826,25 @@
         null,
         null,
         1,
-        7,
-        7,
+        6,
+        6,
         null,
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/controllers/comments_controller.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/controllers/comments_controller.rb": [
         1,
         null,
         1,
-        10,
-        10,
+        9,
+        9,
         null,
         null,
         1,
-        7,
+        6,
         null,
-        7,
-        5,
+        6,
+        4,
         null,
         2,
         2,
@@ -2881,7 +2863,7 @@
         null,
         null
       ],
-      "/Users/larahoyatrujillo/Documents/Travelholic/app/controllers/users/registrations_controller.rb": [
+      "/Users/larahoyatrujillo/Desktop/Travelholic/app/controllers/users/registrations_controller.rb": [
         1,
         1,
         1,
@@ -2947,6 +2929,6 @@
         null
       ]
     },
-    "timestamp": 1450363835
+    "timestamp": 1450810997
   }
 }
