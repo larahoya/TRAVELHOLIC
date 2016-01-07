@@ -24,6 +24,7 @@ button {
     margin-left: 15px;
   }
   .show-travel-info {
+    margin-left: 0px;
     .travel-img {
       img {
         opacity: 0.8;
@@ -35,7 +36,8 @@ button {
       }
     }
     .info {
-      margin-top: -25px;
+      min-width: 380px;
+      // margin-top: -25px;
       .description {
         font-size: 15px;
       }
@@ -43,16 +45,19 @@ button {
     }
   }
   .comments-private {
+    width: 100%;
     padding-top: 20px;
     font-size: 15px;
     text-align: justify;
   }
   .travel-travelers {
+    min-width: 57px;
     padding-top: 20px;
     font-style: italic;
     font-size: 15px;
     img {
       width: 100%;
+      max-width: 80px;
       margin-top: -5px;
     }
     h5 {
@@ -67,6 +72,9 @@ button {
     }
   }
   .comments-public {
+    min-width: 150px;
+    width: 100%;
+    margin-left: 20px;
     padding-top: 20px;
     font-size: 15px;
     text-align: justify;
@@ -81,4 +89,15 @@ button {
 #btn-form-public-comment {
   width: 150px;
   height: 30px;
+}
+
+@media (max-width: 1306px) {
+  .show-travel {
+    .show-travel-info {
+      .info {
+        margin-left: -10px;
+        width: 100%;
+      }
+    }
+  }
 }
