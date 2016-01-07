@@ -48,7 +48,7 @@ aside {
 }
 
 .user-trav {
-  min-width: 730px;
+  min-width: 700px;
 }
 
 .user-travelers {
@@ -56,11 +56,13 @@ aside {
 }
 
 .user-travels {
-  margin-left: -50px;
+  // margin-left: -50px;
+  min-width: 700px;
 }
 .user-travels-joined {
+  min-width: 700px;
   margin-top: 50px;
-  margin-left: -50px;
+  // margin-left: -50px;
 }
 .traveler {
   float: left;
@@ -144,5 +146,13 @@ aside {
   }
   .select.gender {
     margin-left: 150px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .col-sm-9 {
+    width: 75%;
+    min-width: 700px;
   }
 }
