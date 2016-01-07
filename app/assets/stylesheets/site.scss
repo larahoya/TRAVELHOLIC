@@ -14,7 +14,7 @@ header {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 15px;
   background: url("/assets/header.jpg") right;
-  height: 100px;
+  min-height: 100px;
   padding: 10px;
 
   -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
@@ -30,14 +30,14 @@ header {
   }
 
   .login {
+    width: 340px;
     text-align: right;
     .actions {
       margin-right: 5px;
-
     }
-  .label {
+    .label {
     font-size: 15px;
-  }
+    }
   }
   
   #logo {
@@ -65,13 +65,15 @@ header {
     font-size: 16px;
   }
   input#login_user_email {
-    width: 210px;
+    width: 68%;
+    max-width: 210px;
     height: 24px;
     margin-top: 3px;
     margin-right: 20px;
   }
   input#login_user_password {
-    width: 210px;
+    width: 68%;
+    max-width: 210px;
     height: 24px;
     margin-top: 1px;
     margin-right: 20px;
@@ -104,7 +106,9 @@ header {
       padding: 10px;
       margin-top: 20px;
       margin-left: 20px;
-      height: 620px;
+      min-height: 620px;
+      width: 100%;
+      min-width: 190px;
       color: black;
       background-color: $background;
       
@@ -204,3 +208,105 @@ footer {
   -moz-box-shadow:    0px -3px 5px 0px rgba(50, 50, 50, 0.19);
   box-shadow:         0px -3px 5px 0px rgba(50, 50, 50, 0.19);
 }
+
+@media (max-width: 1349px) {
+  #title {
+    margin-bottom: 30px;
+  }
+
+  .center {
+    #aside {
+      #search-form {
+          
+        label.initial-date {
+          margin-top: 20px;
+        }
+        label.tags {
+          margin-top: 15px;
+        }
+        .input.initial-date {
+          margin-left: 0px;
+          margin-bottom: -15px;
+          display: block;
+        }
+        .input.final-date {
+          margin-left: 0px;
+          margin-bottom: -15px;
+          display: block;
+        }
+        .input.country {
+          margin-left: 0px;
+          margin-bottom: -15px;
+          display: block;
+        }
+        .input.place {
+          margin-left: 0px;
+          margin-bottom: -15px;
+          display: block;
+        }
+        .select.budget {
+          margin-left: 0px;
+          margin-bottom: -15px;
+          width: 100px;
+          display: block;
+        }
+        input.tags {
+          margin-right: 15px;
+        }
+        button {
+          margin-left: 20px;
+        }     
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    #logo {
+      top: -40px;
+    }
+  }
+  .center {
+    #aside {
+      #search-form {
+        max-width: 350px;
+        label.initial-date {
+        margin-top: 20px;
+        }
+        label.tags {
+          margin-top: 35px;
+        }
+        .input.initial-date {
+          margin-left: 50px;
+          display: inline-block;
+        }
+        .input.final-date {
+          margin-left: 56px;
+          display: inline-block;
+        }
+        .input.country {
+          margin-left: 73px;
+          display: inline-block;
+        }
+        .input.place {
+          margin-left: 89px;
+          display: inline-block;
+        }
+        .select.budget {
+          margin-left: 77px;
+          display: inline-block;
+          width: 100px;
+        }
+        input.tags {
+          margin-right: 15px;
+        }
+        button {
+          margin-left: 80px;
+        }
+      }
+    }
+  }
+}
+
+
