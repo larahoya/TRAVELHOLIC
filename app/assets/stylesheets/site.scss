@@ -12,7 +12,7 @@
 
 header {
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 15px;
+  font-size: 1.1em;
   background: url("/assets/header.jpg") right;
   min-height: 100px;
   padding: 10px;
@@ -36,7 +36,7 @@ header {
       margin-right: 5px;
     }
     .label {
-    font-size: 15px;
+    font-size: 1.1em;
     }
   }
   
@@ -87,7 +87,7 @@ header {
 
 .center {
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   background-color: $background;
   min-height: 660px;
   
@@ -97,7 +97,7 @@ header {
 
     #search-form {
       font-family: 'Source Sans Pro', sans-serif;
-      font-size: 15px;
+      font-size: 1em;
       -webkit-box-shadow: 3px 0px 5px 0px rgba(50, 50, 50, 0.19);
       -moz-box-shadow:    3px 0px 5px 0px rgba(50, 50, 50, 0.19);
       box-shadow:         3px 0px 5px 0px rgba(50, 50, 50, 0.19);
@@ -163,7 +163,7 @@ header {
   
   .main {
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 16px;
+    font-size: 1.2em;
 
     .travel {
       text-align: center;
