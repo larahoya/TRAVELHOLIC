@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Traveler, type: :model do
-  
+
   describe 'validations' do
     it 'has a valid factory' do
       expect(FactoryGirl.create(:traveler)).to be_valid
@@ -37,7 +37,7 @@ RSpec.describe Traveler, type: :model do
 
     it 'returns the age of the traveler' do
       @traveler = FactoryGirl.create(:traveler, date_of_birth: Date.new(1985,10,10))
-      expect(@traveler.get_age).to eq(30)
+      expect(@traveler.get_age).to eq(31)
     end
   end
 
