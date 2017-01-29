@@ -37,7 +37,7 @@ RSpec.describe Traveler, type: :model do
 
     it 'returns the age of the traveler' do
       @traveler = FactoryGirl.create(:traveler, date_of_birth: Date.new(1985,10,10))
-      expect(@traveler.get_age).to eq(31)
+      expect(@traveler.get_age).to eq(32)
     end
   end
 
